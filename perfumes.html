@@ -1,299 +1,112 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>香水コレクション - My Website</title>
-
-  <!-- システムフォントを優先 -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.mobile.css" media="only screen and (max-width: 768px)" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <style>
-    /* ===== グローバル設定 ===== */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    html, body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-      background-color: #FFF9E3; /* Apple Storeっぽい薄いグレー */
-      color: #1d1d1f;            /* 標準のテキストカラー */
-      line-height: 1.5;
-    }
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-    ul {
-      list-style: none;
-    }
-
-    /* ===== ナビゲーション ===== */
-    .nav-menu {
-      background-color: #ffffff;
-      border-bottom: 1px solid #d2d2d7;
-      padding: 1rem 0;
-    }
-    .nav-menu ul {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-    .nav-menu li {
-      flex: 1 0 18%; /* 5 items in two rows */
-      text-align: center;
-    }
-    .nav-menu li a {
-      font-size: 0.9rem;
-      color: #1d1d1f;
-      padding: 0.25rem 0;
-      transition: color 0.2s, border-bottom 0.2s;
-      display: block;
-    }
-    .nav-menu li a:hover {
-      color: #0071e3; /* Appleっぽいブルー */
-      border-bottom: 2px solid #0071e3;
-    }
-
-    /* ===== コンテナ ===== */
-    .container {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    .container h1 {
-      font-size: 2.5rem;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    /* ===== パフュームカード ===== */
-    .perfume-card {
-      display: flex;
-      background-color: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-      overflow: hidden;
-      margin-bottom: 2rem;
-      align-items: center;
-    }
-    /* 画像部分 */
-    .perfume-image {
-      flex-shrink: 0;
-      width: 300px;
-      height: 300px;
-      object-fit: cover;
-    }
-    /* テキスト情報部分 */
-    .perfume-info {
-      flex: 1;
-      padding: 2rem;
-    }
-    .perfume-name {
-      font-size: 1.75rem;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-      color: #1d1d1f;
-    }
-    .perfume-description {
-      font-size: 1rem;
-      color: #3a3a3c;
-      margin-bottom: 1.5rem;
-    }
-
-    /* ノート表示部分をグリッドで3列 */
-    .notes-container {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-    }
-    .notes-section {
-      background-color: #f2f2f7;
-      border-radius: 8px;
-      padding: 1rem;
-      text-align: center;
-    }
-    .notes-title {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: #0071e3;
-      margin-bottom: 0.5rem;
-    }
-    .notes-list {
-      font-size: 0.9rem;
-      color: #3a3a3c;
-      line-height: 1.4;
-    }
-
-    /* ===== レスポンシブ ===== */
-    @media (max-width: 768px) {
-      .perfume-card {
-        flex-direction: column;
-      }
-      .perfume-image {
-        width: 100%;
-        height: auto;
-      }
-      .perfume-info {
-        padding: 1.5rem;
-      }
-      .notes-container {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </head>
-<body>
-  <!-- ナビゲーション -->
+<body style="background:#FFF9E3;">
   <nav class="nav-menu">
     <ul>
-      <li><a href="index.html" data-ja="ホーム" data-kr="홈">ホーム</a></li>
-      <li><a href="self-intro.html" data-ja="自己紹介" data-kr="자기소개">自己紹介</a></li>
-      <li><a href="hobbies.html" data-ja="趣味" data-kr="취미">趣味</a></li>
-      <li><a href="perfumes.html" data-ja="香水コレクション" data-kr="향수 컬렉션">香水コレクション</a></li>
-      <li><a href="books.html" data-ja="読書記録" data-kr="독서 기록">読書記録</a></li>
-      <li><a href="travel.html" data-ja="旅行記" data-kr="여행기">旅行記</a></li>
-      <li><a href="music.html" data-ja="好きな音楽" data-kr="좋아하는 음악">好きな音楽</a></li>
-      <li><a href="movies.html" data-ja="おすすめ映画" data-kr="추천 영화">おすすめ映画</a></li>
-      <li><a href="food.html" data-ja="食べ歩き" data-kr="맛집">食べ歩き</a></li>
-      <li><a href="photos.html" data-ja="写真館" data-kr="사진관">写真館</a></li>
-      <li><a href="blog.html" data-ja="ブログ" data-kr="블로그">ブログ</a></li>
+      <li><a href="index.html" data-ja="ホーム" data-kr="홈">홈</a></li>
+      <li><a href="self-intro.html" data-ja="自己紹介" data-kr="자기소개">자기소개</a></li>
+      <li><a href="hobbies.html" data-ja="趣味" data-kr="취미">취미</a></li>
+      <li><a href="perfumes.html" data-ja="香水コレクション" data-kr="향수 컬렉션">향수 컬렉션</a></li>
+      <li><a href="books.html" data-ja="読書記録" data-kr="독서 기록">독서 기록</a></li>
+      <li><a href="travel.html" data-ja="旅行記" data-kr="여행기">여행기</a></li>
+      <li><a href="music.html" data-ja="好きな音楽" data-kr="좋아하는 음악">좋아하는 음악</a></li>
+      <li><a href="movies.html" data-ja="おすすめ映画" data-kr="추천 영화">추천 영화</a></li>
+      <li><a href="food.html" data-ja="食べ歩き" data-kr="맛집">맛집</a></li>
+      <li><a href="photos.html" data-ja="写真" data-kr="사진">사진</a></li>
+      <li><a href="blog.html" data-ja="日記" data-kr="블로그">블로그</a></li>
     </ul>
   </nav>
-
-  <!-- メインコンテンツ -->
-  <div class="container">
-    <h1 data-ja="香水コレクション" data-kr="향수 컬렉션">香水コレクション</h1>
-
-    <!-- Maison Margiela – Jazz Club -->
-    <div class="perfume-card">
-      <img
-        src="https://www.sephora.com/productimages/sku/s1788058-main-zoom.jpg"
-        alt="Jazz Club"
-        class="perfume-image"
-      />
-      <div class="perfume-info">
-        <h2 class="perfume-name" data-ja="Maison Margiela – Jazz Club" data-kr="메종 마르지엘라 – 재즈 클럽">Maison Margiela – Jazz Club</h2>
-        <p class="perfume-description" data-ja="ブルックリンのジャズクラブの雰囲気を再現した香り。タバコの煙、皮革の椅子、カクテルが織りなす洗練された空間を表現しています。" data-kr="브루클린의 재즈 클럽 분위기를 재현한 향. 담배 연기, 가죽 의자, 칵테일이 어우러진 세련된 공간을 표현합니다.">ブルックリンのジャズクラブの雰囲気を再現した香り。タバコの煙、皮革の椅子、カクテルが織りなす洗練された空間を表現しています。</p>
-        <div class="notes-container">
-          <div class="notes-section">
-            <h3 class="notes-title" data-ja="トップノート" data-kr="탑 노트">トップノート</h3>
-            <p class="notes-list" data-ja="ピンクペッパー · ネロリオイル · レモン" data-kr="핑크 페퍼 · 네롤리 오일 · 레몬">ピンクペッパー · ネロリオイル · レモン</p>
+  <div class="main-layout">
+    <div class="content">
+      <h1 data-ja="香水コレクション" data-kr="향수 컬렉션">香水コレクション</h1>
+      <p data-ja="私の香水コレクションを紹介します。" data-kr="저의 향수 컬렉션을 소개합니다.">私の香水コレクションを紹介します。</p>
+      <div id="clock"></div>
+      <div class="perfume-list">
+        <!-- 향수 이미지와 설명 예시 -->
+        <div class="perfume-item">
+          <img src="https://www.sephora.com/productimages/sku/s1788058-main-zoom.jpg" alt="Jazz Club" style="width:100px;height:100px;object-fit:cover;border-radius:8px;">
+          <div class="perfume-desc">
+            <div data-ja="Maison Margiela – Jazz Club" data-kr="메종 마르지엘라 – 재즈 클럽">Maison Margiela – Jazz Club</div>
+            <div data-ja="ブルックリンのジャズクラブの雰囲気を再現した香り。タバコの煙、皮革の椅子、カクテルが織りなす洗練された空間を表現しています。" data-kr="브루클린의 재즈 클럽 분위기를 재현한 향. 담배 연기, 가죽 의자, 칵테일이 어우러진 세련된 공간을 표현합니다.">ブルックリンのジャズクラブの雰囲気を再現した香り。タバコの煙、皮革の椅子、カクテルが織りなす洗練された空間を表現しています。</div>
+            <div data-ja="トップノート: ピンクペッパー, ネロリオイル, レモン / ミドルノート: ラム, クローブオイル, ネロリ / ベースノート: タバコの葉, バニラ, スチラックス" data-kr="탑 노트: 핑크 페퍼, 네롤리 오일, 레몬 / 미들 노트: 럼, 클로브 오일, 네롤리 / 베이스 노트: 담배잎, 바닐라, 스티락스">탑 노트: 핑크 페퍼, 네롤리 오일, 레몬 / 미들 노트: 럼, 클로브 오일, 네롤리 / 베이스 노트: 담배잎, 바닐라, 스티락스</div>
           </div>
-          <div class="notes-section">
-            <h3 class="notes-title" data-ja="ミドルノート" data-kr="미들 노트">ミドルノート</h3>
-            <p class="notes-list" data-ja="ラム · クローブオイル · ネロリ" data-kr="럼 · 클로브 오일 · 네롤리">ラム · クローブオイル · ネロリ</p>
+        </div>
+        <div class="perfume-item">
+          <img src="https://www.diptyqueparis.com/media/catalog/product/p/h/philosykos_back_philop75_1439x1200_1_1.png?quality=100&bg-color=255,255,255&fit=bounds&height=&width=" alt="Philosykos" style="width:100px;height:100px;object-fit:cover;border-radius:8px;">
+          <div class="perfume-desc">
+            <div data-ja="Diptyque – Philosykos" data-kr="딥티크 – 필로시코스">Diptyque – Philosykos</div>
+            <div data-ja="ギリシャの夏のイチジクの木を表現した香り。緑の葉、熟した果実、白い木の香りが調和しています。" data-kr="그리스 여름의 무화과 나무를 표현한 향. 푸른 잎, 잘 익은 과일, 흰 나무 향이 조화를 이룹니다.">ギリシャの夏のイチジクの木を表現した香り。緑の葉、熟した果実、白い木の香りが調和しています。</div>
+            <div data-ja="トップノート: イチジクの葉, 緑の香り / ミドルノート: イチジクの木, 青いイチジク / ベースノート: 白い木, セダー" data-kr="탑 노트: 무화과 잎, 그린 노트 / 미들 노트: 무화과 나무, 푸른 무화과 / 베이스 노트: 화이트 우드, 시더">탑 노트: 무화과 잎, 그린 노트 / 미들 노트: 무화과 나무, 푸른 무화과 / 베이스 노트: 화이트 우드, 시더</div>
           </div>
-          <div class="notes-section">
-            <h3 class="notes-title" data-ja="ベースノート" data-kr="베이스 노트">ベースノート</h3>
-            <p class="notes-list" data-ja="タバコの葉 · バニラ · スチラックス" data-kr="담배잎 · 바닐라 · 스티락스">タバコの葉 · バニラ · スチラックス</p>
+        </div>
+        <div class="perfume-item">
+          <img src="https://m.perfumegraphy.com/web/product/big/202207/7361b00106e6890a130bbf905a5ea55e.jpg" alt="Eau des Sens" style="width:100px;height:100px;object-fit:cover;border-radius:8px;">
+          <div class="perfume-desc">
+            <div data-ja="Diptyque – Eau des Sens" data-kr="딥티크 – 오 데 썽스">Diptyque – Eau des Sens</div>
+            <div data-ja="オレンジの花をめぐる官能的な旅。甘美でフレッシュな香りが、五感を目覚めさせます。" data-kr="오렌지 꽃을 따라 떠나는 관능적인 여행. 달콤하고 상쾌한 향이 오감을 깨웁니다.">オレンジの花をめぐる官能的な旅。甘美でフレッシュな香りが、五感を目覚めさせます。</div>
+            <div data-ja="トップノート: オレンジブロッサム, ビターオレンジ / ミドルノート: ジュニパーベリー, ペティグレイン / ベースノート: パチョリ, アンジェリカ" data-kr="탑 노트: 오렌지 블라썸, 비터 오렌지 / 미들 노트: 주니퍼베리, 페티그레인 / 베이스 노트: 파촐리, 안젤리카">탑 노트: 오렌지 블라썸, 비터 오렌지 / 미들 노트: 주니퍼베리, 페티그레인 / 베이스 노트: 파촐리, 안젤리카</div>
+          </div>
+        </div>
+        <div class="perfume-item">
+          <img src="https://www.craemerco.de/cdn/shop/products/AES-Tacit-112000009823-a.jpg?v=1703014191" alt="Tacit" style="width:100px;height:100px;object-fit:cover;border-radius:8px;">
+          <div class="perfume-desc">
+            <div data-ja="Aesop – Tacit" data-kr="이솝 – 타싯">Aesop – Tacit</div>
+            <div data-ja="地中海沿岸の風景からインスピレーションを得た香り。柑橘系のさわやかさとハーバルな深みが特徴です。" data-kr="지중해 연안 풍경에서 영감을 받은 향. 상큼한 시트러스와 허브의 깊이가 특징입니다.">地中海沿岸の風景からインスピレーションを得た香り。柑橘系のさわやかさとハーバルな深みが特徴です。</div>
+            <div data-ja="トップノート: ユーカリ, 柚子 / ミドルノート: バジル, ミント / ベースノート: ベチバー, クローブ" data-kr="탑 노트: 유칼립투스, 유자 / 미들 노트: 바질, 민트 / 베이스 노트: 베티버, 클로브">탑 노트: 유칼립투스, 유자 / 미들 노트: 바질, 민트 / 베이스 노트: 베티버, 클로브</div>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Diptyque – Philosykos -->
-    <div class="perfume-card">
-      <img
-        src="https://www.diptyqueparis.com/media/catalog/product/p/h/philosykos_back_philop75_1439x1200_1_1.png?quality=100&bg-color=255,255,255&fit=bounds&height=&width="
-        alt="Philosykos"
-        class="perfume-image"
-      />
-      <div class="perfume-info">
-        <h2 class="perfume-name" data-ja="Diptyque – Philosykos" data-kr="딥티크 – 필로시코스">Diptyque – Philosykos</h2>
-        <p class="perfume-description" data-ja="ギリシャの夏のイチジクの木を表現した香り。緑の葉、熟した果実、白い木の香りが調和しています。" data-kr="그리스 여름의 무화과 나무를 표현한 향. 푸른 잎, 잘 익은 과일, 흰 나무 향이 조화를 이룹니다.">ギリシャの夏のイチジクの木を表現した香り。緑の葉、熟した果実、白い木の香りが調和しています。</p>
-        <div class="notes-container">
-          <div class="notes-section">
-            <h3 class="notes-title" data-ja="トップノート" data-kr="탑 노트">トップノート</h3>
-            <p class="notes-list" data-ja="イチジクの葉 · 緑の香り" data-kr="무화과 잎 · 그린 노트">イチジクの葉 · 緑の香り</p>
-          </div>
-          <div class="notes-section">
-            <h3 class="notes-title" data-ja="ミドルノート" data-kr="미들 노트">ミドルノート</h3>
-            <p class="notes-list" data-ja="イチジクの木 · 青いイチジク" data-kr="무화과 나무 · 푸른 무화과">イチジクの木 · 青いイチジク</p>
-          </div>
-          <div class="notes-section">
-            <h3 class="notes-title" data-ja="ベースノート" data-kr="베이스 노트">ベースノート</h3>
-            <p class="notes-list" data-ja="白い木 · セダー" data-kr="화이트 우드 · 시더">白い木 · セダー</p>
-          </div>
+      <div class="social-links">
+        <a href="https://www.instagram.com/utaenaimiku" class="social-button instagram" target="_blank">
+          <i class="fab fa-instagram"></i>
+          Instagram
+        </a>
+        <div class="lang-toggle" style="margin-top:16px; display:flex; gap:8px; justify-content:center;">
+          <button id="btn-ja" type="button" style="padding:6px 16px; border-radius:20px; border:1px solid #ccc; background:#fff; cursor:pointer;">日本語</button>
+          <button id="btn-kr" type="button" style="padding:6px 16px; border-radius:20px; border:1px solid #ccc; background:#fff; cursor:pointer;">한국어</button>
         </div>
       </div>
     </div>
-
-    <!-- Diptyque – Eau des Sens -->
-    <div class="perfume-card">
-      <img
-        src="https://m.perfumegraphy.com/web/product/big/202207/7361b00106e6890a130bbf905a5ea55e.jpg"
-        alt="Eau des Sens"
-        class="perfume-image"
-      />
-      <div class="perfume-info">
-        <h2 class="perfume-name" data-ja="Diptyque – Eau des Sens" data-kr="딥티크 – 오 데 썽스">Diptyque – Eau des Sens</h2>
-        <p class="perfume-description" data-ja="オレンジの花をめぐる官能的な旅。甘美でフレッシュな香りが、五感を目覚めさせます。" data-kr="오렌지 꽃을 따라 떠나는 관능적인 여행. 달콤하고 상쾌한 향이 오감을 깨웁니다.">オレンジの花をめぐる官能的な旅。甘美でフレッシュな香りが、五感を目覚めさせます。</p>
-        <div class="notes-container">
-          <div class="notes-section">
-            <h3 class="notes-title" data-ja="トップノート" data-kr="탑 노트">トップノート</h3>
-            <p class="notes-list" data-ja="オレンジブロッサム · ビターオレンジ" data-kr="오렌지 블라썸 · 비터 오렌지">オレンジブロッサム · ビターオレンジ</p>
-          </div>
-          <div class="notes-section">
-            <h3 class="notes-title" data-ja="ミドルノート" data-kr="미들 노트">ミドルノート</h3>
-            <p class="notes-list" data-ja="ジュニパーベリー · ペティグレイン" data-kr="주니퍼베리 · 페티그레인">ジュニパーベリー · ペティグレイン</p>
-          </div>
-          <div class="notes-section">
-            <h3 class="notes-title" data-ja="ベースノート" data-kr="베이스 노트">ベースノート</h3>
-            <p class="notes-list" data-ja="パチョリ · アンジェリカ" data-kr="파촐리 · 안젤리카">パチョリ · アンジェリカ</p>
-          </div>
-        </div>
+    <aside class="youtube-sidebar">
+      <h2>最新のYouTube動画</h2>
+      <div class="youtube-videos">
+        <div class="youtube-section-title">最新動画（최신영상）</div>
+        <iframe width="100%" height="180" src="https://www.youtube.com/embed/w8iq04de_RA" title="YouTube video 1" frameborder="0" allowfullscreen></iframe>
+        <iframe width="100%" height="180" src="https://www.youtube.com/embed/7kz51n1eNtc" title="YouTube video 2" frameborder="0" allowfullscreen></iframe>
+        <iframe width="100%" height="180" src="https://www.youtube.com/embed/09uETkRHY8k" title="YouTube video 3" frameborder="0" allowfullscreen></iframe>
       </div>
-    </div>
-
-    <!-- Aesop – Tacit -->
-    <div class="perfume-card">
-      <img
-        src="https://www.craemerco.de/cdn/shop/products/AES-Tacit-112000009823-a.jpg?v=1703014191"
-        alt="Tacit"
-        class="perfume-image"
-      />
-      <div class="perfume-info">
-        <h2 class="perfume-name" data-ja="Aesop – Tacit" data-kr="이솝 – 타싯">Aesop – Tacit</h2>
-        <p class="perfume-description" data-ja="地中海沿岸の風景からインスピレーションを得た香り。柑橘系のさわやかさとハーバルな深みが特徴です。" data-kr="지중해 연안 풍경에서 영감을 받은 향. 상큼한 시트러스와 허브의 깊이가 특징입니다.">地中海沿岸の風景からインスピレーションを得た香り。柑橘系のさわやかさとハーバルな深みが特徴です。</p>
-        <div class="notes-container">
-          <div class="notes-section">
-            <h3 class="notes-title" data-ja="トップノート" data-kr="탑 노트">トップノート</h3>
-            <p class="notes-list" data-ja="ユーカリ · 柚子" data-kr="유칼립투스 · 유자">ユーカリ · 柚子</p>
-          </div>
-          <div class="notes-section">
-            <h3 class="notes-title" data-ja="ミドルノート" data-kr="미들 노트">ミドルノート</h3>
-            <p class="notes-list" data-ja="バジル · ミント" data-kr="바질 · 민트">バジル · ミント</p>
-          </div>
-          <div class="notes-section">
-            <h3 class="notes-title" data-ja="ベースノート" data-kr="베이스 노트">ベースノート</h3>
-            <p class="notes-list" data-ja="ベチバー · クローブ" data-kr="베티버 · 클로브">ベチバー · クローブ</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 언어 토글 버튼 -->
-    <div class="lang-toggle" style="margin:24px 0 0 0; display:flex; gap:8px; justify-content:center;">
-      <button id="btn-ja" type="button" style="padding:6px 16px; border-radius:20px; border:1px solid #ccc; background:#fff; cursor:pointer;">日本語</button>
-      <button id="btn-kr" type="button" style="padding:6px 16px; border-radius:20px; border:1px solid #ccc; background:#fff; cursor:pointer;">한국어</button>
-    </div>
-    <script>
-      function setLang(lang) {
-        document.querySelectorAll('[data-ja][data-kr]').forEach(function(el) {
-          el.textContent = el.getAttribute(lang === 'kr' ? 'data-kr' : 'data-ja');
-        });
-        document.getElementById('btn-ja').style.background = lang === 'ja' ? '#e0e0e0' : '#fff';
-        document.getElementById('btn-kr').style.background = lang === 'kr' ? '#e0e0e0' : '#fff';
-        localStorage.setItem('siteLang', lang);
-      }
-      document.getElementById('btn-ja').onclick = function() { setLang('ja'); };
-      document.getElementById('btn-kr').onclick = function() { setLang('kr'); };
-      var savedLang = localStorage.getItem('siteLang') || 'ja';
-      setLang(savedLang);
-    </script>
+      <a href="https://www.youtube.com/@tcu_vlog2215" target="_blank" class="youtube-more">もっと見る</a>
+    </aside>
   </div>
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const hh = String(now.getHours()).padStart(2, '0');
+      const mm = String(now.getMinutes()).padStart(2, '0');
+      const ss = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = `${hh}:${mm}:${ss}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+    function setLang(lang) {
+      document.querySelectorAll('[data-ja][data-kr]').forEach(function(el) {
+        el.textContent = el.getAttribute(lang === 'kr' ? 'data-kr' : 'data-ja');
+      });
+      document.getElementById('btn-ja').style.background = lang === 'ja' ? '#e0e0e0' : '#fff';
+      document.getElementById('btn-kr').style.background = lang === 'kr' ? '#e0e0e0' : '#fff';
+      localStorage.setItem('siteLang', lang);
+    }
+    document.getElementById('btn-ja').onclick = function() { setLang('ja'); };
+    document.getElementById('btn-kr').onclick = function() { setLang('kr'); };
+    var savedLang = localStorage.getItem('siteLang') || 'ja';
+    setLang(savedLang);
+  </script>
 </body>
 </html>
