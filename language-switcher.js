@@ -5,64 +5,66 @@
 
 // 현재 언어 상태 가져오기
 function getLang() {
-  // localStorage에 저장된 값이 있으면 사용, 없으면 'ja' 기본값
-  return localStorage.getItem('siteLang') === 'ko' ? 'ko' : 'ja';
+  const lang = localStorage.getItem('siteLang');
+  return lang === 'ko' ? 'ko' : 'ja';  // 저장된 값이 'ko'가 아니면 무조건 'ja'
+}
+
+// 요소의 텍스트를 현재 언어로 변경
+function updateElementText(el, lang) {
+  if (el.hasAttribute('data-ja') && el.hasAttribute('data-ko')) {
+    const text = el.getAttribute(lang === 'ko' ? 'data-ko' : 'data-ja');
+    if (el.tagName.toLowerCase() === 'title') {
+      el.textContent = text;
+    } else {
+      // 아이콘이 있는 경우 보존
+      const icon = el.querySelector('i');
+      el.textContent = '';
+      if (icon) el.appendChild(icon.cloneNode(true));
+      el.appendChild(document.createTextNode(text));
+    }
+  }
 }
 
 // 언어 설정 변경 및 페이지 요소에 적용
 function setLang(lang) {
+  // 입력값 검증
+  if (lang !== 'ko' && lang !== 'ja') lang = 'ja';
+  
+  // 언어 설정 저장
   localStorage.setItem('siteLang', lang);
   document.documentElement.lang = lang;
   
-  // 토글 버튼 상태 업데이트
+  // UI 업데이트
   const toggle = document.getElementById('language-toggle');
   if (toggle) toggle.checked = (lang === 'ko');
   
-  // 언어 라벨 업데이트
   const label = document.getElementById('current-lang');
   if (label) label.textContent = (lang === 'ko' ? '한국어' : '日本語');
   
   // 모든 다국어 요소 처리
   document.querySelectorAll('[data-ja][data-ko]').forEach(el => {
-    el.textContent = el.getAttribute(lang === 'ko' ? 'data-ko' : 'data-ja');
+    updateElementText(el, lang);
   });
-  
-  // title 요소 처리
-  var titleEl = document.querySelector('title[data-ja][data-ko]');
-  if (titleEl) titleEl.textContent = titleEl.getAttribute(lang === 'ko' ? 'data-ko' : 'data-ja');
-  
-  // 소셜 미디어 버튼 텍스트 처리
-  document.querySelectorAll('.social-button').forEach(el => {
-    if (el.hasAttribute('data-ja') && el.hasAttribute('data-ko')) {
-      // 아이콘은 유지하고 텍스트만 변경
-      const icon = el.querySelector('i');
-      el.textContent = '';
-      if (icon) el.appendChild(icon.cloneNode(true));
-      el.appendChild(document.createTextNode(' ' + el.getAttribute(lang === 'ko' ? 'data-ko' : 'data-ja')));
-    }
-  });
-  
-  // 언어 변경 후 페이지 새로고침
-  location.reload();
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  // 토글 버튼 이벤트 설정
+// 초기화 함수
+function initLanguage() {
   const toggle = document.getElementById('language-toggle');
   if (toggle) {
-    toggle.checked = (getLang() === 'ko');
-    toggle.addEventListener('change', function() {
-      setLang(toggle.checked ? 'ko' : 'ja');
+    const currentLang = getLang();
+    toggle.checked = (currentLang === 'ko');
+    
+    // 토글 변경 이벤트
+    toggle.addEventListener('change', function(e) {
+      const newLang = e.target.checked ? 'ko' : 'ja';
+      setLang(newLang);
+      location.reload(); // 페이지 새로고침
     });
   }
   
-  // 페이지 로드 시 언어 설정 즉시 적용
+  // 현재 언어로 페이지 초기화
   setLang(getLang());
-  
-  // 링크 클릭 시 언어 설정 유지
-  document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', function() {
-      localStorage.setItem('siteLang', getLang());
-    });
-  });
-});
+}
+
+// 페이지 로드 시 실행
+document.addEventListener('DOMContentLoaded', initLanguage);
