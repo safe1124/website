@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-ja="食べ歩き" data-kr="맛집">食べ歩き</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body>
+    <nav class="nav-menu">
+        <ul>
+            <li><a href="index.html" data-ja="ホーム" data-kr="홈">ホーム</a></li>
+            <li><a href="self-intro.html" data-ja="自己紹介" data-kr="자기소개">自己紹介</a></li>
+            <li><a href="hobbies.html" data-ja="趣味" data-kr="취미">趣味</a></li>
+            <li><a href="perfumes.html" data-ja="香水コレクション" data-kr="향수 컬렉션">香水コレクション</a></li>
+            <li><a href="books.html" data-ja="読書記録" data-kr="독서 기록">読書記録</a></li>
+            <li><a href="travel.html" data-ja="旅行記" data-kr="여행기">旅行記</a></li>
+            <li><a href="music.html" data-ja="好きな音楽" data-kr="좋아하는 음악">好きな音楽</a></li>
+            <li><a href="movies.html" data-ja="おすすめ映画" data-kr="추천 영화">おすすめ映画</a></li>
+            <li><a href="food.html" data-ja="食べ歩き" data-kr="맛집">食べ歩き</a></li>
+            <li><a href="photos.html" data-ja="写真館" data-kr="사진관">写真館</a></li>
+            <li><a href="blog.html" data-ja="ブログ" data-kr="블로그">ブログ</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        <h1 data-ja="食べ歩き" data-kr="맛집">食べ歩き</h1>
+        <p data-ja="美味しいお店を紹介します。" data-kr="맛있는 가게를 소개합니다.">美味しいお店を紹介します。</p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/utaenaimiku" class="social-button instagram" target="_blank">
+                <i class="fab fa-instagram"></i>
+                Instagram
+            </a>
+            <!-- 언어 토글 버튼 -->
+            <div class="lang-toggle" style="margin-top:16px; display:flex; gap:8px; justify-content:center;">
+                <button id="btn-ja" type="button" style="padding:6px 16px; border-radius:20px; border:1px solid #ccc; background:#fff; cursor:pointer;">日本語</button>
+                <button id="btn-kr" type="button" style="padding:6px 16px; border-radius:20px; border:1px solid #ccc; background:#fff; cursor:pointer;">한국어</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function setLang(lang) {
+            document.querySelectorAll('[data-ja][data-kr]').forEach(function(el) {
+                el.textContent = el.getAttribute(lang === 'kr' ? 'data-kr' : 'data-ja');
+            });
+            document.getElementById('btn-ja').style.background = lang === 'ja' ? '#e0e0e0' : '#fff';
+            document.getElementById('btn-kr').style.background = lang === 'kr' ? '#e0e0e0' : '#fff';
+            localStorage.setItem('siteLang', lang);
+        }
+        document.getElementById('btn-ja').onclick = function() { setLang('ja'); };
+        document.getElementById('btn-kr').onclick = function() { setLang('kr'); };
+        var savedLang = localStorage.getItem('siteLang') || 'ja';
+        setLang(savedLang);
+    </script>
+</body>
+</html>

@@ -69,17 +69,20 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    // 언어 토글 스크립트
+    // 언어 토글 스크립트 (localStorage 연동)
     function setLang(lang) {
       document.querySelectorAll('[data-ja][data-kr]').forEach(function(el) {
         el.textContent = el.getAttribute(lang === 'kr' ? 'data-kr' : 'data-ja');
       });
       document.getElementById('btn-ja').style.background = lang === 'ja' ? '#e0e0e0' : '#fff';
       document.getElementById('btn-kr').style.background = lang === 'kr' ? '#e0e0e0' : '#fff';
+      localStorage.setItem('siteLang', lang);
     }
     document.getElementById('btn-ja').onclick = function() { setLang('ja'); };
     document.getElementById('btn-kr').onclick = function() { setLang('kr'); };
-    setLang('ja');
+    // 저장된 언어 설정 불러오기
+    var savedLang = localStorage.getItem('siteLang') || 'ja';
+    setLang(savedLang);
   </script>
 </body>
 </html>
