@@ -2,29 +2,56 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>読書記録 - My Website</title>
+  <title>독서 기록 - My Website</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.mobile.css" media="only screen and (max-width: 768px)" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
-<body>
+<body style="background:#FFF9E3;">
   <nav class="nav-menu">
     <ul>
-      <li><a href="index.html">ホーム</a></li>
-      <li><a href="self-intro.html">自己紹介</a></li>
-      <li><a href="hobbies.html">趣味</a></li>
-      <li><a href="perfumes.html">香水コレクション</a></li>
-      <li><a href="books.html">読書記録</a></li>
-      <li><a href="travel.html">旅行記</a></li>
-      <li><a href="music.html">好きな音楽</a></li>
-      <li><a href="movies.html">おすすめ映画</a></li>
-      <li><a href="food.html">食べ歩き</a></li>
-      <li><a href="photos.html">写真館</a></li>
-      <li><a href="blog.html">ブログ</a></li>
+      <li><a href="index.html" data-ja="ホーム" data-kr="홈">홈</a></li>
+      <li><a href="self-intro.html" data-ja="自己紹介" data-kr="자기소개">자기소개</a></li>
+      <li><a href="hobbies.html" data-ja="趣味" data-kr="취미">취미</a></li>
+      <li><a href="perfumes.html" data-ja="香水コレクション" data-kr="향수 컬렉션">향수 컬렉션</a></li>
+      <li><a href="books.html" data-ja="読書記録" data-kr="독서 기록">독서 기록</a></li>
+      <li><a href="travel.html" data-ja="旅行記" data-kr="여행기">여행기</a></li>
+      <li><a href="music.html" data-ja="好きな音楽" data-kr="좋아하는 음악">좋아하는 음악</a></li>
+      <li><a href="movies.html" data-ja="おすすめ映画" data-kr="추천 영화">추천 영화</a></li>
+      <li><a href="food.html" data-ja="食べ歩き" data-kr="맛집">맛집</a></li>
+      <li><a href="photos.html" data-ja="写真館" data-kr="사진관">사진관</a></li>
+      <li><a href="blog.html" data-ja="ブログ" data-kr="블로그">블로그</a></li>
     </ul>
   </nav>
   <div class="content">
-    <h1>読書記録</h1>
-    <p>おすすめの本や読書感想を紹介します。</p>
+    <h1 data-ja="読書記録" data-kr="독서 기록">読書記録</h1>
+    <p data-ja="私の読書記録を紹介します。" data-kr="저의 독서 기록을 소개합니다.">私の読書記録を紹介します。</p>
+    <!-- 독서 기록 리스트 등 기존 책 페이지의 주요 콘텐츠를 여기에 삽입 -->
+    <!-- ...existing book collection content... -->
+    <div class="social-links">
+      <a href="https://www.instagram.com/utaenaimiku" class="social-button instagram" target="_blank">
+        <i class="fab fa-instagram"></i>
+        Instagram
+      </a>
+      <div class="lang-toggle" style="margin-top:16px; display:flex; gap:8px; justify-content:center;">
+        <button id="btn-ja" type="button" style="padding:6px 16px; border-radius:20px; border:1px solid #ccc; background:#fff; cursor:pointer;">日本語</button>
+        <button id="btn-kr" type="button" style="padding:6px 16px; border-radius:20px; border:1px solid #ccc; background:#fff; cursor:pointer;">한국어</button>
+      </div>
+    </div>
   </div>
+  <script>
+    function setLang(lang) {
+      document.querySelectorAll('[data-ja][data-kr]').forEach(function(el) {
+        el.textContent = el.getAttribute(lang === 'kr' ? 'data-kr' : 'data-ja');
+      });
+      document.getElementById('btn-ja').style.background = lang === 'ja' ? '#e0e0e0' : '#fff';
+      document.getElementById('btn-kr').style.background = lang === 'kr' ? '#e0e0e0' : '#fff';
+      localStorage.setItem('siteLang', lang);
+    }
+    document.getElementById('btn-ja').onclick = function() { setLang('ja'); };
+    document.getElementById('btn-kr').onclick = function() { setLang('kr'); };
+    var savedLang = localStorage.getItem('siteLang') || 'ja';
+    setLang(savedLang);
+  </script>
 </body>
 </html>

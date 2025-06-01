@@ -1,0 +1,121 @@
+/* 모바일 전용 스타일 */
+@media (max-width: 600px) {
+  body {
+    font-size: 15px;
+    min-width: 0;
+    overflow-x: hidden;
+    background: #FFF9E3; /* 배경색 변경 */
+  }
+
+  /* main-layout: 세로(컬럼) 정렬, 양쪽 여백 0.5rem */
+  .main-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0; /* 여백을 내부 요소에서 따로 설정 */
+    padding: 0 0.5rem;
+  }
+
+  /* content: 전체 너비, 자동 높이, 아래 여백만 유지 */
+  .content {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin-bottom: 2.5rem;
+  }
+
+  /* youtube-sidebar: content 아래에 배치, 전체 너비, 그림자 + 내부 여백 */
+  .youtube-sidebar {
+    order: 2;
+    width: 100%;
+    padding: 1rem 0.5rem;
+    margin: 1.5rem 0 0 0; /* 상단 여백만 간단히 설정 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+    background-color: #fff; /* 흰 배경으로 분리 */
+    border-radius: 8px;
+  }
+
+  /* youtube-videos: 전체 너비, 동영상들도 100% 너비로 */
+  .youtube-videos {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* 동영상 간 간격 */
+  }
+
+  /* iframe: 전체 너비에 자동 높이, 16:9 비율 유지 */
+  .youtube-videos iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border: none;
+  }
+
+  /* 유튜브 섹션 제목 */
+  .youtube-section-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  /* 내비게이션 메뉴: 세로 정렬 */
+  .nav-menu ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* 중앙 정렬 */
+    padding: 0;
+    margin: 0;
+    list-style: none; /* 기본 리스트 스타일 제거 */
+  }
+  .nav-menu li {
+    flex: 0 0 20%; /* 5개 항목을 위한 너비 설정 */
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-menu a {
+    display: block;
+    padding: 10px 0;
+    font-size: 15px;
+    color: #333;
+    text-decoration: none;
+    background: transparent;
+    border-radius: 0;
+    white-space: nowrap;
+  }
+  .nav-menu a:last-child {
+    border-bottom: none; /* 마지막 항목은 구분선 없음 */
+  }
+
+  /* 제목, 본문 폰트 크기 조정 */
+  h1 {
+    font-size: 1.3rem;
+  }
+  p {
+    font-size: 1rem;
+    margin-bottom: 16px;
+  }
+
+  /* 시계(#clock) 크기 */
+  #clock {
+    font-size: 3rem;
+  }
+
+  /* 소셜 링크 버튼 세로 정렬 */
+  .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .social-button {
+    width: 100%;
+    justify-content: center;
+    font-size: 1rem;
+    padding: 10px 0;
+  }
+}
