@@ -33,25 +33,55 @@
         <i class="fab fa-instagram"></i>
         Instagram
       </a>
-      <div class="lang-toggle" style="margin-top:16px; display:flex; gap:8px; justify-content:center;">
-        <button id="btn-ja" type="button" style="padding:6px 16px; border-radius:20px; border:1px solid #ccc; background:#fff; cursor:pointer;">日本語</button>
-        <button id="btn-kr" type="button" style="padding:6px 16px; border-radius:20px; border:1px solid #ccc; background:#fff; cursor:pointer;">한국어</button>
+      <div class="language-switcher">
+        <span class="language-label" id="current-lang">日本語</span>
+        <label class="switch">
+          <input aria-label="Language Toggle" type="checkbox" id="language-toggle">
+          <span class="slider"></span>
+        </label>
       </div>
     </div>
   </div>
   <script>
-    function setLang(lang) {
-      document.querySelectorAll('[data-ja][data-kr]').forEach(function(el) {
-        el.textContent = el.getAttribute(lang === 'kr' ? 'data-kr' : 'data-ja');
-      });
-      document.getElementById('btn-ja').style.background = lang === 'ja' ? '#e0e0e0' : '#fff';
-      document.getElementById('btn-kr').style.background = lang === 'kr' ? '#e0e0e0' : '#fff';
-      localStorage.setItem('siteLang', lang);
+    let isKorean = false;
+    const languageToggle = document.getElementById('language-toggle');
+    const currentLangLabel = document.getElementById('current-lang');
+    if (localStorage.getItem('siteLang') === 'ko') {
+      isKorean = true;
+      languageToggle.checked = true;
+    } else {
+      isKorean = false;
+      languageToggle.checked = false;
     }
-    document.getElementById('btn-ja').onclick = function() { setLang('ja'); };
-    document.getElementById('btn-kr').onclick = function() { setLang('kr'); };
-    var savedLang = localStorage.getItem('siteLang') || 'ja';
-    setLang(savedLang);
+    function switchLanguage() {
+      isKorean = !isKorean;
+      localStorage.setItem('siteLang', isKorean ? 'ko' : 'ja');
+      updateLanguage();
+    }
+    function updateLanguage() {
+      const elementsToSwitch = document.querySelectorAll('[data-ja][data-ko]');
+      elementsToSwitch.forEach(element => {
+        if (isKorean) {
+          element.textContent = element.getAttribute('data-ko');
+        } else {
+          element.textContent = element.getAttribute('data-ja');
+        }
+      });
+      if (isKorean) {
+        currentLangLabel.textContent = '한국어';
+        document.documentElement.lang = 'ko';
+      } else {
+        currentLangLabel.textContent = '日本語';
+        document.documentElement.lang = 'ja';
+      }
+    }
+    languageToggle.addEventListener('change', switchLanguage);
+    updateLanguage();
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', function() {
+        localStorage.setItem('siteLang', isKorean ? 'ko' : 'ja');
+      });
+    });
   </script>
 </body>
 </html>

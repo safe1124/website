@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>おすすめ映画 - My Website</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.mobile.css" media="only screen and (max-width: 768px)" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body style="background:#FFF9E3;">
+  <nav class="nav-menu">
+    <ul>
+      <li><a href="index.html" data-ja="ホーム" data-ko="홈">ホーム</a></li>
+      <li><a href="self-intro.html" data-ja="自己紹介" data-ko="자기소개">自己紹介</a></li>
+      <li><a href="hobbies.html" data-ja="趣味" data-ko="취미">趣味</a></li>
+      <li><a href="perfumes.html" data-ja="香水コレクション" data-ko="향수 컬렉션">香水コレクション</a></li>
+      <li><a href="books.html" data-ja="読書記録" data-ko="독서 기록">読書記録</a></li>
+      <li><a href="travel.html" data-ja="旅行記" data-ko="여행기">旅行記</a></li>
+      <li><a href="music.html" data-ja="好きな音楽" data-ko="좋아하는 음악">好きな音楽</a></li>
+      <li><a href="movies.html" data-ja="おすすめ映画" data-ko="추천 영화">おすすめ映画</a></li>
+      <li><a href="food.html" data-ja="食べ歩き" data-ko="맛집 탐방">食べ歩き</a></li>
+      <li><a href="photos.html" data-ja="写真" data-ko="사진">写真</a></li>
+      <li><a href="blog.html" data-ja="日記" data-ko="일기">日記</a></li>
+    </ul>
+  </nav>
+  <div class="main-layout">
+    <div class="content">
+      <h1 data-ja="おすすめ映画" data-ko="추천 영화">おすすめ映画</h1>
+      <p data-ja="私のおすすめ映画を紹介します。" data-ko="제가 추천하는 영화를 소개합니다.">私のおすすめ映画を紹介します。</p>
+      <div class="perfume-list">
+        <div class="perfume-item">
+          <img src="https://upload.wikimedia.org/wikipedia/ko/7/7e/Your_Name_poster.png" alt="Your Name" style="width:300px;height:300px;object-fit:cover;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+          <div class="perfume-desc">
+            <h2 data-ja="君の名は。" data-ko="너의 이름은">君の名は。</h2>
+            <p class="description" data-ja="新海誠監督による感動のアニメーション映画。美しい映像と音楽、そして切ないストーリーが魅力です。" data-ko="신카이 마코토 감독의 감동적인 애니메이션 영화. 아름다운 영상과 음악, 그리고 애절한 스토리가 매력입니다.">新海誠監督による感動のアニメーション映画。美しい映像と音楽、そして切ないストーリーが魅力です。</p>
+            <div class="notes">
+              <p data-ja="ジャンル：アニメ、ロマンス、ファンタジー" data-ko="장르: 애니메이션, 로맨스, 판타지">ジャンル：アニメ、ロマンス、ファンタジー</p>
+              <p data-ja="公開年：2016年" data-ko="개봉연도: 2016년">公開年：2016年</p>
+              <p data-ja="監督：新海誠" data-ko="감독: 신카이 마코토">監督：新海誠</p>
+            </div>
+          </div>
+        </div>
+        <div class="perfume-item">
+          <img src="https://upload.wikimedia.org/wikipedia/ko/2/2e/Parasite_%282019%29.png" alt="Parasite" style="width:300px;height:300px;object-fit:cover;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+          <div class="perfume-desc">
+            <h2 data-ja="パラサイト 半地下の家族" data-ko="기생충">パラサイト 半地下の家族</h2>
+            <p class="description" data-ja="韓国映画の金字塔。社会格差を描いたサスペンスドラマで、アカデミー賞作品賞を受賞。" data-ko="한국 영화의 금자탑. 사회 격차를 그린 서스펜스 드라마로 아카데미 작품상을 수상했습니다.">韓国映画の金字塔。社会格差を描いたサスペンスドラマで、アカデミー賞作品賞を受賞。</p>
+            <div class="notes">
+              <p data-ja="ジャンル：サスペンス、ドラマ" data-ko="장르: 스릴러, 드라마">ジャンル：サスペンス、ドラマ</p>
+              <p data-ja="公開年：2019年" data-ko="개봉연도: 2019년">公開年：2019年</p>
+              <p data-ja="監督：ポン・ジュノ" data-ko="감독: 봉준호">監督：ポン・ジュノ</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="social-links">
+        <a href="https://www.instagram.com/utaenaimiku" class="social-button instagram" target="_blank">
+          <i class="fab fa-instagram"></i>
+          Instagram
+        </a>
+      </div>
+      <div class="language-switcher">
+        <span class="language-label" id="current-lang">日本語</span>
+        <label class="switch">
+          <input aria-label="Language Toggle" type="checkbox" id="language-toggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <script>
+    let isKorean = false;
+    const languageToggle = document.getElementById('language-toggle');
+    const currentLangLabel = document.getElementById('current-lang');
+    if (localStorage.getItem('siteLang') === 'ko') {
+      isKorean = true;
+      languageToggle.checked = true;
+    } else {
+      isKorean = false;
+      languageToggle.checked = false;
+    }
+    function switchLanguage() {
+      isKorean = !isKorean;
+      localStorage.setItem('siteLang', isKorean ? 'ko' : 'ja');
+      updateLanguage();
+    }
+    function updateLanguage() {
+      const elementsToSwitch = document.querySelectorAll('[data-ja][data-ko]');
+      elementsToSwitch.forEach(element => {
+        if (isKorean) {
+          element.textContent = element.getAttribute('data-ko');
+        } else {
+          element.textContent = element.getAttribute('data-ja');
+        }
+      });
+      if (isKorean) {
+        currentLangLabel.textContent = '한국어';
+        document.documentElement.lang = 'ko';
+      } else {
+        currentLangLabel.textContent = '日本語';
+        document.documentElement.lang = 'ja';
+      }
+    }
+    languageToggle.addEventListener('change', switchLanguage);
+    updateLanguage();
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', function() {
+        localStorage.setItem('siteLang', isKorean ? 'ko' : 'ja');
+      });
+    });
+  </script>
+</body>
+</html>

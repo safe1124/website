@@ -51,14 +51,13 @@
 
       </div>
 
-      <!-- 言語切り替えToggle Switch -->
+      <!-- 언어 토글 버튼 (선택한 언어만 표시) -->
       <div class="language-switcher">
         <span class="language-label" id="current-lang">日本語</span>
         <label class="switch">
           <input aria-label="Language Toggle" type="checkbox" id="language-toggle">
           <span class="slider"></span>
         </label>
-        <span class="language-label" id="other-lang">한국어</span>
       </div>
     </div>
     <aside class="youtube-sidebar">
@@ -140,8 +139,7 @@
     let isKorean = false;
     const languageToggle = document.getElementById('language-toggle');
     const currentLangLabel = document.getElementById('current-lang');
-    const otherLangLabel = document.getElementById('other-lang');
-    // 언어 상태 불러오기
+    // localStorage에서 언어 상태 불러오기
     if (localStorage.getItem('siteLang') === 'ko') {
       isKorean = true;
       languageToggle.checked = true;
@@ -165,11 +163,9 @@
       });
       if (isKorean) {
         currentLangLabel.textContent = '한국어';
-        otherLangLabel.textContent = '日本語';
         document.documentElement.lang = 'ko';
       } else {
         currentLangLabel.textContent = '日本語';
-        otherLangLabel.textContent = '한국어';
         document.documentElement.lang = 'ja';
       }
     }
