@@ -65,28 +65,43 @@
   /* 내비게이션 메뉴: 가로 스크롤 가능한 탭으로 변경 */
   .nav-menu {
     display: flex;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    background: #141414;
+    align-items: center; /* Vertically align items */
+    justify-content: flex-start; /* Align items to the start for scrolling */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-y: hidden; /* Prevent vertical scrollbar */
+    padding: 0 10px; /* Horizontal padding for the nav container */
+    height: 48px; /* Consistent height with desktop */
+    background: #141414; /* Consistent background */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   }
   .nav-menu ul {
     display: flex;
-    padding: 0;
-    margin: 0;
+    flex-direction: row; /* Ensure items are in a row */
+    flex-wrap: nowrap; /* Prevent items from wrapping */
     list-style: none;
-    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+    align-items: center; /* Vertically center LIs within the UL */
+    height: 100%; /* Make UL take full height of nav-menu */
   }
   .nav-menu li {
-    flex: 0 auto;
-    text-align: center;
+    flex-shrink: 0; /* Prevent LIs from shrinking, crucial for scroll */
+    margin: 0; /* Reset margin, spacing handled by padding on 'a' */
+    display: flex;
+    align-items: center; /* Vertically center 'a' within 'li' */
+    height: 100%; /* Make LI take full height */
   }
   .nav-menu a {
-    display: block;
-    padding: 12px 16px;
-    font-size: 16px;
+    display: flex;
+    align-items: center; /* Vertically center text within the link */
+    height: 100%; /* Make 'a' take full height of 'li' */
+    width: auto !important; /* CRITICAL: Override width:100% from style.css. Using !important for emphasis if needed, but specificity should handle it. */
     color: #fff;
+    padding: 0 10px; /* Adjusted padding for mobile */
+    font-weight: 500;
     text-decoration: none;
-    white-space: nowrap;
+    white-space: nowrap; /* Prevent text in links from wrapping */
+    text-align: center; /* As per style.css .nav-menu a, or change to left if preferred */
     transition: background 0.2s;
   }
   .nav-menu a:hover {
