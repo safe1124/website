@@ -30,27 +30,7 @@
         <i class="fab fa-instagram"></i>
         Instagram
       </a>
-      <!-- 언어 토글 버튼 -->
-      <div class="lang-toggle" style="margin-top:16px; display:flex; gap:8px; justify-content:center;">
-        <button id="btn-ja" type="button" style="padding:6px 16px; border-radius:20px; border:1px solid #ccc; background:#fff; cursor:pointer;">日本語</button>
-        <button id="btn-kr" type="button" style="padding:6px 16px; border-radius:20px; border:1px solid #ccc; background:#fff; cursor:pointer;">한국어</button>
-      </div>
     </div>
   </div>
-  <script>
-    // 언어 토글 스크립트
-    function setLang(lang) {
-      document.querySelectorAll('[data-ja][data-kr]').forEach(function(el) {
-        el.textContent = el.getAttribute(lang === 'kr' ? 'data-kr' : 'data-ja');
-      });
-      // 버튼 강조
-      document.getElementById('btn-ja').style.background = lang === 'ja' ? '#e0e0e0' : '#fff';
-      document.getElementById('btn-kr').style.background = lang === 'kr' ? '#e0e0e0' : '#fff';
-    }
-    document.getElementById('btn-ja').onclick = function() { setLang('ja'); };
-    document.getElementById('btn-kr').onclick = function() { setLang('kr'); };
-    // 기본은 일본어
-    setLang('ja');
-  </script>
 </body>
 </html>
