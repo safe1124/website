@@ -161,3 +161,70 @@ p {
     justify-content: center;
   }
 }
+
+/* 메인 레이아웃 */
+.main-layout {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.content {
+  flex: 2;
+}
+
+.youtube-sidebar {
+  flex: 1;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+  padding: 1.5rem 1rem;
+  min-width: 320px;
+  max-width: 350px;
+}
+.youtube-sidebar h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #c4302b;
+  text-align: center;
+}
+.youtube-videos {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.youtube-videos iframe {
+  border-radius: 8px;
+  background: #000;
+}
+.youtube-more {
+  display: block;
+  margin: 1.2rem auto 0 auto;
+  text-align: center;
+  color: #fff;
+  background: #c4302b;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+  width: fit-content;
+}
+.youtube-more:hover {
+  background: #a7281a;
+}
+
+@media (max-width: 900px) {
+  .main-layout {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .youtube-sidebar {
+    max-width: 100%;
+    min-width: 0;
+    margin-top: 2rem;
+  }
+}
