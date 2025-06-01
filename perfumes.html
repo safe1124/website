@@ -2,119 +2,145 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>香水コレクション - My Website</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <!-- システムフォントを優先 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
-    body {
+    /* ===== グローバル設定 ===== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+      background-color: #f5f5f7; /* Apple Storeっぽい薄いグレー */
+      color: #1d1d1f;            /* 標準のテキストカラー */
+      line-height: 1.5;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    ul {
+      list-style: none;
+    }
+
+    /* ===== ナビゲーション ===== */
+    .nav-menu {
       background-color: #ffffff;
-      color: #333333;
+      border-bottom: 1px solid #d2d2d7;
+      padding: 1rem 0;
+    }
+    .nav-menu ul {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .nav-menu li a {
+      font-size: 0.9rem;
+      color: #1d1d1f;
+      padding: 0.25rem 0;
+      transition: color 0.2s, border-bottom 0.2s;
+    }
+    .nav-menu li a:hover {
+      color: #0071e3; /* Appleっぽいブルー */
+      border-bottom: 2px solid #0071e3;
     }
 
-    .content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
+    /* ===== コンテナ ===== */
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .container h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 2rem;
     }
 
+    /* ===== パフュームカード ===== */
     .perfume-card {
       display: flex;
-      margin: 2rem auto;
-      background: #ffffff;
-      border-radius: 15px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
       overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      max-width: 1000px;
-      align-items: stretch;
-    }
-
-    .perfume-image-container {
-      width: 300px;
-      min-width: 300px;
-      background: #f5f5f7;
-      display: flex;
+      margin-bottom: 2rem;
       align-items: center;
-      justify-content: center;
-      padding: 1rem;
     }
-
+    /* 画像部分 */
     .perfume-image {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      max-height: 300px;
+      flex-shrink: 0;
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
     }
-
+    /* テキスト情報部分 */
     .perfume-info {
-      padding: 2rem;
       flex: 1;
+      padding: 2rem;
     }
-
     .perfume-name {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      color: #1d1d1f;
+      font-size: 1.75rem;
       font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #1d1d1f;
     }
-
     .perfume-description {
-      color: #484848;
+      font-size: 1rem;
+      color: #3a3a3c;
       margin-bottom: 1.5rem;
-      line-height: 1.6;
-      font-size: 1.1rem;
     }
 
+    /* ノート表示部分をグリッドで3列 */
     .notes-container {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
+      gap: 1rem;
     }
-
     .notes-section {
-      background: #f5f5f7;
-      padding: 1.2rem;
-      border-radius: 12px;
+      background-color: #f2f2f7;
+      border-radius: 8px;
+      padding: 1rem;
       text-align: center;
     }
-
     .notes-title {
-      color: #2997ff;
-      margin-bottom: 0.8rem;
-      font-size: 1rem;
-      font-weight: 600;
-      text-transform: uppercase;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #0071e3;
+      margin-bottom: 0.5rem;
     }
-
     .notes-list {
-      color: #484848;
-      font-size: 0.95rem;
-      line-height: 1.5;
+      font-size: 0.9rem;
+      color: #3a3a3c;
+      line-height: 1.4;
     }
 
+    /* ===== レスポンシブ対応 ===== */
     @media (max-width: 768px) {
       .perfume-card {
         flex-direction: column;
       }
-
-      .perfume-image-container {
+      .perfume-image {
         width: 100%;
-        min-width: 100%;
+        height: auto;
       }
-
+      .perfume-info {
+        padding: 1.5rem;
+      }
       .notes-container {
         grid-template-columns: 1fr;
       }
     }
-
-    h1 {
-      color: #1d1d1f;
-      text-align: center;
-      margin-bottom: 3rem;
-      font-size: 2.5rem;
-    }
   </style>
 </head>
 <body>
+  <!-- ナビゲーション -->
   <nav class="nav-menu">
     <ul>
       <li><a href="index.html">ホーム</a></li>
@@ -130,104 +156,127 @@
       <li><a href="blog.html">ブログ</a></li>
     </ul>
   </nav>
-  <div class="content">
+
+  <!-- メインコンテンツ -->
+  <div class="container">
     <h1>香水コレクション</h1>
-    
+
+    <!-- Maison Margiela – Jazz Club -->
     <div class="perfume-card">
-      <div class="perfume-image-container">
-        <img src="https://cdn.shopify.com/s/files/1/0582/4604/8001/files/Jazz_Club_100ml_1512x.png" alt="Jazz Club" class="perfume-image">
-      </div>
+      <img
+        src="https://i.imgur.com/2NvZQuf.jpg"
+        alt="Jazz Club"
+        class="perfume-image"
+      />
       <div class="perfume-info">
-        <h2 class="perfume-name">Maison Margiela - Jazz Club</h2>
-        <p class="perfume-description">ブルックリンのジャズクラブの雰囲気を再現した香り。タバコの煙、皮革の椅子、カクテルが織りなす洗練された空間を表現しています。</p>
+        <h2 class="perfume-name">Maison Margiela – Jazz Club</h2>
+        <p class="perfume-description">
+          ブルックリンのジャズクラブの雰囲気を再現した香り。タバコの煙、皮革の椅子、カクテルが織りなす洗練された空間を表現しています。
+        </p>
         <div class="notes-container">
           <div class="notes-section">
             <h3 class="notes-title">トップノート</h3>
-            <p class="notes-list">ピンクペッパー、ネロリオイル、レモン</p>
+            <p class="notes-list">ピンクペッパー · ネロリオイル · レモン</p>
           </div>
           <div class="notes-section">
             <h3 class="notes-title">ミドルノート</h3>
-            <p class="notes-list">ラム、クローブオイル、ネロリ</p>
+            <p class="notes-list">ラム · クローブオイル · ネロリ</p>
           </div>
           <div class="notes-section">
             <h3 class="notes-title">ベースノート</h3>
-            <p class="notes-list">タバコの葉、バニラ、スチラックス</p>
+            <p class="notes-list">タバコの葉 · バニラ · スチラックス</p>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Diptyque – Philosykos -->
     <div class="perfume-card">
-      <div class="perfume-image-container">
-        <img src="https://cdn.shopify.com/s/files/1/0286/9305/6076/products/diptyque-philosykos-eau-de-toilette-100ml_1200x1200.jpg" alt="Philosykos" class="perfume-image">
-      </div>
+      <img
+        src="https://i.imgur.com/vkqD2Ej.jpg"
+        alt="Philosykos"
+        class="perfume-image"
+      />
       <div class="perfume-info">
-        <h2 class="perfume-name">Diptyque - Philosykos</h2>
-        <p class="perfume-description">ギリシャの夏のイチジクの木を表現した香り。緑の葉、熟した果実、白い木の香りが調和しています。</p>
+        <h2 class="perfume-name">Diptyque – Philosykos</h2>
+        <p class="perfume-description">
+          ギリシャの夏のイチジクの木を表現した香り。緑の葉、熟した果実、白い木の香りが調和しています。
+        </p>
         <div class="notes-container">
           <div class="notes-section">
             <h3 class="notes-title">トップノート</h3>
-            <p class="notes-list">イチジクの葉、緑の香り</p>
+            <p class="notes-list">イチジクの葉 · 緑の香り</p>
           </div>
           <div class="notes-section">
             <h3 class="notes-title">ミドルノート</h3>
-            <p class="notes-list">イチジクの木、青いイチジク</p>
+            <p class="notes-list">イチジクの木 · 青いイチジク</p>
           </div>
           <div class="notes-section">
             <h3 class="notes-title">ベースノート</h3>
-            <p class="notes-list">白い木、セダー</p>
+            <p class="notes-list">白い木 · セダー</p>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Diptyque – Eau des Sens -->
     <div class="perfume-card">
-      <div class="perfume-image-container">
-        <img src="https://cdn.shopify.com/s/files/1/0286/9305/6076/products/diptyque-eau-des-sens-eau-de-toilette-100ml_1200x1200.jpg" alt="Eau des Sens" class="perfume-image">
-      </div>
+      <img
+        src="https://i.imgur.com/Y4TCT9E.jpg"
+        alt="Eau des Sens"
+        class="perfume-image"
+      />
       <div class="perfume-info">
-        <h2 class="perfume-name">Diptyque - Eau des Sens</h2>
-        <p class="perfume-description">オレンジの花をめぐる官能的な旅。甘美でフレッシュな香りが、五感を目覚めさせます。</p>
+        <h2 class="perfume-name">Diptyque – Eau des Sens</h2>
+        <p class="perfume-description">
+          オレンジの花をめぐる官能的な旅。甘美でフレッシュな香りが、五感を目覚めさせます。
+        </p>
         <div class="notes-container">
           <div class="notes-section">
             <h3 class="notes-title">トップノート</h3>
-            <p class="notes-list">オレンジブロッサム、ビターオレンジ</p>
+            <p class="notes-list">オレンジブロッサム · ビターオレンジ</p>
           </div>
           <div class="notes-section">
             <h3 class="notes-title">ミドルノート</h3>
-            <p class="notes-list">ジュニパーベリー、ペティグレイン</p>
+            <p class="notes-list">ジュニパーベリー · ペティグレイン</p>
           </div>
           <div class="notes-section">
             <h3 class="notes-title">ベースノート</h3>
-            <p class="notes-list">パチョリ、アンジェリカ</p>
+            <p class="notes-list">パチョリ · アンジェリカ</p>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Aesop – Tacit -->
     <div class="perfume-card">
-      <div class="perfume-image-container">
-        <img src="https://cdn.shopify.com/s/files/1/0552/6138/3608/products/tacit-eau-de-parfum-50ml-aesop-2_1024x.jpg" alt="Tacit" class="perfume-image">
-      </div>
+      <img
+        src="https://i.imgur.com/oO5HdoG.jpg"
+        alt="Tacit"
+        class="perfume-image"
+      />
       <div class="perfume-info">
-        <h2 class="perfume-name">Aesop - Tacit</h2>
-        <p class="perfume-description">地中海沿岸の風景からインスピレーションを得た香り。柑橘系のさわやかさとハーバルな深みが特徴です。</p>
+        <h2 class="perfume-name">Aesop – Tacit</h2>
+        <p class="perfume-description">
+          地中海沿岸の風景からインスピレーションを得た香り。柑橘系のさわやかさとハーバルな深みが特徴です。
+        </p>
         <div class="notes-container">
           <div class="notes-section">
             <h3 class="notes-title">トップノート</h3>
-            <p class="notes-list">ユーカリ、柚子</p>
+            <p class="notes-list">ユーカリ · 柚子</p>
           </div>
           <div class="notes-section">
             <h3 class="notes-title">ミドルノート</h3>
-            <p class="notes-list">バジル、ミント</p>
+            <p class="notes-list">バジル · ミント</p>
           </div>
           <div class="notes-section">
             <h3 class="notes-title">ベースノート</h3>
-            <p class="notes-list">ベチバー、クローブ</p>
+            <p class="notes-list">ベチバー · クローブ</p>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </body>
 </html>
