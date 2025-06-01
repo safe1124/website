@@ -66,6 +66,7 @@ p {
   color: #fff;
   font-weight: 600;
   transition: transform 0.2s, box-shadow 0.2s;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 
@@ -94,6 +95,7 @@ p {
 /* Navigation Menu - Apple Style */
 .nav-menu {
   background-color: rgba(0, 0, 0, 0.8);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
   position: sticky;
   top: 0;
@@ -128,6 +130,109 @@ p {
 .nav-menu a:hover {
   color: #2997ff;
 }
+
+   /* 言語切り替えエリアのスタイル */
+   .language-switcher {
+    position: relative;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin: 0 auto;
+    gap: 10px;
+    /* background: rgba(255, 255, 255, 0.9); */
+    /* -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px); */
+    padding: 10px 15px;
+    border-radius: 25px;
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07); */
+    z-index: 1001;
+  }
+
+  .language-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1d1d1f;
+  }
+
+  /* Toggle Switch のスタイル */
+  .switch {
+   --button-width: 3.5em;
+   --button-height: 2em;
+   --toggle-diameter: 1.5em;
+   --button-toggle-offset: calc((var(--button-height) - var(--toggle-diameter)) / 2);
+   --toggle-shadow-offset: 10px;
+   --toggle-wider: 3em;
+   --color-grey: #cccccc;
+   --color-green: #4296f4;
+  }
+
+  .slider {
+   display: inline-block;
+   width: var(--button-width);
+   height: var(--button-height);
+   background-color: var(--color-grey);
+   border-radius: calc(var(--button-height) / 2);
+   position: relative;
+   transition: 0.3s all ease-in-out;
+  }
+
+  .slider::after {
+   content: "";
+   display: inline-block;
+   width: var(--toggle-diameter);
+   height: var(--toggle-diameter);
+   background-color: #fff;
+   border-radius: calc(var(--toggle-diameter) / 2);
+   position: absolute;
+   top: var(--button-toggle-offset);
+   transform: translateX(var(--button-toggle-offset));
+   box-shadow: var(--toggle-shadow-offset) 0 calc(var(--toggle-shadow-offset) * 4) rgba(0, 0, 0, 0.1);
+   transition: 0.3s all ease-in-out;
+  }
+
+  .switch input[type="checkbox"]:checked + .slider {
+   background-color: var(--color-green);
+  }
+
+  .switch input[type="checkbox"]:checked + .slider::after {
+   transform: translateX(calc(var(--button-width) - var(--toggle-diameter) - var(--button-toggle-offset)));
+   box-shadow: calc(var(--toggle-shadow-offset) * -1) 0 calc(var(--toggle-shadow-offset) * 4) rgba(0, 0, 0, 0.1);
+  }
+
+  .switch input[type="checkbox"] {
+   display: none;
+  }
+
+  .switch input[type="checkbox"]:active + .slider::after {
+   width: var(--toggle-wider);
+  }
+
+  .switch input[type="checkbox"]:checked:active + .slider::after {
+   transform: translateX(calc(var(--button-width) - var(--toggle-wider) - var(--button-toggle-offset)));
+  }
+
+  /* モバイル対応 - 言語切り替えボタン */
+  @media (max-width: 600px) {
+    .language-switcher {
+      top: 10px;
+      right: 10px;
+      padding: 8px 12px;
+      gap: 8px;
+    }
+    
+    .language-label {
+      font-size: 12px;
+    }
+    
+    .switch {
+      --button-width: 3em;
+      --button-height: 1.8em;
+      --toggle-diameter: 1.3em;
+    }
+  }
 
 /* =====================
    PC(데스크탑) 스타일
