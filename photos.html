@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>사진관 - My Website</title>
+  <title data-ja="写真館 - My Website" data-kr="사진관 - My Website">사진관 - My Website</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="style.mobile.css" media="only screen and (max-width: 768px)" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -43,43 +43,35 @@
     </div>
   </div>
   <script>
-    let isKorean = false;
-    const languageToggle = document.getElementById('language-toggle');
-    const currentLangLabel = document.getElementById('current-lang');
-    if (localStorage.getItem('siteLang') === 'ko') {
-      isKorean = true;
-      languageToggle.checked = true;
-    } else {
-      isKorean = false;
-      languageToggle.checked = false;
+    function getLang() {
+      return localStorage.getItem('siteLang') === 'ko' ? 'ko' : 'ja';
     }
-    function switchLanguage() {
-      isKorean = !isKorean;
-      localStorage.setItem('siteLang', isKorean ? 'ko' : 'ja');
-      updateLanguage();
-    }
-    function updateLanguage() {
-      const elementsToSwitch = document.querySelectorAll('[data-ja][data-ko]');
-      elementsToSwitch.forEach(element => {
-        if (isKorean) {
-          element.textContent = element.getAttribute('data-ko');
-        } else {
-          element.textContent = element.getAttribute('data-ja');
-        }
+    function setLang(lang) {
+      localStorage.setItem('siteLang', lang);
+      document.documentElement.lang = lang;
+      const toggle = document.getElementById('language-toggle');
+      if (toggle) toggle.checked = (lang === 'ko');
+      const label = document.getElementById('current-lang');
+      if (label) label.textContent = (lang === 'ko' ? '한국어' : '日本語');
+      document.querySelectorAll('[data-ja][data-ko]').forEach(el => {
+        el.textContent = el.getAttribute(lang === 'ko' ? 'data-ko' : 'data-ja');
       });
-      if (isKorean) {
-        currentLangLabel.textContent = '한국어';
-        document.documentElement.lang = 'ko';
-      } else {
-        currentLangLabel.textContent = '日本語';
-        document.documentElement.lang = 'ja';
-      }
+      var titleEl = document.querySelector('title[data-ja][data-ko]');
+      if (titleEl) titleEl.textContent = titleEl.getAttribute(lang === 'ko' ? 'data-ko' : 'data-ja');
     }
-    languageToggle.addEventListener('change', switchLanguage);
-    updateLanguage();
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-      link.addEventListener('click', function() {
-        localStorage.setItem('siteLang', isKorean ? 'ko' : 'ja');
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggle = document.getElementById('language-toggle');
+      if (toggle) {
+        toggle.checked = (getLang() === 'ko');
+        toggle.addEventListener('change', function() {
+          setLang(toggle.checked ? 'ko' : 'ja');
+        });
+      }
+      setLang(getLang());
+      document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', function() {
+          localStorage.setItem('siteLang', getLang());
+        });
       });
     });
   </script>

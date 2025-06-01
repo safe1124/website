@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>香水コレクション - My Website</title>
+  <title data-ja="香水コレクション - My Website" data-kr="향수 컬렉션 - 마이 웹사이트">香水コレクション - My Website</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="style.mobile.css" media="only screen and (max-width: 768px)" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -131,7 +131,7 @@
             <p class="description" data-ja="オレンジの花をめぐる官能的な旅。甘美でフレッシュな香りが、五感を目覚めさせます。" data-kr="오렌지 꽃을 따라 떠나는 관능적인 여행. 달콤하고 상쾌한 향이 오감을 깨웁니다.">オレンジの花をめぐる官能的な旅。甘美でフレッシュな香りが、五感を目覚めさせます。</p>
             <div class="notes">
               <p data-ja="トップノート：オレンジブロッサム、ビターオレンジ" data-kr="탑 노트: 오렌지 블라썸, 비터 오렌지">トップノート：オレンジブロッサム、ビターオレンジ</p>
-              <p data-ja="ミドルノート：ジュニパーベリー、ペティグレイン" data-kr="미들 노트: 주니퍼베리, 페티그레인">ミドルノート：ジュニパーベリー、ペティグレイン</p>
+              <p data-ja="ミドルノート：ジュニパーベリー、ペティグレイン" data-kr="미들 노트: 주니퍼베리, 페티그레인">ミドルノート：ジュニパーベリー、ペティグ레イン</p>
               <p data-ja="ベースノート：パチョリ、アンジェリカ" data-kr="베이스 노트: 파촐리, 안젤리카">ベースノート：パチョリ、アンジェリカ</p>
             </div>
           </div>
@@ -166,20 +166,41 @@
   </div>
 
   <script>
-    function setLang(lang) {
-      document.querySelectorAll("[data-ja][data-kr]").forEach(function(el) {
-        el.textContent = el.getAttribute(lang === "kr" ? "data-kr" : "data-ja");
-      });
-      document.getElementById("btn-ja").style.background = lang === "ja" ? "#e0e0e0" : "#fff";
-      document.getElementById("btn-kr").style.background = lang === "kr" ? "#e0e0e0" : "#fff";
-      localStorage.setItem("siteLang", lang);
+    function getLang() {
+      return localStorage.getItem('siteLang') === 'ko' ? 'ko' : 'ja';
     }
-
-    document.getElementById("btn-ja").onclick = function() { setLang("ja"); };
-    document.getElementById("btn-kr").onclick = function() { setLang("kr"); };
-    
-    var savedLang = localStorage.getItem("siteLang") || "ja";
-    setLang(savedLang);
+    function setLang(lang) {
+      localStorage.setItem('siteLang', lang);
+      document.documentElement.lang = lang;
+      // 토글 버튼이 있다면 동기화
+      const toggle = document.getElementById('language-toggle');
+      if (toggle) toggle.checked = (lang === 'ko');
+      // 라벨 동기화
+      const label = document.getElementById('current-lang');
+      if (label) label.textContent = (lang === 'ko' ? '한국어' : '日本語');
+      // 텍스트 동기화
+      document.querySelectorAll('[data-ja][data-ko]').forEach(el => {
+        el.textContent = el.getAttribute(lang === 'ko' ? 'data-ko' : 'data-ja');
+      });
+      // 타이틀 동기화
+      var titleEl = document.querySelector('title[data-ja][data-ko]');
+      if (titleEl) titleEl.textContent = titleEl.getAttribute(lang === 'ko' ? 'data-ko' : 'data-ja');
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggle = document.getElementById('language-toggle');
+      if (toggle) {
+        toggle.checked = (getLang() === 'ko');
+        toggle.addEventListener('change', function() {
+          setLang(toggle.checked ? 'ko' : 'ja');
+        });
+      }
+      setLang(getLang());
+      document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', function() {
+          localStorage.setItem('siteLang', getLang());
+        });
+      });
+    });
   </script>
 </body>
 </html>

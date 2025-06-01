@@ -10,22 +10,22 @@
 <body style="background:#FFF9E3;">
   <nav class="nav-menu">
     <ul>
-      <li><a href="index.html" data-ja="ホーム" data-kr="홈">홈</a></li>
-      <li><a href="self-intro.html" data-ja="自己紹介" data-kr="자기소개">자기소개</a></li>
-      <li><a href="hobbies.html" data-ja="趣味" data-kr="취미">취미</a></li>
-      <li><a href="perfumes.html" data-ja="香水コレクション" data-kr="향수 컬렉션">향수 컬렉션</a></li>
-      <li><a href="books.html" data-ja="読書記録" data-kr="독서 기록">독서 기록</a></li>
-      <li><a href="travel.html" data-ja="旅行記" data-kr="여행기">여행기</a></li>
-      <li><a href="music.html" data-ja="好きな音楽" data-kr="좋아하는 음악">좋아하는 음악</a></li>
-      <li><a href="movies.html" data-ja="おすすめ映画" data-kr="추천 영화">추천 영화</a></li>
-      <li><a href="food.html" data-ja="食べ歩き" data-kr="맛집">맛집</a></li>
-      <li><a href="photos.html" data-ja="写真館" data-kr="사진관">사진관</a></li>
-      <li><a href="blog.html" data-ja="ブログ" data-kr="블로그">블로그</a></li>
+      <li><a href="index.html" data-ja="ホーム" data-ko="홈">홈</a></li>
+      <li><a href="self-intro.html" data-ja="自己紹介" data-ko="자기소개">자기소개</a></li>
+      <li><a href="hobbies.html" data-ja="趣味" data-ko="취미">취미</a></li>
+      <li><a href="perfumes.html" data-ja="香水コレクション" data-ko="향수 컬렉션">향수 컬렉션</a></li>
+      <li><a href="books.html" data-ja="読書記録" data-ko="독서 기록">독서 기록</a></li>
+      <li><a href="travel.html" data-ja="旅行記" data-ko="여행기">여행기</a></li>
+      <li><a href="music.html" data-ja="好きな音楽" data-ko="좋아하는 음악">좋아하는 음악</a></li>
+      <li><a href="movies.html" data-ja="おすすめ映画" data-ko="추천 영화">추천 영화</a></li>
+      <li><a href="food.html" data-ja="食べ歩き" data-ko="맛집">맛집</a></li>
+      <li><a href="photos.html" data-ja="写真館" data-ko="사진관">사진관</a></li>
+      <li><a href="blog.html" data-ja="ブログ" data-ko="블로그">블로그</a></li>
     </ul>
   </nav>
   <div class="content">
-    <h1 data-ja="読書記録" data-kr="독서 기록">読書記録</h1>
-    <p data-ja="私の読書記録を紹介します。" data-kr="저의 독서 기록을 소개합니다.">私の読書記録を紹介します。</p>
+    <h1 data-ja="読書記録" data-ko="독서 기록">読書記録</h1>
+    <p data-ja="私の読書記録を紹介します。" data-ko="저의 독서 기록을 소개합니다.">私の読書記録を紹介します。</p>
     <!-- 독서 기록 리스트 등 기존 책 페이지의 주요 콘텐츠를 여기에 삽입 -->
     <!-- ...existing book collection content... -->
     <div class="social-links">
@@ -43,43 +43,35 @@
     </div>
   </div>
   <script>
-    let isKorean = false;
-    const languageToggle = document.getElementById('language-toggle');
-    const currentLangLabel = document.getElementById('current-lang');
-    if (localStorage.getItem('siteLang') === 'ko') {
-      isKorean = true;
-      languageToggle.checked = true;
-    } else {
-      isKorean = false;
-      languageToggle.checked = false;
+    function getLang() {
+      return localStorage.getItem('siteLang') === 'ko' ? 'ko' : 'ja';
     }
-    function switchLanguage() {
-      isKorean = !isKorean;
-      localStorage.setItem('siteLang', isKorean ? 'ko' : 'ja');
-      updateLanguage();
-    }
-    function updateLanguage() {
-      const elementsToSwitch = document.querySelectorAll('[data-ja][data-ko]');
-      elementsToSwitch.forEach(element => {
-        if (isKorean) {
-          element.textContent = element.getAttribute('data-ko');
-        } else {
-          element.textContent = element.getAttribute('data-ja');
-        }
+    function setLang(lang) {
+      localStorage.setItem('siteLang', lang);
+      document.documentElement.lang = lang;
+      const toggle = document.getElementById('language-toggle');
+      if (toggle) toggle.checked = (lang === 'ko');
+      const label = document.getElementById('current-lang');
+      if (label) label.textContent = (lang === 'ko' ? '한국어' : '日本語');
+      document.querySelectorAll('[data-ja][data-ko]').forEach(el => {
+        el.textContent = el.getAttribute(lang === 'ko' ? 'data-ko' : 'data-ja');
       });
-      if (isKorean) {
-        currentLangLabel.textContent = '한국어';
-        document.documentElement.lang = 'ko';
-      } else {
-        currentLangLabel.textContent = '日本語';
-        document.documentElement.lang = 'ja';
-      }
+      var titleEl = document.querySelector('title[data-ja][data-ko]');
+      if (titleEl) titleEl.textContent = titleEl.getAttribute(lang === 'ko' ? 'data-ko' : 'data-ja');
     }
-    languageToggle.addEventListener('change', switchLanguage);
-    updateLanguage();
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-      link.addEventListener('click', function() {
-        localStorage.setItem('siteLang', isKorean ? 'ko' : 'ja');
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggle = document.getElementById('language-toggle');
+      if (toggle) {
+        toggle.checked = (getLang() === 'ko');
+        toggle.addEventListener('change', function() {
+          setLang(toggle.checked ? 'ko' : 'ja');
+        });
+      }
+      setLang(getLang());
+      document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', function() {
+          localStorage.setItem('siteLang', getLang());
+        });
       });
     });
   </script>
