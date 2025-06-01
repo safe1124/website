@@ -6,20 +6,21 @@
     overflow-x: hidden;
   }
 
-  /* main-layout: 세로(컬럼) 정렬, 양쪽 여백 0.5rem */
+  /* main-layout: 세로(컬럼) 정렬, 양쪽 여백 0.5rem, 아래 패딩 제거, 위로 정렬 */
   .main-layout {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: flex-start;
     gap: 0; /* 여백을 내부 요소에서 따로 설정 */
-    padding: 0 0.5rem;
+    padding: 0.5rem 0.5rem 0 0.5rem;
   }
 
-  /* content: 전체 너비, 자동 높이, 아래 여백만 유지 */
+  /* content: 전체 너비, 자동 높이, 아래 여백 최소화 */
   .content {
     width: 100%;
+    height: auto;
     padding: 0;
-    margin-bottom: 2.5rem;
+    margin-bottom: 0.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
