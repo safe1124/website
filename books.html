@@ -2,14 +2,65 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>読書記録 - My Website</title>
+  <title data-ja="読書記録" data-kr="독서 기록">読書記録 - My Website</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.mobile.css" media="only screen and (max-width: 768px)" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    body { background: #FFF9E3; }
+    .nav-menu {
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: saturate(180%) blur(20px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+    }
+    .nav-menu ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-menu li {
+      width: 20%;
+      text-align: center;
+    }
+    .nav-menu a {
+      color: #f5f5f7;
+      text-decoration: none;
+      padding: 12px 0;
+      font-size: 14px;
+      display: block;
+      transition: color 0.2s ease;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .nav-menu a:hover {
+      color: #2997ff;
+    }
+    @media (max-width: 600px) {
+      .nav-menu ul {
+        flex-wrap: wrap;
+      }
+      .nav-menu li {
+        width: 20%;
+      }
+      .nav-menu a {
+        font-size: 1rem;
+        padding: 10px 0;
+      }
+    }
+  </style>
 </head>
 <body>
   <nav class="nav-menu">
     <ul>
-      <li><a href="index.html" data-ja="ホーム" data-kr="홈">ホーム</a></li>
+      <li><a href="index.html" data-ja="ホーム" data-kr="홈">홈</a></li>
       <li><a href="self-intro.html" data-ja="自己紹介" data-kr="자기소개">自己紹介</a></li>
       <li><a href="hobbies.html" data-ja="趣味" data-kr="취미">趣味</a></li>
       <li><a href="perfumes.html" data-ja="香水コレクション" data-kr="향수 컬렉션">香水コレクション</a></li>

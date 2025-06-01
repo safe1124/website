@@ -4,6 +4,7 @@
     font-size: 15px;
     min-width: 0;
     overflow-x: hidden;
+    background: #FFF9E3; /* 배경색 변경 */
   }
 
   /* main-layout: 세로(컬럼) 정렬, 양쪽 여백 0.5rem */
@@ -65,28 +66,26 @@
   .nav-menu ul {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
-    gap: 0;
+    justify-content: center; /* 중앙 정렬 */
     padding: 0;
     margin: 0;
+    list-style: none; /* 기본 리스트 스타일 제거 */
   }
   .nav-menu li {
-    width: 20%;
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+    flex: 0 0 20%; /* 5개 항목을 위한 너비 설정 */
     text-align: center;
+    margin: 0;
+    padding: 0;
   }
   .nav-menu a {
-    padding: 10px 0;
-    width: 100%;
-    text-align: center;
-    font-size: 1rem;
-    border-bottom: 1px solid #e0e0e0;
     display: block;
+    padding: 10px 0;
+    font-size: 15px;
+    color: #333;
+    text-decoration: none;
+    background: transparent;
+    border-radius: 0;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
   .nav-menu a:last-child {
     border-bottom: none; /* 마지막 항목은 구분선 없음 */
