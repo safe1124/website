@@ -62,37 +62,35 @@
     width: 100%;
   }
 
-  /* 내비게이션 메뉴: 세로 정렬 */
+  /* 내비게이션 메뉴: 가로 스크롤 가능한 탭으로 변경 */
   .nav-menu {
-    flex-direction: column;
-    align-items: center;
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    background: #141414;
   }
   .nav-menu ul {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* 중앙 정렬 */
     padding: 0;
     margin: 0;
-    list-style: none; /* 기본 리스트 스타일 제거 */
+    list-style: none;
+    white-space: nowrap;
   }
   .nav-menu li {
-    flex: 0 0 20%; /* 5개 항목을 위한 너비 설정 */
+    flex: 0 auto;
     text-align: center;
-    margin: 0;
-    padding: 0;
   }
   .nav-menu a {
     display: block;
-    padding: 10px 15px;
-    font-size: 14px;
-    color: #333;
+    padding: 12px 16px;
+    font-size: 16px;
+    color: #fff;
     text-decoration: none;
-    background: transparent;
-    border-radius: 0;
     white-space: nowrap;
+    transition: background 0.2s;
   }
-  .nav-menu a:last-child {
-    border-bottom: none; /* 마지막 항목은 구분선 없음 */
+  .nav-menu a:hover {
+    background: rgba(255,255,255,0.1);
   }
 
   /* 제목, 본문 폰트 크기 조정 */
@@ -123,10 +121,11 @@
     padding: 10px 0;
   }
 
-  /* 음악 리스트: 2열 그리드, 간격 15px */
+  /* 음악 리스트: 1열 그리드, 간격 20px */
   .music-list {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 10px;
   }
 }
