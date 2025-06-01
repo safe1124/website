@@ -6,25 +6,21 @@
     overflow-x: hidden;
   }
 
+  /* main-layout: 세로(컬럼) 정렬, 양쪽 여백 0.5rem */
   .main-layout {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 0;
-    padding: 0.5rem 0.5rem 0 0.5rem;
-    min-height: 100vh;
+    gap: 0; /* 여백을 내부 요소에서 따로 설정 */
+    padding: 0 0.5rem;
   }
 
+  /* content: 전체 너비, 자동 높이, 아래 여백만 유지 */
   .content {
     width: 100%;
     height: auto;
     padding: 0;
-    margin-bottom: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    margin-top: 0;
+    margin-bottom: 2.5rem;
   }
 
   /* youtube-sidebar: content 아래에 배치, 전체 너비, 그림자 + 내부 여백 */
