@@ -9,6 +9,18 @@
   <link rel="stylesheet" href="style.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="language-switcher.js"></script>
+  <script>
+    // 오버레이 애니메이션
+    window.addEventListener('DOMContentLoaded', function() {
+      const overlay = document.getElementById('site-overlay');
+      setTimeout(() => {
+        overlay.classList.add('hide');
+      }, 400); // 약간의 딜레이 후 애니메이션 시작
+      overlay.addEventListener('transitionend', () => {
+        overlay.parentNode.removeChild(overlay);
+      });
+    });
+  </script>
 </head>
 <body>
 
@@ -29,6 +41,8 @@
   
   <!-- Background Canvas -->
   <canvas id="bg"></canvas>
+  <!-- 오버레이 효과 -->
+  <div id="site-overlay"></div>
   
   <div class="main-layout">
     <div class="content">

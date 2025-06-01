@@ -26,48 +26,68 @@
   <div class="content">
     <h1 data-ja="好きな音楽" data-ko="좋아하는 음악">좋아하는 음악</h1>
     <p data-ja="ここに好きな音楽について自由に書いてください。" data-ko="여기에 좋아하는 음악에 대한 내용을 자유롭게 추가하세요.">여기에 좋아하는 음악에 대한 내용을 자유롭게 추가하세요.</p>
-    <div class="music-list" style="display:grid;grid-template-columns:repeat(5,1fr);gap:20px;max-width:1100px;margin:40px auto 0 auto;">
+    <div class="music-list">
       <!-- 각 상자를 클릭하면 해당 유튜브 링크가 새 탭에서 열립니다 -->
-      <div class="music-box-wrapper" onclick="openMusicLink(event)" data-url="https://www.youtube.com/watch?v=UM9XNpgrqVk" style="cursor:pointer">
-        <!-- 제목: <span style='color:red;'>괴수의 꽃노래</span>, 가수: <span style='color:red;'>바운디</span>, 작곡: <span style='color:red;'>바운디</span>, 유튜브: <span style='color:red;'>https://www.youtube.com/watch?v=UM9XNpgrqVk</span> -->
-        <textarea class="music-box" readonly style="resize:none;height:60px;background:#fff;padding:10px 10px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.06);font-size:14px;line-height:1.5;border:1px solid #eee;">
-怪獣の鼻歌
-Vaundy
-Vaundy
-        </textarea>
+      <!-- Song 1: 괴수의 꽃노래 -->
+      <div class="music-box-wrapper" onclick="openMusicLink(event)" data-url="https://www.youtube.com/watch?v=UM9XNpgrqVk">
+        <div class="music-card">
+          <img class="album-art" src="https://img.youtube.com/vi/UM9XNpgrqVk/hqdefault.jpg" alt="괴수의 꽃노래">
+          <div class="music-info">
+            <h2 class="song-title">괴수의 꽃노래</h2>
+            <p class="artist">바운디</p>
+          </div>
+          <div class="play-overlay"><i class="fa fa-play"></i></div>
+        </div>
       </div>
-      <div class="music-box-wrapper" onclick="openMusicLink(event)" data-url="https://www.youtube.com/watch?v=UM9XNpgrqVk" style="cursor:pointer">
-        <!-- 제목: <span style='color:red;'>괴수의 꽃노래</span>, 가수: <span style='color:red;'>바운디</span>, 작곡: <span style='color:red;'>바운디</span>, 유튜브: <span style='color:red;'>https://www.youtube.com/watch?v=UM9XNpgrqVk</span> -->
-        <textarea class="music-box" readonly style="resize:none;height:60px;background:#fff;padding:10px 10px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.06);font-size:14px;line-height:1.5;border:1px solid #eee;">
-怪獣の花歌
-Vaundy
-Vaundy
-        </textarea>
+      
+      <!-- Song 2: Mrs. GREEN APPLE – くすしき -->
+      <div class="music-box-wrapper" onclick="openMusicLink(event)" data-url="https://www.youtube.com/watch?v=RCaTLn4qoz4">
+        <div class="music-card">
+          <img class="album-art" src="https://img.youtube.com/vi/RCaTLn4qoz4/hqdefault.jpg" alt="くすしき">
+          <div class="music-info">
+            <h2 class="song-title">くすしき</h2>
+            <p class="artist">Mrs. GREEN APPLE</p>
+          </div>
+          <div class="play-overlay"><i class="fa fa-play"></i></div>
+        </div>
       </div>
-      <div class="music-box-wrapper" onclick="openMusicLink(event)" data-url="https://www.youtube.com/watch?v=UM9XNpgrqVk" style="cursor:pointer">
-        <!-- 제목: <span style='color:red;'>괴수의 꽃노래</span>, 가수: <span style='color:red;'>바운디</span>, 작곡: <span style='color:red;'>바운디</span>, 유튜브: <span style='color:red;'>https://www.youtube.com/watch?v=UM9XNpgrqVk</span> -->
-        <textarea class="music-box" readonly style="resize:none;height:60px;background:#fff;padding:10px 10px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.06);font-size:14px;line-height:1.5;border:1px solid #eee;">
-괴수의 꽃노래
-바운디
-바운디
-        </textarea>
+      
+      <!-- Song 3: Vaundy – 상열 -->
+      <div class="music-box-wrapper" onclick="openMusicLink(event)" data-url="https://www.youtube.com/watch?v=fxtQ4Dsmqo0">
+        <div class="music-card">
+          <img class="album-art" src="https://img.youtube.com/vi/fxtQ4Dsmqo0/hqdefault.jpg" alt="상열">
+          <div class="music-info">
+            <h2 class="song-title">상열</h2>
+            <p class="artist">Vaundy</p>
+          </div>
+          <div class="play-overlay"><i class="fa fa-play"></i></div>
+        </div>
       </div>
-      <div class="music-box-wrapper" onclick="openMusicLink(event)" data-url="https://www.youtube.com/watch?v=UM9XNpgrqVk" style="cursor:pointer">
-        <!-- 제목: <span style='color:red;'>괴수의 꽃노래</span>, 가수: <span style='color:red;'>바운디</span>, 작곡: <span style='color:red;'>바운디</span>, 유튜브: <span style='color:red;'>https://www.youtube.com/watch?v=UM9XNpgrqVk</span> -->
-        <textarea class="music-box" readonly style="resize:none;height:60px;background:#fff;padding:10px 10px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.06);font-size:14px;line-height:1.5;border:1px solid #eee;">
-괴수의 꽃노래
-바운디
-바운디
-        </textarea>
+      
+      <!-- Song 4: Vaundy – どうして僕には分かるんだろう -->
+      <div class="music-box-wrapper" onclick="openMusicLink(event)" data-url="https://www.youtube.com/watch?v=x4aWXNWPrtY">
+        <div class="music-card">
+          <img class="album-art" src="https://img.youtube.com/vi/x4aWXNWPrtY/hqdefault.jpg" alt="どうして僕には分かるんだろう">
+          <div class="music-info">
+            <h2 class="song-title">どうして僕には分かるんだろう</h2>
+            <p class="artist">Vaundy</p>
+          </div>
+          <div class="play-overlay"><i class="fa fa-play"></i></div>
+        </div>
       </div>
-      <div class="music-box-wrapper" onclick="openMusicLink(event)" data-url="https://www.youtube.com/watch?v=UM9XNpgrqVk" style="cursor:pointer">
-        <!-- 제목: <span style='color:red;'>괴수의 꽃노래</span>, 가수: <span style='color:red;'>바운디</span>, 작곡: <span style='color:red;'>바운디</span>, 유튜브: <span style='color:red;'>https://www.youtube.com/watch?v=UM9XNpgrqVk</span> -->
-        <textarea class="music-box" readonly style="resize:none;height:60px;background:#fff;padding:10px 10px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.06);font-size:14px;line-height:1.5;border:1px solid #eee;">
-괴수의 꽃노래
-바운디
-바운디
-        </textarea>
+      
+      <!-- Song 5: Mrs. GREEN APPLE – 라일락 -->
+      <div class="music-box-wrapper" onclick="openMusicLink(event)" data-url="https://www.youtube.com/watch?v=QjrkrVmC-8M">
+        <div class="music-card">
+          <img class="album-art" src="https://img.youtube.com/vi/QjrkrVmC-8M/hqdefault.jpg" alt="라일락">
+          <div class="music-info">
+            <h2 class="song-title">라일락</h2>
+            <p class="artist">Mrs. GREEN APPLE</p>
+          </div>
+          <div class="play-overlay"><i class="fa fa-play"></i></div>
+        </div>
       </div>
+      
     </div>
   </div>
   <script>
