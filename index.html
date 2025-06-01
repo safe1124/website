@@ -2,12 +2,13 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>初めてのウェブサイト</title>
+  <title data-ja="初めてのウェブサイト" data-ko="처음으로 만든 웹사이트">初めてのウェブサイト</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="style.mobile.css" media="only screen and (max-width: 768px)" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="language-switcher.js"></script>
 </head>
 <body>
 
@@ -36,15 +37,15 @@
       <p id="intro-text2" data-ja="現在は香水ページしか存在しません。" data-ko="현재는 향수 페이지만 존재합니다.">現在は香水ページしか存在しません。</p>
       <div id="clock"></div>
       <div class="social-links">
-        <a rel="noopener" href="https://www.youtube.com/@tcu_vlog2215" class="social-button youtube" target="_blank">
+        <a rel="noopener" href="https://www.youtube.com/@tcu_vlog2215" class="social-button youtube" target="_blank" data-ja="ユーチューブ" data-ko="유튜브">
           <i class="fab fa-youtube"></i>
           YouTube
         </a>
-        <a rel="noopener" href="https://www.instagram.com/utaenaimiku" class="social-button instagram" target="_blank">
+        <a rel="noopener" href="https://www.instagram.com/utaenaimiku" class="social-button instagram" target="_blank" data-ja="インスタグラム" data-ko="인스타그램">
           <i class="fab fa-instagram"></i>
           Instagram
         </a>
-        <a rel="noopener" href="https://twitter.com/sico_sico_sico_" class="social-button twitter" target="_blank">
+        <a rel="noopener" href="https://twitter.com/sico_sico_sico_" class="social-button twitter" target="_blank" data-ja="𝕏" data-ko="𝕏">
           <i class="fab fa-x-twitter"></i>
           𝕏
         </a>
@@ -134,39 +135,6 @@
       requestAnimationFrame(animate);
     }
     animate();
-
-    // 언어 상태를 localStorage에 저장/불러오기
-    function getLang() {
-      return localStorage.getItem('siteLang') === 'ko' ? 'ko' : 'ja';
-    }
-    function setLang(lang) {
-      localStorage.setItem('siteLang', lang);
-      document.documentElement.lang = lang;
-      const toggle = document.getElementById('language-toggle');
-      if (toggle) toggle.checked = (lang === 'ko');
-      const label = document.getElementById('current-lang');
-      if (label) label.textContent = (lang === 'ko' ? '한국어' : '日本語');
-      document.querySelectorAll('[data-ja][data-ko]').forEach(el => {
-        el.textContent = el.getAttribute(lang === 'ko' ? 'data-ko' : 'data-ja');
-      });
-      var titleEl = document.querySelector('title[data-ja][data-ko]');
-      if (titleEl) titleEl.textContent = titleEl.getAttribute(lang === 'ko' ? 'data-ko' : 'data-ja');
-    }
-    document.addEventListener('DOMContentLoaded', function() {
-      const toggle = document.getElementById('language-toggle');
-      if (toggle) {
-        toggle.checked = (getLang() === 'ko');
-        toggle.addEventListener('change', function() {
-          setLang(toggle.checked ? 'ko' : 'ja');
-        });
-      }
-      setLang(getLang());
-      document.querySelectorAll('.nav-menu a').forEach(link => {
-        link.addEventListener('click', function() {
-          localStorage.setItem('siteLang', getLang());
-        });
-      });
-    });
   </script>
 </body>
 </html>

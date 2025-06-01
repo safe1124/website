@@ -71,6 +71,7 @@
       }
     }
   </style>
+  <script src="language-switcher.js"></script>
 </head>
 <body style="background:#FFF9E3;">
   <nav class="nav-menu">
@@ -164,43 +165,5 @@
       </div>
     </div>
   </div>
-
-  <script>
-    function getLang() {
-      return localStorage.getItem('siteLang') === 'ko' ? 'ko' : 'ja';
-    }
-    function setLang(lang) {
-      localStorage.setItem('siteLang', lang);
-      document.documentElement.lang = lang;
-      // 토글 버튼이 있다면 동기화
-      const toggle = document.getElementById('language-toggle');
-      if (toggle) toggle.checked = (lang === 'ko');
-      // 라벨 동기화
-      const label = document.getElementById('current-lang');
-      if (label) label.textContent = (lang === 'ko' ? '한국어' : '日本語');
-      // 텍스트 동기화
-      document.querySelectorAll('[data-ja][data-ko]').forEach(el => {
-        el.textContent = el.getAttribute(lang === 'ko' ? 'data-ko' : 'data-ja');
-      });
-      // 타이틀 동기화
-      var titleEl = document.querySelector('title[data-ja][data-ko]');
-      if (titleEl) titleEl.textContent = titleEl.getAttribute(lang === 'ko' ? 'data-ko' : 'data-ja');
-    }
-    document.addEventListener('DOMContentLoaded', function() {
-      const toggle = document.getElementById('language-toggle');
-      if (toggle) {
-        toggle.checked = (getLang() === 'ko');
-        toggle.addEventListener('change', function() {
-          setLang(toggle.checked ? 'ko' : 'ja');
-        });
-      }
-      setLang(getLang());
-      document.querySelectorAll('.nav-menu a').forEach(link => {
-        link.addEventListener('click', function() {
-          localStorage.setItem('siteLang', getLang());
-        });
-      });
-    });
-  </script>
 </body>
 </html>
