@@ -2,86 +2,37 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title data-ja="趣味" data-kr="취미">趣味 - My Website</title>
+  <title>취미 - My Website</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="style.mobile.css" media="only screen and (max-width: 768px)" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <style>
-    body { background: #FFF9E3; }
-    .nav-menu {
-      background-color: rgba(0, 0, 0, 0.8);
-      backdrop-filter: saturate(180%) blur(20px);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      width: 100%;
-    }
-    .nav-menu ul {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    .nav-menu li {
-      width: 20%;
-      text-align: center;
-    }
-    .nav-menu a {
-      color: #f5f5f7;
-      text-decoration: none;
-      padding: 12px 0;
-      font-size: 14px;
-      display: block;
-      transition: color 0.2s ease;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .nav-menu a:hover {
-      color: #2997ff;
-    }
-    @media (max-width: 600px) {
-      .nav-menu ul {
-        flex-wrap: wrap;
-      }
-      .nav-menu li {
-        width: 20%;
-      }
-      .nav-menu a {
-        font-size: 1rem;
-        padding: 10px 0;
-      }
-    }
-  </style>
 </head>
-<body>
+<body style="background:#FFF9E3;">
   <nav class="nav-menu">
     <ul>
       <li><a href="index.html" data-ja="ホーム" data-kr="홈">홈</a></li>
-      <li><a href="self-intro.html" data-ja="自己紹介" data-kr="자기소개">自己紹介</a></li>
-      <li><a href="hobbies.html" data-ja="趣味" data-kr="취미">趣味</a></li>
-      <li><a href="perfumes.html" data-ja="香水コレクション" data-kr="향수 컬렉션">香水コレクション</a></li>
-      <li><a href="books.html" data-ja="読書記録" data-kr="독서 기록">読書記録</a></li>
-      <li><a href="travel.html" data-ja="旅行記" data-kr="여행기">旅行記</a></li>
-      <li><a href="music.html" data-ja="好きな音楽" data-kr="좋아하는 음악">好きな音楽</a></li>
-      <li><a href="movies.html" data-ja="おすすめ映画" data-kr="추천 영화">おすすめ映画</a></li>
-      <li><a href="food.html" data-ja="食べ歩き" data-kr="맛집">食べ歩き</a></li>
-      <li><a href="photos.html" data-ja="写真館" data-kr="사진관">写真館</a></li>
-      <li><a href="blog.html" data-ja="ブログ" data-kr="블로그">ブログ</a></li>
+      <li><a href="self-intro.html" data-ja="自己紹介" data-kr="자기소개">자기소개</a></li>
+      <li><a href="hobbies.html" data-ja="趣味" data-kr="취미">취미</a></li>
+      <li><a href="perfumes.html" data-ja="香水コレクション" data-kr="향수 컬렉션">향수 컬렉션</a></li>
+      <li><a href="books.html" data-ja="読書記録" data-kr="독서 기록">독서 기록</a></li>
+      <li><a href="travel.html" data-ja="旅行記" data-kr="여행기">여행기</a></li>
+      <li><a href="music.html" data-ja="好きな音楽" data-kr="좋아하는 음악">좋아하는 음악</a></li>
+      <li><a href="movies.html" data-ja="おすすめ映画" data-kr="추천 영화">추천 영화</a></li>
+      <li><a href="food.html" data-ja="食べ歩き" data-kr="맛집">맛집</a></li>
+      <li><a href="photos.html" data-ja="写真館" data-kr="사진관">사진관</a></li>
+      <li><a href="blog.html" data-ja="ブログ" data-kr="블로그">블로그</a></li>
     </ul>
   </nav>
   <div class="content">
     <h1 data-ja="趣味" data-kr="취미">趣味</h1>
-    <p data-ja="私の趣味について紹介します。" data-kr="저의 취미를 소개합니다.">私の趣味について紹介します。</p>
+    <p data-ja="私の趣味を紹介します。" data-kr="저의 취미를 소개합니다.">私の趣味を紹介します。</p>
+    <!-- 취미 리스트 등 기존 취미 페이지의 주요 콘텐츠를 여기에 삽입 -->
+    <!-- ...existing hobbies content... -->
     <div class="social-links">
       <a href="https://www.instagram.com/utaenaimiku" class="social-button instagram" target="_blank">
         <i class="fab fa-instagram"></i>
         Instagram
       </a>
-      <!-- 언어 토글 버튼 -->
       <div class="lang-toggle" style="margin-top:16px; display:flex; gap:8px; justify-content:center;">
         <button id="btn-ja" type="button" style="padding:6px 16px; border-radius:20px; border:1px solid #ccc; background:#fff; cursor:pointer;">日本語</button>
         <button id="btn-kr" type="button" style="padding:6px 16px; border-radius:20px; border:1px solid #ccc; background:#fff; cursor:pointer;">한국어</button>
