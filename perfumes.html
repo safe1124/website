@@ -5,6 +5,63 @@
   <title>香水コレクション - My Website</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    .perfume-card {
+      display: flex;
+      margin: 2rem 0;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .perfume-image {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .perfume-info {
+      padding: 2rem;
+      flex: 1;
+    }
+
+    .perfume-name {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #f5f5f7;
+    }
+
+    .perfume-description {
+      color: #86868b;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .notes-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .notes-section {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    .notes-title {
+      color: #2997ff;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .notes-list {
+      color: #86868b;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+  </style>
 </head>
 <body>
   <nav class="nav-menu">
@@ -24,7 +81,94 @@
   </nav>
   <div class="content">
     <h1>香水コレクション</h1>
-    <p>私が所有している香水のコレクションを紹介します。</p>
+    
+    <div class="perfume-card">
+      <img src="https://www.maisonmargiela-fragrances.us/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-margiela-master-catalog/default/dw7d12619c/images/hi-res/Maison-Margiela-Replica-Jazz-Club-Eau-de-Toilette.jpg" alt="Jazz Club" class="perfume-image">
+      <div class="perfume-info">
+        <h2 class="perfume-name">Maison Margiela - Jazz Club</h2>
+        <p class="perfume-description">ブルックリンのジャズクラブの雰囲気を再現した香り。タバコの煙、皮革の椅子、カクテルが織りなす洗練された空間を表現しています。</p>
+        <div class="notes-container">
+          <div class="notes-section">
+            <h3 class="notes-title">トップノート</h3>
+            <p class="notes-list">ピンクペッパー、ネロリオイル、レモン</p>
+          </div>
+          <div class="notes-section">
+            <h3 class="notes-title">ミドルノート</h3>
+            <p class="notes-list">ラム、クローブオイル、ネロリ</p>
+          </div>
+          <div class="notes-section">
+            <h3 class="notes-title">ベースノート</h3>
+            <p class="notes-list">タバコの葉、バニラ、スチラックス</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="perfume-card">
+      <img src="https://www.diptyqueparis.com/dw/image/v2/BFNS_PRD/on/demandware.static/-/Sites-diptyque-master/default/dwe3d5b7f1/images/large/3700431400024.jpg" alt="Philosykos" class="perfume-image">
+      <div class="perfume-info">
+        <h2 class="perfume-name">Diptyque - Philosykos</h2>
+        <p class="perfume-description">ギリシャの夏のイチジクの木を表現した香り。緑の葉、熟した果実、白い木の香りが調和しています。</p>
+        <div class="notes-container">
+          <div class="notes-section">
+            <h3 class="notes-title">トップノート</h3>
+            <p class="notes-list">イチジクの葉、緑の香り</p>
+          </div>
+          <div class="notes-section">
+            <h3 class="notes-title">ミドルノート</h3>
+            <p class="notes-list">イチジクの木、青いイチジク</p>
+          </div>
+          <div class="notes-section">
+            <h3 class="notes-title">ベースノート</h3>
+            <p class="notes-list">白い木、セダー</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="perfume-card">
+      <img src="https://www.diptyqueparis.com/dw/image/v2/BFNS_PRD/on/demandware.static/-/Sites-diptyque-master/default/dw30aa2926/images/large/3700431400536.jpg" alt="Eau des Sens" class="perfume-image">
+      <div class="perfume-info">
+        <h2 class="perfume-name">Diptyque - Eau des Sens</h2>
+        <p class="perfume-description">オレンジの花をめぐる官能的な旅。甘美でフレッシュな香りが、五感を目覚めさせます。</p>
+        <div class="notes-container">
+          <div class="notes-section">
+            <h3 class="notes-title">トップノート</h3>
+            <p class="notes-list">オレンジブロッサム、ビターオレンジ</p>
+          </div>
+          <div class="notes-section">
+            <h3 class="notes-title">ミドルノート</h3>
+            <p class="notes-list">ジュニパーベリー、ペティグレイン</p>
+          </div>
+          <div class="notes-section">
+            <h3 class="notes-title">ベースノート</h3>
+            <p class="notes-list">パチョリ、アンジェリカ</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="perfume-card">
+      <img src="https://www.aesop.com/u1nb1km7t5q7/6VzFGZRGNJ5WqyFIueoq2n/062b47f7596d45a11e1296c91558752f/Aesop_Fragrance_Tacit_Eau_de_Parfum_50mL_Web_Large_684x668px.png" alt="Tacit" class="perfume-image">
+      <div class="perfume-info">
+        <h2 class="perfume-name">Aesop - Tacit</h2>
+        <p class="perfume-description">地中海沿岸の風景からインスピレーションを得た香り。柑橘系のさわやかさとハーバルな深みが特徴です。</p>
+        <div class="notes-container">
+          <div class="notes-section">
+            <h3 class="notes-title">トップノート</h3>
+            <p class="notes-list">ユーカリ、柚子</p>
+          </div>
+          <div class="notes-section">
+            <h3 class="notes-title">ミドルノート</h3>
+            <p class="notes-list">バジル、ミント</p>
+          </div>
+          <div class="notes-section">
+            <h3 class="notes-title">ベースノート</h3>
+            <p class="notes-list">ベチバー、クローブ</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 </html>
