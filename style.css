@@ -129,6 +129,10 @@ p {
   color: #2997ff;
 }
 
+/* =====================
+   PC(데스크탑) 스타일
+   ===================== */
+
 @media (max-width: 768px) {
   .nav-menu ul {
     flex-direction: column;
@@ -142,23 +146,66 @@ p {
 }
 
 @media (max-width: 600px) {
-  #clock {
-    font-size: 4rem;
+  body {
+    font-size: 15px;
+    min-width: 0;
+    overflow-x: hidden;
+  }
+  .main-layout {
+    flex-direction: column;
+    gap: 0;
+    padding: 0 0.5rem;
+  }
+  .content {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+  .youtube-sidebar {
+    max-width: 100%;
+    min-width: 0;
+    margin: 1.5rem 0 0 0;
+    padding: 1rem 0.5rem;
+  }
+  .youtube-videos iframe {
+    height: 160px;
+  }
+  .youtube-section-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .nav-menu ul {
+    flex-direction: column;
+    gap: 0;
+  }
+  .nav-menu a {
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
   }
   h1 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
   p {
     font-size: 1rem;
+    margin-bottom: 16px;
+  }
+  #clock {
+    font-size: 3rem;
   }
   .social-links {
     flex-direction: column;
     gap: 10px;
+    margin-top: 20px;
   }
-  
   .social-button {
-    width: 200px;
+    width: 100%;
     justify-content: center;
+    font-size: 1rem;
+    padding: 10px 0;
   }
 }
 
