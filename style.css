@@ -166,15 +166,25 @@ p {
   .youtube-sidebar {
     max-width: 100%;
     min-width: 0;
-    margin: 1.5rem 0 0 0;
+    margin: 2.5rem auto 0 auto;
     padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .youtube-videos {
+    width: 100%;
+    align-items: center;
   }
   .youtube-videos iframe {
     height: 160px;
+    margin: 0 auto;
+    display: block;
   }
   .youtube-section-title {
     font-size: 1rem;
     margin-bottom: 0.5rem;
+    text-align: center;
   }
   .nav-menu ul {
     flex-direction: column;
