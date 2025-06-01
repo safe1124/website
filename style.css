@@ -1,3 +1,9 @@
+body, html {
+  overflow: auto !important;
+  min-width: 0;
+  height: auto;
+}
+
 body {
   margin: 0;
   padding: 0;
