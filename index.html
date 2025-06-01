@@ -2,31 +2,37 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>初めてのウェブサイト</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
+
   <nav class="nav-menu">
-    <ul>
-      <li><a href="self-intro.html">自己紹介</a></li>
-      <li><a href="hobbies.html">趣味</a></li>
-      <li><a href="perfumes.html">香水コレクション</a></li>
-      <li><a href="books.html">読書記録</a></li>
-      <li><a href="travel.html">旅行記</a></li>
-      <li><a href="music.html">好きな音楽</a></li>
-      <li><a href="movies.html">おすすめ映画</a></li>
-      <li><a href="food.html">食べ歩き</a></li>
-      <li><a href="photos.html">写真</a></li>
-      <li><a href="blog.html">日記</a></li>
+    <ul id="nav-menu-list">
+      <li><a href="self-intro.html" data-ja="自己紹介" data-ko="자기소개">自己紹介</a></li>
+      <li><a href="hobbies.html" data-ja="趣味" data-ko="취미">趣味</a></li>
+      <li><a href="perfumes.html" data-ja="香水コレクション" data-ko="향수 컬렉션">香水コレクション</a></li>
+      <li><a href="books.html" data-ja="読書記録" data-ko="독서 기록">読書記録</a></li>
+      <li><a href="travel.html" data-ja="旅行記" data-ko="여행기">旅行記</a></li>
+      <li><a href="music.html" data-ja="好きな音楽" data-ko="좋아하는 음악">好きな音楽</a></li>
+      <li><a href="movies.html" data-ja="おすすめ映画" data-ko="추천 영화">おすすめ映画</a></li>
+      <li><a href="food.html" data-ja="食べ歩き" data-ko="맛집 탐방">食べ歩き</a></li>
+      <li><a href="photos.html" data-ja="写真" data-ko="사진">写真</a></li>
+      <li><a href="blog.html" data-ja="日記" data-ko="일기">日記</a></li>
     </ul>
   </nav>
+  
+  <!-- Background Canvas -->
+  <canvas id="bg"></canvas>
+  
   <div class="main-layout">
     <div class="content">
-      <h1>こんにちは! 🎉</h1>
-      <p>これは３分のウェブサイトです.</p>
-      <p>現在は香水ページしか存在しません。</p>
+      <h1 id="main-title" data-ja="こんにちは! 🎉" data-ko="안녕하세요! 🎉">こんにちは! 🎉</h1>
+      <p id="intro-text1" data-ja="これは３分のウェブサイトです." data-ko="이것은 3분의 웹사이트입니다.">これは３分のウェブサイトです.</p>
+      <p id="intro-text2" data-ja="現在は香水ページしか存在しません。" data-ko="현재는 향수 페이지만 존재합니다.">現在は香水ページしか存在しません。</p>
       <div id="clock"></div>
       <div class="social-links">
         <a rel="noopener" href="https://www.youtube.com/@tcu_vlog2215" class="social-button youtube" target="_blank">
@@ -42,19 +48,32 @@
           𝕏
         </a>
       </div>
+
+      <!-- 言語切り替えToggle Switch -->
+      <div class="language-switcher">
+        <span class="language-label" id="current-lang">日本語</span>
+        <label class="switch">
+          <input aria-label="Language Toggle" type="checkbox" id="language-toggle">
+          <span class="slider"></span>
+        </label>
+        <span class="language-label" id="other-lang">한국어</span>
+      </div>
     </div>
     <aside class="youtube-sidebar">
-      <h2>最新のYouTube動画</h2>
+      <h2 id="youtube-title" data-ja="最新のYouTube動画" data-ko="최신 YouTube 동영상">最新のYouTube動画</h2>
       <div class="youtube-videos">
-        <div class="youtube-section-title">最新動画（최신영상）</div>
+        <div class="youtube-section-title" id="latest-videos" data-ja="最新動画（최신영상）" data-ko="최신 동영상（最新動画）">最新動画（최신영상）</div>
         <iframe width="100%" height="180" src="https://www.youtube.com/embed/w8iq04de_RA" title="YouTube video 1" frameborder="0" allowfullscreen></iframe>
         <iframe width="100%" height="180" src="https://www.youtube.com/embed/7kz51n1eNtc" title="YouTube video 2" frameborder="0" allowfullscreen></iframe>
         <iframe width="100%" height="180" src="https://www.youtube.com/embed/09uETkRHY8k" title="YouTube video 3" frameborder="0" allowfullscreen></iframe>
       </div>
-      <a rel="noopener" href="https://www.youtube.com/@tcu_vlog2215" target="_blank" class="youtube-more">もっと見る</a>
+      <a rel="noopener" href="https://www.youtube.com/@tcu_vlog2215" target="_blank" class="youtube-more" id="more-link" data-ja="もっと見る" data-ko="더 보기">もっと見る</a>
     </aside>
+
   </div>
+
   <script>
+    // 時計機能
     function updateClock() {
       const now = new Date();
       const hh = String(now.getHours()).padStart(2, '0');
@@ -64,7 +83,113 @@
     }
     setInterval(updateClock, 1000);
     updateClock();
+
+    // 背景キャンバスアニメーション
+    const canvas = document.getElementById('bg');
+    const ctx = canvas.getContext('2d');
+    
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // シンプルなパーティクルアニメーション
+    const particles = [];
+    const particleCount = 30;
+    
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.size = Math.random() * 2 + 1;
+        this.opacity = Math.random() * 0.5 + 0.1;
+      }
+      
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+      }
+      
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = this.opacity;
+        ctx.fillStyle = '#FFA500';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+    
+    // パーティクル初期化
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+    
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+
+    // 言語切り替え機能
+    let isKorean = false; // 現在の言語状態（false: 日本語, true: 韓国語）
+
+    const languageToggle = document.getElementById('language-toggle');
+    const currentLangLabel = document.getElementById('current-lang');
+    const otherLangLabel = document.getElementById('other-lang');
+
+    // 言語切り替え関数
+    function switchLanguage() {
+      isKorean = !isKorean;
+      
+      // すべての要素のテキストを切り替え
+      const elementsToSwitch = document.querySelectorAll('[data-ja][data-ko]');
+      
+      elementsToSwitch.forEach(element => {
+        if (isKorean) {
+          element.textContent = element.getAttribute('data-ko');
+        } else {
+          element.textContent = element.getAttribute('data-ja');
+        }
+      });
+
+      // 言語ラベルの更新
+      if (isKorean) {
+        currentLangLabel.textContent = '한국어';
+        otherLangLabel.textContent = '日本語';
+        document.documentElement.lang = 'ko';
+      } else {
+        currentLangLabel.textContent = '日本語';
+        otherLangLabel.textContent = '한국어';
+        document.documentElement.lang = 'ja';
+      }
+    }
+
+    // Toggle Switchのイベントリスナー
+    languageToggle.addEventListener('change', switchLanguage);
+
+    // 初期状態の設定
+    document.addEventListener('DOMContentLoaded', function() {
+      // ページ読み込み時に日本語に設定
+      isKorean = false;
+      languageToggle.checked = false;
+    });
   </script>
 </body>
 </html>
-
