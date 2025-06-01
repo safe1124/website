@@ -9,23 +9,23 @@
 <body>
   <nav class="nav-menu">
     <ul>
-      <li><a href="self-intro.html">自己紹介</a></li>
-      <li><a href="hobbies.html">趣味</a></li>
-      <li><a href="perfumes.html">香水コレクション</a></li>
-      <li><a href="books.html">読書記録</a></li>
-      <li><a href="travel.html">旅行記</a></li>
-      <li><a href="music.html">好きな音楽</a></li>
-      <li><a href="movies.html">おすすめ映画</a></li>
-      <li><a href="food.html">食べ歩き</a></li>
-      <li><a href="photos.html">写真</a></li>
-      <li><a href="blog.html">日記</a></li>
+      <li><a href="self-intro.html" data-ja="自己紹介" data-kr="자기소개">自己紹介</a></li>
+      <li><a href="hobbies.html" data-ja="趣味" data-kr="취미">趣味</a></li>
+      <li><a href="perfumes.html" data-ja="香水コレクション" data-kr="향수 컬렉션">香水コレクション</a></li>
+      <li><a href="books.html" data-ja="読書記録" data-kr="독서 기록">読書記録</a></li>
+      <li><a href="travel.html" data-ja="旅行記" data-kr="여행기">旅行記</a></li>
+      <li><a href="music.html" data-ja="好きな音楽" data-kr="좋아하는 음악">好きな音楽</a></li>
+      <li><a href="movies.html" data-ja="おすすめ映画" data-kr="추천 영화">おすすめ映画</a></li>
+      <li><a href="food.html" data-ja="食べ歩き" data-kr="맛집">食べ歩き</a></li>
+      <li><a href="photos.html" data-ja="写真" data-kr="사진">写真</a></li>
+      <li><a href="blog.html" data-ja="日記" data-kr="블로그">日記</a></li>
     </ul>
   </nav>
   <div class="main-layout">
     <div class="content">
-      <h1>こんにちは! 🎉</h1>
-      <p>これは３分のウェブサイトです.</p>
-      <p>現在は香水ページしか存在しません。</p>
+      <h1 data-ja="こんにちは! 🎉" data-kr="안녕하세요! 🎉">こんにちは! 🎉</h1>
+      <p data-ja="これは３分のウェブサイトです." data-kr="이것은 3분 웹사이트입니다.">これは３分のウェブサイトです.</p>
+      <p data-ja="現在は香水ページしか存在しません。" data-kr="현재는 향수 페이지만 존재합니다.">現在は香水ページしか存在しません。</p>
       <div id="clock"></div>
       <div class="social-links">
         <a href="https://www.youtube.com/@tcu_vlog2215" class="social-button youtube" target="_blank">
@@ -40,6 +40,11 @@
           <i class="fab fa-x-twitter"></i>
           𝕏
         </a>
+        <!-- 언어 토글 버튼 -->
+        <div class="lang-toggle" style="margin-top:16px; display:flex; gap:8px; justify-content:center;">
+          <button id="btn-ja" type="button" style="padding:6px 16px; border-radius:20px; border:1px solid #ccc; background:#fff; cursor:pointer;">日本語</button>
+          <button id="btn-kr" type="button" style="padding:6px 16px; border-radius:20px; border:1px solid #ccc; background:#fff; cursor:pointer;">한국어</button>
+        </div>
       </div>
     </div>
     <aside class="youtube-sidebar">
@@ -63,6 +68,18 @@
     }
     setInterval(updateClock, 1000);
     updateClock();
+
+    // 언어 토글 스크립트
+    function setLang(lang) {
+      document.querySelectorAll('[data-ja][data-kr]').forEach(function(el) {
+        el.textContent = el.getAttribute(lang === 'kr' ? 'data-kr' : 'data-ja');
+      });
+      document.getElementById('btn-ja').style.background = lang === 'ja' ? '#e0e0e0' : '#fff';
+      document.getElementById('btn-kr').style.background = lang === 'kr' ? '#e0e0e0' : '#fff';
+    }
+    document.getElementById('btn-ja').onclick = function() { setLang('ja'); };
+    document.getElementById('btn-kr').onclick = function() { setLang('kr'); };
+    setLang('ja');
   </script>
 </body>
 </html>
