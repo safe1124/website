@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>初めてのウェブサイト</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+  <div class="content">
+    <h1>こんにちは! 🎉</h1>
+    <p>これは３分のウェブサイトです.</p>
+    <div id="clock"></div>
+    <div class="social-links">
+      <a href="https://www.youtube.com/@tcu_vlog2215" class="social-button youtube" target="_blank">
+        <i class="fab fa-youtube"></i>
+        YouTube
+      </a>
+      <a href="https://www.instagram.com/utaenaimiku" class="social-button instagram" target="_blank">
+        <i class="fab fa-instagram"></i>
+        Instagram
+      </a>
+      <a href="https://twitter.com/sico_sico_sico_" class="social-button twitter" target="_blank">
+        <i class="fab fa-x-twitter"></i>
+        𝕏
+      </a>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    // 시계 업데이트 함수
+    function updateClock() {
+      const now = new Date();
+      const hh = String(now.getHours()).padStart(2, '0');
+      const mm = String(now.getMinutes()).padStart(2, '0');
+      const ss = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = `${hh}:${mm}:${ss}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+  <script src="spheres.js"></script>
+    // 시계 업데이트 함수
+    function updateClock() {
+      const now = new Date();
+      const hh = String(now.getHours()).padStart(2, '0');
+      const mm = String(now.getMinutes()).padStart(2, '0');
+      const ss = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = `${hh}:${mm}:${ss}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="spheres.js"></script>
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({
+      canvas: document.querySelector('#bg'),
+      alpha: true
+    });
+
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.position.setZ(30);
+
+    // 노란색 구체들 생성
+    const spheres = [];
+    const sphereCount = 3;
+
+    // 고화질 구체 생성을 위한 세그먼트 수 증가
+    for (let i = 0; i < sphereCount; i++) {
+      const geometry = new THREE.SphereGeometry(
+        Math.random() * 2 + 1.5, // 크기 증가
+        32, // 수평 세그먼트 수 증가
+        32  // 수직 세그먼트 수 증가
+      );
+      const material = new THREE.MeshStandardMaterial({ 
+        color: 0xFFD700,
+        metalness: 0.3,
+        roughness: 0.2, // 더 매끄러운 표면
+      });
+      const sphere = new THREE.Mesh(geometry, material);
+
+      // 랜덤 위치 설정
+      sphere.position.set(
+        Math.random() * 60 - 30,
+        Math.random() * 60 - 30,
+        Math.random() * 60 - 30
+      );
+
+      // 구체의 초기 속도 설정
+      sphere.velocity = new THREE.Vector3(
+        Math.random() * 0.02 - 0.01,
+        Math.random() * 0.02 - 0.01,
+        Math.random() * 0.02 - 0.01
+      );
+
+      spheres.push(sphere);
+      scene.add(sphere);
+    }
+
+    // 조명 설정
+    const pointLight = new THREE.PointLight(0xFFFFFF);
+    pointLight.position.set(5, 5, 5);
+    const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
+    scene.add(pointLight, ambientLight);
+
+    // 마우스 위치 추적
+    const mouse = new THREE.Vector2();
+    window.addEventListener('mousemove', (event) => {
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    });
+
+    // 애니메이션 루프
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // 각 구체 업데이트
+      spheres.forEach(sphere => {
+        // 마우스와의 상호작용
+        const mouseInfluence = new THREE.Vector3(
+          mouse.x * 0.01,
+          mouse.y * 0.01,
+          0
+        );
+
+        // 마우스 위치에서 도망가는 방향 계산
+        const distance = sphere.position.distanceTo(mouseInfluence);
+        if (distance < 10) {
+          const escapeDirection = sphere.position.clone().sub(mouseInfluence).normalize();
+          sphere.velocity.add(escapeDirection.multiplyScalar(0.001));
+        }
+
+        // 속도 적용
+        sphere.position.add(sphere.velocity);
+
+        // 경계 체크 및 반사
+        if (Math.abs(sphere.position.x) > 30) sphere.velocity.x *= -1;
+        if (Math.abs(sphere.position.y) > 30) sphere.velocity.y *= -1;
+        if (Math.abs(sphere.position.z) > 30) sphere.velocity.z *= -1;
+
+        // 회전
+        sphere.rotation.x += 0.01;
+        sphere.rotation.y += 0.01;
+      });
+
+      renderer.render(scene, camera);
+    }
+
+    // 반응형 처리
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    animate();
+  </script>
+</body>
+</html>
+
