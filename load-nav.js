@@ -28,9 +28,11 @@ document.addEventListener('DOMContentLoaded', function() {
           });
         }
 
-        // After loading the nav, re-initialize the language switcher
-        if (typeof initializeLanguageSwitcher === 'function') {
-          initializeLanguageSwitcher();
+        // 네비게이션 메뉴 로드 후 언어 설정 재적용
+        if (typeof setLang === 'function' && typeof getLang === 'function') {
+          setLang(getLang());
+        } else {
+          console.warn('setLang or getLang function not found. Language for nav menu might not be updated.');
         }
       })
       .catch(error => {

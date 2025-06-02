@@ -139,8 +139,15 @@
   /* 음악 리스트: 1열 그리드, 간격 20px */
   .music-list {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 0 10px;
+    grid-template-columns: repeat(2, 1fr); /* 2개의 카드를 한 줄에 표시 */
+    gap: 15px; /* 카드 사이의 간격 조정 */
+    padding: 15px; /* 전체 패딩 조정 */
+    justify-items: stretch; /* 카드가 할당된 공간을 채우도록 */
+  }
+
+  .music-card {
+    /* Ensure cards don't have excessive fixed widths that break the grid */
+    width: 100%; /* 카드가 그리드 셀 너비에 맞게 조정되도록 */
+    /* Add any other mobile-specific card adjustments if needed */
   }
 }
