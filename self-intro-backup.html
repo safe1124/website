@@ -5,7 +5,12 @@
   <title data-ja="自己紹介" data-ko="자기소개">자기소개 - My Website</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="style.mobile.css" media="only screen and (max-width: 768px)" />
+  <link rel="stylesheet" href="style.mobile.css" media="only scr    <ul class="timeline">
+      <li><span class="year">2020</span> <span data-ja="プログラミング学習開始" data-ko="프로그래밍 학습 시작">プログラミング学習開始</span></li>
+      <li><span class="year">2022</span> <span data-ja="初めてのウェブサイト制作" data-ko="첫 웹사이트 제작">初めてのウェブサイト制作</span></li>
+      <li><span class="year">2024</span> <span data-ja="フリーランス活動開始" data-ko="프리랜스 활동 시작">フリーランス活動開始</span></li>
+      <li><span class="year">2025</span> <span data-ja="個人ポートフォリオサイト公開" data-ko="개인 포트폴리오 사이트 공개">個人ポートフォリオサイト公開</span></li>
+    </ul>d (max-width: 768px)" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <script src="language-switcher.js"></script>
   <script src="load-nav.js" defer></script>
@@ -26,10 +31,66 @@
 
     .container { width: min(90%, var(--max-w)); margin-inline: auto; }
 
+    /* 헤더 및 네비게이션 스타일 (제공된 CSS) */
+    .header {
+      position: sticky; top: 0; z-index: 999;
+      background: #fff; border-bottom: 1px solid #eee;
+    }
+    .header__inner { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-weight: 700; text-decoration: none; color: var(--black); }
+
+    .nav__list { display: flex; gap: 2rem; list-style: none; padding: 0; margin: 0; }
+    .nav a { text-decoration: none; color: var(--black); transition: var(--transition); }
+    .nav a:hover, .nav .is-active { color: var(--accent); }
+
+    /* 히어로 컴포넌트 (제공된 CSS와 통합) */
+    .hero { position: relative; }
+    .hero img { width: 100%; height: 70vh; object-fit: cover; display: block; }
+    .hero__content {
+      position: absolute; inset: 0;
+      display: grid; place-content: center; text-align: center; color: #fff;
+      background: linear-gradient(#0005, #0005); /* 문자가 읽히도록 배경 */
+    }
+    .hero h1 { font-size: clamp(2.4rem, 5vw, 4rem); margin: 0 0 .5em; }
+    .hero p  { font-size: 1.2rem; }
+
+    /* Mission 컴포넌트 (제공된 CSS) */
+    .mission { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; padding-block: 4rem; }
+    .mission__img img { width: 100%; border-radius: var(--radius); }
+    .mission h2 { font-size: 2rem; margin-top: 0; }
+
+    /* Team 컴포넌트 (제공된 CSS) */
+    .team { padding-block: 4rem; }
+    .team__grid {
+      display: grid; gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .card {
+      background: var(--bg-light); border-radius: var(--radius);
+      padding: 1.5rem; text-align: center; transition: var(--transition);
+    }
+    .card img { width: 100%; border-radius: 50%; aspect-ratio: 1/1; object-fit: cover; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px #0002; }
+
+    /* CTA 컴포넌트 (제공된 CSS) */
+    .cta {
+      background: var(--accent); color: #fff; text-align: center;
+      padding: 4rem 2rem;
+    }
+    .cta .btn {
+      display: inline-block; margin-top: 1rem; padding: 0.8rem 2rem;
+      background: #fff; color: var(--accent); border-radius: var(--radius);
+      text-decoration: none; font-weight: 700; transition: var(--transition);
+    }
+    .cta .btn:hover { background: #f2f2f2; }
+
+    /* 푸터 (제공된 CSS) */
+    .footer { background: #222; color: #ccc; padding: 2rem 0; text-align: center; font-size: 0.875rem; }
+
     /* 자기소개 페이지 전용 스타일 */
     .intro-hero {
       position: relative;
-      height: 40vh;  /* 70vh에서 40vh로 줄임 */
+      height: 70vh;
       background: linear-gradient(135deg, #87CEEB, #4FC3F7);
       display: flex;
       align-items: center;
@@ -57,7 +118,7 @@
       margin-bottom: 2rem;
     }
     
-    /* Mission 스타일 */
+    /* Mission 스타일 (제공된 CSS와 통합) */
     .intro-mission {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -83,108 +144,57 @@
       text-align: center;
     }
     
-    /* Story 스타일 */
+    /* Story 스타일 (제공된 CSS와 통합) */
     .intro-story {
       padding-block: 4rem;
-      background: #FFF9E3;
     }
     
     .intro-story h2 {
       text-align: center;
       font-size: 2rem;
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
       color: var(--black);
     }
     
+    .story { padding-block: 4rem; }
+    .story h2 { text-align: center; margin-bottom: 2rem; }
     .timeline {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 25px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
       position: relative;
-      overflow-y: auto;
-      max-height: 600px;
+      max-width: 600px;
+      margin-inline: auto;
     }
-
+    
     .timeline::before {
       content: "";
       position: absolute;
+      left: 0.8rem;
+      top: 0;
+      bottom: 0;
       width: 2px;
       background: var(--accent);
-      height: 100%;  /* 타임라인이 끝까지 이어지도록 수정 */
-      left: calc(120px + 25px);
-      top: 0;
-    }
-
-    .timeline-item {
-      display: flex;
-      margin-bottom: 40px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      left: calc(120px + 22px);
-      top: 18px;
-      z-index: 1;
-    }
-
-    .year {
-      width: 120px;
-      padding-right: 50px;
-      text-align: right;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: var(--accent);
-      padding-top: 10px;
-    }
-
-    .event {
-      flex: 1;
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-      margin-left: 40px;
-    }
-
-    .event h3 {
-      margin: 0 0 10px 0;
-      color: #333;
-      font-size: 1.1rem;
-    }
-
-    .event p {
-      margin: 0;
-      color: #666;
-      font-size: 0.9rem;
-    }
-
-    /* 스크롤바 스타일링 */
-    .timeline::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    .timeline::-webkit-scrollbar-track {
-      background: #f1f1f1;
-      border-radius: 4px;
-    }
-
-    .timeline::-webkit-scrollbar-thumb {
-      background: var(--accent);
-      border-radius: 4px;
-    }
-
-    .timeline::-webkit-scrollbar-thumb:hover {
-      background: #3da9dd;
     }
     
-    /* Skills 스타일 */
+    .timeline li {
+      position: relative;
+      padding-left: 2.5rem;
+      margin-bottom: 1.5rem;
+      background: rgba(79, 195, 247, 0.1);
+      padding: 1.5rem 1.5rem 1.5rem 3rem;
+      border-radius: var(--radius);
+      border-left: 4px solid var(--accent);
+    }
+    
+    .timeline .year {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 1.2rem;
+      margin-right: .5rem;
+    }
+    
+    /* Skills 스타일 (Team 스타일과 통합) */
     .intro-skills {
       padding-block: 4rem;
     }
@@ -220,7 +230,7 @@
       margin-bottom: 1rem;
     }
     
-    /* CTA 스타일 */
+    /* CTA 스타일 (제공된 CSS와 통합) */
     .intro-cta {
       background: var(--accent);
       color: #fff;
@@ -281,6 +291,15 @@
 </head>
 <body style="background:#f8f9fa;">
   <div id="nav-placeholder"></div>
+  
+  <!-- Language Switcher -->
+  <div class="language-switcher">
+    <span class="language-label" id="current-lang" data-ja="日本語" data-ko="한국어">日本語</span>
+    <label class="switch">
+      <input aria-label="Language Toggle" type="checkbox" id="language-toggle">
+      <span class="slider"></span>
+    </label>
+  </div>
 
   <!-- Hero Section -->
   <section class="intro-hero">
@@ -294,7 +313,7 @@
   <section class="intro-section intro-mission">
     <div class="intro-mission__text">
       <h2 data-ja="私のビジョン" data-ko="나의 비전">私のビジョン</h2>
-      <p data-ja="「テクノロジーで人々の生活をより豊かに」——これが私の目標です。プログラミングとデザインを通じて、使いやすく美しいウェブサイトを作り、ユーザーに価値ある体験を提供したいと思います。" data-ko="'기술로 사람들의 삶을 더 풍요롭게'——이것이 저의 목표입니다. 프로그래밍과 디자인을 통해 사용하기 쉽고 아름다운 웹사이트를 만들어 사용자에게 가치 있는 경험을 제공하고 싶습니다.">「テクノロジーで人々の生活をより豊かに」——これが私の목標です。プログラミングとデザインを通じて、使いやすく美しいウェブサイトを作り、ユーザーに価値ある体験を提供したいと思います。</p>
+      <p data-ja="「テクノロジーで人々の生活をより豊かに」——これが私の目標です。プログラミングとデザインを通じて、使いやすく美しいウェブサイトを作り、ユーザーに価値ある体験を提供したいと思います。" data-ko="'기술로 사람들의 삶을 더 풍요롭게'——이것이 저의 목표입니다. 프로그래밍과 디자인을 통해 사용하기 쉽고 아름다운 웹사이트를 만들어 사용자에게 가치 있는 경험을 제공하고 싶습니다.">「テクノロジーで人々の生活をより豊かに」——これが私の目標です。プログラミングとデザインを通じて、使いやすく美しいウェブサイトを作り、ユーザーに価値ある体験を提供したいと思います。</p>
     </div>
     <figure class="intro-mission__img">
       <div style="width: 300px; height: 300px; background: linear-gradient(135deg, #4FC3F7, #87CEEB); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
@@ -306,79 +325,12 @@
   <!-- Story -->
   <section class="intro-section intro-story">
     <h2 data-ja="私の歩み" data-ko="나의 발걸음">私の歩み</h2>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="year">2001</div>
-        <div class="event">
-          <h3 data-ja="大韓民国浦項市で生まれる" data-ko="대한민국 포항시에서 출생">大韓民国浦項市で生まれる</h3>
-          <p data-ja="2001年、浦項市 / 韓国" data-ko="2001년, 포항시 / 대한민국">2001年、浦項市 / 韓国</p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="year">2008</div>
-        <div class="event">
-          <h3 data-ja="小学校入学" data-ko="초등학교 입학">小学校入学</h3>
-          <p data-ja="2008年 - 2014年、浦項市 / 韓国" data-ko="2008년 - 2014년, 포항시 / 대한민국">2008年 - 2014年、浦項市 / 韓国</p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="year">2014</div>
-        <div class="event">
-          <h3 data-ja="中学校入学" data-ko="중학교 입학">中学校入学</h3>
-          <p data-ja="2014年 - 2017年、浦項市 / 韓国" data-ko="2014년 - 2017년, 포항시 / 대한민국">2014年 - 2017年、浦項市 / 韓国</p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="year">2017</div>
-        <div class="event">
-          <h3 data-ja="高等学校入学" data-ko="고등학교 입학">高等学校入学</h3>
-          <p data-ja="2017年 - 2020年、浦項市 / 韓国" data-ko="2017년 - 2020년, 포항시 / 대한민국">2017年 - 2020年、浦項市 / 韓国</p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="year">2020</div>
-        <div class="event">
-          <h3 data-ja="東京にある大学に入学" data-ko="도쿄에 있는 대학교 입학">東京にある大学に入学</h3>
-          <p data-ja="2020年 - 2025年、東京都 / 日本" data-ko="2020년 - 2025년, 도쿄도 / 일본">2020年 - 2025年、東京都 / 日本</p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="year">2023</div>
-        <div class="event">
-          <h3 data-ja="兵役入隊" data-ko="군입대">兵役入隊</h3>
-          <p data-ja="2023年 - 2024年、韓国" data-ko="2023년 - 2024년, 대한민국">2023年 - 2024年、韓国</p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="year">2024</div>
-        <div class="event">
-          <h3 data-ja="兵役除隊" data-ko="제대">兵役除隊</h3>
-          <p data-ja="2024年、韓国" data-ko="2024년, 대한민국">2024年、韓国</p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="year">2025</div>
-        <div class="event">
-          <h3 data-ja="大学卒業" data-ko="대학교 졸업">大学卒業</h3>
-          <p data-ja="2025年、東京都 / 日本" data-ko="2025년, 도쿄도 / 일본">2025年、東京都 / 日本</p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="year">2025</div>
-        <div class="event">
-          <h3 data-ja="社会人１年目" data-ko="사회인 1년차">社会人１年目</h3>
-          <p data-ja="2025年〜、東京都 / 日本" data-ko="2025년~, 도쿄도 / 일본">2025年〜、東京都 / 日本</p>
-        </div>
-      </div>
-    </div>
+    <ul class="timeline">
+      <li><span class="year">2020</span> <span data-ja="プログラミング学習開始" data-ko="프로그래밍 학습 시작">プログラミング学習開始</span></li>
+      <li><span class="year">2022</span> <span data-ja="初めてのウェブサイト制作" data-ko="첫 웹사이트 제작">初めてのウェブサイト制作</span></li>
+      <li><span class="year">2024</span> <span data-ja="フリーランス活動開始" data-ko="프리랜스 활동 시작">フリーランス活動開始</span></li>
+      <li><span class="year">2025</span> <span data-ja="個人ポートフォリオサイト公開" data-ko="개인 포트폴리오 사이트 공개">個人ポートフォリオサイト公開</span></li>
+    </ul>
   </section>
 
   <!-- Skills -->
@@ -398,7 +350,7 @@
       <article class="skill-card">
         <i class="fas fa-mobile-alt" style="font-size: 3rem; color: #4FC3F7; margin-bottom: 1rem;"></i>
         <h3 data-ja="レスポンシブデザイン" data-ko="반응형 디자인">レスポンシブデザイン</h3>
-        <p data-ja="あらゆるデバイスで最適な表示を実現" data-ko="모든 디바이스에서 최적의 표시 구현">あらゆるデバイスで最적な表示を実现</p>
+        <p data-ja="あらゆるデバイスで最適な表示を実現" data-ko="모든 디바이스에서 최적의 표시 구현">あらゆるデバイスで最適な表示を実現</p>
       </article>
     </div>
   </section>
@@ -426,6 +378,13 @@
       </a>
     </div>
   </div>
+
+  <!-- Footer (제공된 CSS 스타일 적용) -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 My Website. All rights reserved.</p>
+    </div>
+  </footer>
 
 </body>
 </html>

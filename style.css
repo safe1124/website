@@ -24,7 +24,7 @@ body {
 /* New styles for the main layout container */
 .main-layout {
   display: flex;
-  align-items: flex-end; /* Key for bottom alignment */
+  align-items: stretch; /* Make both boxes same height */
   justify-content: space-between; /* Distributes space between content and sidebar */
   gap: 20px; /* Space between content and sidebar */
   max-width: 1300px; /* Adjust as needed for overall width */
@@ -48,7 +48,7 @@ body {
   margin: 0; /* Reset margin as it's now a flex item */
   
   padding: 20px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.3); /* 30% 투명도 */
   border-radius: 10px;
   
   flex: 2 1 0%; /* Grow twice as much as sidebar, basis 0 to distribute available space */
@@ -59,12 +59,14 @@ body {
 .youtube-sidebar {
   flex: 1 1 0%; /* Grow relative to content, basis 0 */
   max-width: 450px; /* Prevent sidebar from becoming too wide */
-  background: #fff;
+  background: rgba(255, 255, 255, 0.3); /* 30% 투명도 */
   border-radius: 10px;
   padding: 20px;
   box-sizing: border-box;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
-  /* Height will be determined by its content, and then bottom-aligned with .content */
+  display: flex;
+  flex-direction: column;
+  /* Height will now match the content box due to align-items: stretch */
 }
 
 h1 {
@@ -161,11 +163,19 @@ p {
   padding: 0 15px;
   font-weight: 500;
   text-decoration: none;
-  transition: color 0.2s;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-.nav-menu a:hover {
-  color: #f5f5f7;
+.nav-menu a:hover,
+.nav-menu a:active,
+.nav-menu a.active {
+  color: #4fc3f7;
+}
+
+.nav-menu a.clicked {
+  color: #4fc3f7;
+  transform: scale(1.05);
 }
 
 /* 言語切り替えエリアのスタイル */
@@ -328,6 +338,16 @@ p {
  text-align: center;
  font-size: 1rem;
  }
+ 
+ .nav-menu a:active,
+ .nav-menu a.active {
+ color: #4fc3f7;
+ }
+ 
+ .nav-menu a.clicked {
+ color: #4fc3f7;
+ transform: scale(1.02);
+ }
  h1 {
  font-size: 1.3rem;
  }
@@ -354,7 +374,7 @@ p {
 /* 메인 레이아웃 */
 .main-layout {
  display: flex;
- align-items: flex-start;
+ align-items: stretch; /* Make both boxes same height */
  justify-content: center;
  gap: 2rem;
  max-width: 1200px;
@@ -373,6 +393,9 @@ p {
  padding: 1.5rem 1rem;
  min-width: 320px;
  max-width: 350px;
+ display: flex;
+ flex-direction: column;
+ /* Height will now match the content box due to align-items: stretch */
 }
 .youtube-sidebar h2 {
  font-size: 1.2rem;
