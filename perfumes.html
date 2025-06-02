@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="style.mobile.css" media="only screen and (max-width: 768px)" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <script src="language-switcher.js"></script>
+  <script src="load-nav.js" defer></script>
   <style>
     .perfume-list {
       display: flex;
@@ -75,94 +76,77 @@
   </style>
 </head>
 <body style="background:#FFF9E3;">
-  <nav class="nav-menu">
-    <ul>
-      <li><a href="index.html" data-ja="ホーム" data-ko="홈">홈</a></li>
-      <li><a href="self-intro.html" data-ja="自己紹介" data-ko="자기소개">자기소개</a></li>
-      <li><a href="hobbies.html" data-ja="趣味" data-ko="취미">취미</a></li>
-      <li><a href="perfumes.html" data-ja="香水コレクション" data-ko="향수 컬렉션">향수 컬렉션</a></li>
-      <li><a href="books.html" data-ja="読書記録" data-ko="독서 기록">독서 기록</a></li>
-      <li><a href="travel.html" data-ja="旅行記" data-ko="여행기">여행기</a></li>
-      <li><a href="music.html" data-ja="好きな音楽" data-ko="좋아하는 음악">좋아하는 음악</a></li>
-      <li><a href="movies.html" data-ja="おすすめ映画" data-ko="추천 영화">추천 영화</a></li>
-      <li><a href="food.html" data-ja="食べ歩き" data-ko="맛집">맛집</a></li>
-      <li><a href="photos.html" data-ja="写真" data-ko="사진">사진</a></li>
-      <li><a href="blog.html" data-ja="日記" data-ko="블로그">블로그</a></li>
-    </ul>
-  </nav>
-  
-  <div class="main-layout">
-    <div class="content">
-      <h1 data-ja="香水コレクション" data-ko="향수 컬렉션">香水コレクション</h1>
-      <p data-ja="私の香水コレクションを紹介します。" data-ko="저의 향수 컬렉션을 소개합니다.">私の香水コレクションを紹介します。</p>
-      
-      <div class="perfume-list">
-        <!-- Maison Margiela – Jazz Club -->
-        <div class="perfume-item">
-          <img src="https://www.sephora.com/productimages/sku/s1788058-main-zoom.jpg" alt="Jazz Club" style="width:300px;height:300px;object-fit:cover;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
-          <div class="perfume-desc">
-            <h2 data-ja="Maison Margiela – Jazz Club" data-ko="메종 마르지엘라 – 재즈 클럽">Maison Margiela – Jazz Club</h2>
-            <p class="description" data-ja="ブルックリンのジャズクラブの雰囲気を再現した香り。タバコの煙、皮革の椅子、カクテルが織りなす洗練された空間を表現しています。" data-ko="브루클린의 재즈 클럽 분위기를 재현한 향. 담배 연기, 가죽 의자, 칵테일이 어우러진 세련된 공간을 표현합니다.">ブルックリンのジャズクラブの雰囲気を再現した香り。タバコの煙、皮革の椅子、カクテルが織りなす洗練された空間を表現しています。</p>
-            <div class="notes">
-              <p data-ja="トップノート：ピンクペッパー、ネロリオイル、レモン" data-ko="탑 노트: 핑크 페퍼, 네롤리 오일, 레몬">トップノート：ピンクペッパー、ネロリオイル、レモン</p>
-              <p data-ja="ミドルノート：ラム、クローブオイル、ネロリ" data-ko="미들 노트: 럼, 클로브 오일, 네롤리">ミドルノート：ラム、クローブオイル、ネロリ</p>
-              <p data-ja="ベースノート：タバコの葉、バニラ、スチラックス" data-ko="베이스 노트: 담배잎, 바닐라, 스티락스">ベースノート：タバコの葉、バニラ、スチラックス</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Diptyque – Philosykos -->
-        <div class="perfume-item">
-          <img src="https://www.diptyqueparis.com/media/catalog/product/p/h/philosykos_back_philop75_1439x1200_1_1.png" alt="Philosykos" style="width:300px;height:300px;object-fit:cover;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
-          <div class="perfume-desc">
-            <h2 data-ja="Diptyque – Philosykos" data-ko="딥티크 – 필로시코스">Diptyque – Philosykos</h2>
-            <p class="description" data-ja="ギリシャの夏のイチジクの木を表現した香り。緑の葉、熟した果実、白い木の香りが調和しています。" data-ko="그리스 여름의 무화과 나무를 표현한 향. 푸른 잎, 잘 익은 과일, 흰 나무 향이 조화를 이룹니다.">ギリシャの夏のイチジクの木を表現した香り。緑の葉、熟した果実、白い木の香りが調和しています。</p>
-            <div class="notes">
-              <p data-ja="トップノート：イチジクの葉、緑の香り" data-ko="탑 노트: 무화과 잎, 그린 노트">トップノート：イチジクの葉、緑の香り</p>
-              <p data-ja="ミドルノート：イチジクの木、青いイチジク" data-ko="미들 노트: 무화과 나무, 푸른 무화과">ミドルノート：イチジクの木、青いイチジク</p>
-              <p data-ja="ベースノート：白い木、セダー" data-ko="베이스 노트: 화이트 우드, 시더">ベースノート：白い木、セダー</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Diptyque – Eau des Sens -->
-        <div class="perfume-item">
-          <img src="https://m.perfumegraphy.com/web/product/big/202207/7361b00106e6890a130bbf905a5ea55e.jpg" alt="Eau des Sens" style="width:300px;height:300px;object-fit:cover;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
-          <div class="perfume-desc">
-            <h2 data-ja="Diptyque – Eau des Sens" data-ko="딥티크 – 오 데 썽스">Diptyque – Eau des Sens</h2>
-            <p class="description" data-ja="オレンジの花をめぐる官能的な旅。甘美でフレッシュな香りが、五感を目覚めさせます。" data-ko="오렌지 꽃을 따라 떠나는 관능적인 여행. 달콤하고 상쾌한 향이 오감을 깨웁니다.">オレンジの花をめぐる官能的な旅。甘美でフレッシュな香りが、五感を目覚めさせます。</p>
-            <div class="notes">
-              <p data-ja="トップノート：オレンジブロッサム、ビターオレンジ" data-ko="탑 노트: 오렌지 블라썸, 비터 오렌지">トップノート：オレンジブロッサム、ビターオレンジ</p>
-              <p data-ja="ミドルノート：ジュニパーベリー、ペティグレイン" data-ko="미들 노트: 주니퍼베리, 페티그레인">ミドルノート：ジュニパーベリー、ペティグ레イン</p>
-              <p data-ja="ベースノート：パチョリ、アンジェリカ" data-ko="베이스 노트: 파촐리, 안젤리카">ベースノート：パチョリ、アンジェリカ</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Aesop – Tacit -->
-        <div class="perfume-item">
-          <img src="https://www.craemerco.de/cdn/shop/products/AES-Tacit-112000009823-a.jpg" alt="Tacit" style="width:300px;height:300px;object-fit:cover;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
-          <div class="perfume-desc">
-            <h2 data-ja="Aesop – Tacit" data-ko="이솝 – 타싯">Aesop – Tacit</h2>
-            <p class="description" data-ja="地中海沿岸の風景からインスピレーションを得た香り。柑橘系のさわやかさとハーバルな深みが特徴です。" data-ko="지중해 연안 풍경에서 영감을 받은 향. 상큼한 시트러스와 허브의 깊이가 특징입니다.">地中海沿岸の風景からインスピレーションを得た香り。柑橘系のさわやかさとハーバルな深みが特徴です。</p>
-            <div class="notes">
-              <p data-ja="トップノート：ユーカリ、柚子" data-ko="탑 노트: 유칼립투스, 유자">トップノート：ユーカリ、柚子</p>
-              <p data-ja="ミドルノート：バジル、ミント" data-ko="미들 노트: 바질, 민트">ミドルノート：バジル、ミント</p>
-              <p data-ja="ベースノート：ベチバー、クローブ" data-ko="베이스 노트: 베티버, 클로브">ベースノート：ベチバー、クローブ</p>
-            </div>
+  <div id="nav-placeholder"></div> <!-- 기존 nav-menu를 placeholder로 대체 -->
+  <div class="content">
+    <h1 data-ja="香水コレクション" data-ko="향수 컬렉션">香水コレクション</h1>
+    <p data-ja="私の香水コレクションを紹介します。" data-ko="저의 향수 컬렉션을 소개합니다.">私の香水コレクションを紹介します。</p>
+    
+    <div class="perfume-list">
+      <!-- Maison Margiela – Jazz Club -->
+      <div class="perfume-item">
+        <img src="https://www.sephora.com/productimages/sku/s1788058-main-zoom.jpg" alt="Jazz Club" style="width:300px;height:300px;object-fit:cover;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+        <div class="perfume-desc">
+          <h2 data-ja="Maison Margiela – Jazz Club" data-ko="메종 마르지엘라 – 재즈 클럽">Maison Margiela – Jazz Club</h2>
+          <p class="description" data-ja="ブルックリンのジャズクラブの雰囲気を再現した香り。タバコの煙、皮革の椅子、カクテルが織りなす洗練された空間を表現しています。" data-ko="브루클린의 재즈 클럽 분위기를 재현한 향. 담배 연기, 가죽 의자, 칵테일이 어우러진 세련된 공간을 표현합니다.">ブルックリンのジャズクラブの雰囲気を再現した香り。タバコの煙、皮革の椅子、カクテルが織りなす洗練された空間を表現しています。</p>
+          <div class="notes">
+            <p data-ja="トップノート：ピンクペッパー、ネロリオイル、レモン" data-ko="탑 노트: 핑크 페퍼, 네롤리 오일, 레몬">トップノート：ピンクペッパー、ネロリオイル、レモン</p>
+            <p data-ja="ミドルノート：ラム、クローブオイル、ネロリ" data-ko="미들 노트: 럼, 클로브 오일, 네롤리">ミドルノート：ラム、クローブオイル、ネロリ</p>
+            <p data-ja="ベースノート：タバコの葉、バニラ、スチラックス" data-ko="베이스 노트: 담배잎, 바닐라, 스티락스">ベースノート：タバコの葉、バニラ、スチラックス</p>
           </div>
         </div>
       </div>
 
-      <div class="social-links">
-        <a href="https://www.instagram.com/utaenaimiku" class="social-button instagram" target="_blank">
-          <i class="fab fa-instagram"></i>
-          Instagram
-        </a>
-        <div class="lang-toggle" style="margin-top:16px; display:flex; gap:8px; justify-content:center;">
-          <button id="btn-ja" type="button" style="padding:6px 16px; border-radius:20px; border:1px solid #ccc; background:#fff; cursor:pointer;">日本語</button>
-          <button id="btn-kr" type="button" style="padding:6px 16px; border-radius:20px; border:1px solid #ccc; background:#fff; cursor:pointer;">한국어</button>
+      <!-- Diptyque – Philosykos -->
+      <div class="perfume-item">
+        <img src="https://www.diptyqueparis.com/media/catalog/product/p/h/philosykos_back_philop75_1439x1200_1_1.png" alt="Philosykos" style="width:300px;height:300px;object-fit:cover;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+        <div class="perfume-desc">
+          <h2 data-ja="Diptyque – Philosykos" data-ko="딥티크 – 필로시코스">Diptyque – Philosykos</h2>
+          <p class="description" data-ja="ギリシャの夏のイチジクの木を表現した香り。緑の葉、熟した果実、白い木の香りが調和しています。" data-ko="그리스 여름의 무화과 나무를 표현한 향. 푸른 잎, 잘 익은 과일, 흰 나무 향이 조화를 이룹니다.">ギリシャの夏のイチジクの木を表現した香り。緑の葉、熟した果実、白い木の香りが調和しています。</p>
+          <div class="notes">
+            <p data-ja="トップノート：イチジクの葉、緑の香り" data-ko="탑 노트: 무화과 잎, 그린 노트">トップノート：イチジクの葉、緑の香り</p>
+            <p data-ja="ミドルノート：イチジクの木、青いイチジク" data-ko="미들 노트: 무화과 나무, 푸른 무화과">ミドルノート：イチジクの木、青いイチジク</p>
+            <p data-ja="ベースノート：白い木、セダー" data-ko="베이스 노트: 화이트 우드, 시더">ベースノート：白い木、セダー</p>
+          </div>
         </div>
+      </div>
+
+      <!-- Diptyque – Eau des Sens -->
+      <div class="perfume-item">
+        <img src="https://m.perfumegraphy.com/web/product/big/202207/7361b00106e6890a130bbf905a5ea55e.jpg" alt="Eau des Sens" style="width:300px;height:300px;object-fit:cover;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+        <div class="perfume-desc">
+          <h2 data-ja="Diptyque – Eau des Sens" data-ko="딥티크 – 오 데 썽스">Diptyque – Eau des Sens</h2>
+          <p class="description" data-ja="オレンジの花をめぐる官能的な旅。甘美でフレッシュな香りが、五感を目覚めさせます。" data-ko="오렌지 꽃을 따라 떠나는 관능적인 여행. 달콤하고 상쾌한 향이 오감을 깨웁니다.">オレンジの花をめぐる官能的な旅。甘美でフレッシュな香りが、五感を目覚めさせます。</p>
+          <div class="notes">
+            <p data-ja="トップノート：オレンジブロッサム、ビターオレンジ" data-ko="탑 노트: 오렌지 블라썸, 비터 오렌지">トップノート：オレンジブロッサム、ビターオレンジ</p>
+            <p data-ja="ミドルノート：ジュニパーベリー、ペティグレイン" data-ko="미들 노트: 주니퍼베리, 페티그레인">ミドルノート：ジュニパーベリー、ペティグ레인</p>
+            <p data-ja="ベースノート：パチョリ、アンジェリカ" data-ko="베이스 노트: 파촐리, 안젤리카">ベースノート：パチョリ、アンジェリカ</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Aesop – Tacit -->
+      <div class="perfume-item">
+        <img src="https://www.craemerco.de/cdn/shop/products/AES-Tacit-112000009823-a.jpg" alt="Tacit" style="width:300px;height:300px;object-fit:cover;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+        <div class="perfume-desc">
+          <h2 data-ja="Aesop – Tacit" data-ko="이솝 – 타싯">Aesop – Tacit</h2>
+          <p class="description" data-ja="地中海沿岸の風景からインスピレーションを得た香り。柑橘系のさわやかさとハーバルな深みが特徴です。" data-ko="지중해 연안 풍경에서 영감을 받은 향. 상큼한 시트러스와 허브의 깊이가 특징입니다.">지중해 연안 풍경에서 영감을 받은 향. 상큼한 시트러스와 허브의 깊이가 특징입니다.</p>
+          <div class="notes">
+            <p data-ja="トップノート：ユーカリ、柚子" data-ko="탑 노트: 유칼립투스, 유자">トップノート：ユーカリ、柚子</p>
+            <p data-ja="ミドルノート：バジル、ミント" data-ko="미들 노트: 바질, 민트">ミドルノート：バジル、ミント</p>
+            <p data-ja="ベースノート：ベチバー、クローブ" data-ko="베이스 노트: 베티버, 클로브">ベースノート：ベチバー、クローブ</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="social-links">
+      <a href="https://www.instagram.com/utaenaimiku" class="social-button instagram" target="_blank">
+        <i class="fab fa-instagram"></i>
+        Instagram
+      </a>
+      <div class="lang-toggle" style="margin-top:16px; display:flex; gap:8px; justify-content:center;">
+        <button id="btn-ja" type="button" style="padding:6px 16px; border-radius:20px; border:1px solid #ccc; background:#fff; cursor:pointer;">日本語</button>
+        <button id="btn-kr" type="button" style="padding:6px 16px; border-radius:20px; border:1px solid #ccc; background:#fff; cursor:pointer;">한국어</button>
       </div>
     </div>
   </div>
