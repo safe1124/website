@@ -21,20 +21,50 @@ body {
   z-index: -1;
 }
 
+/* New styles for the main layout container */
+.main-layout {
+  display: flex;
+  align-items: flex-end; /* Key for bottom alignment */
+  justify-content: space-between; /* Distributes space between content and sidebar */
+  gap: 20px; /* Space between content and sidebar */
+  max-width: 1300px; /* Adjust as needed for overall width */
+  margin: 40px auto; /* Centers the layout block on the page */
+  padding: 0 15px; /* Optional padding for the layout container */
+  box-sizing: border-box;
+}
+
 .content {
   position: relative;
   z-index: 1;
-  width: 100%;
+  /* width: 100%; */ /* Flex properties will manage width distribution */
   height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  max-width: 1100px;
-  margin: 40px auto;
+  display: flex; /* This is for children of .content */
+  flex-direction: column; /* For children of .content */
+  justify-content: flex-start; /* For children of .content */
+  align-items: center; /* For children of .content */
+  
+  max-width: 1100px; /* Existing constraint, content won't grow beyond this */
+  /* margin: 40px auto; */ /* Replaced by flex alignment and parent margin */
+  margin: 0; /* Reset margin as it's now a flex item */
+  
   padding: 20px;
   background: #fff;
   border-radius: 10px;
+  
+  flex: 2 1 0%; /* Grow twice as much as sidebar, basis 0 to distribute available space */
+  box-sizing: border-box; /* Ensures padding/border are included in width/height */
+}
+
+/* Desktop styles for the YouTube sidebar */
+.youtube-sidebar {
+  flex: 1 1 0%; /* Grow relative to content, basis 0 */
+  max-width: 450px; /* Prevent sidebar from becoming too wide */
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+  /* Height will be determined by its content, and then bottom-aligned with .content */
 }
 
 h1 {
