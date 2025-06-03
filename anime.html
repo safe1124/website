@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title data-ja="おすすめアニメ" data-ko="추천 애니메이션">추천 애니메이션 - My Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.mobile.css" media="only screen and (max-width: 768px)" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="language-switcher.js"></script>
+  <script src="load-nav.js" defer></script>
+  <style>
+    /* Basic styling for anime page, can be expanded */
+    .content {
+      padding: 20px;
+      max-width: 1000px;
+      margin: 20px auto;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .anime-list {
+      margin-top: 20px;
+    }
+    .anime-item {
+      display: flex; /* For side-by-side layout */
+      align-items: flex-start; /* Align items to the top */
+      border-bottom: 1px solid #eee;
+      padding: 20px 0;
+      gap: 20px; /* Space between image and text */
+    }
+    .anime-item:last-child {
+      border-bottom: none;
+    }
+    .anime-thumbnail {
+      width: 120px; /* Adjust as needed */
+      height: 180px; /* Adjust as needed */
+      object-fit: cover;
+      border-radius: 4px;
+      flex-shrink: 0; /* Prevent image from shrinking */
+    }
+    .anime-details {
+      flex-grow: 1; /* Allow text content to take remaining space */
+    }
+    .anime-details h3 {
+      margin-top: 0;
+      color: var(--accent, #4FC3F7);
+    }
+    .anime-details p {
+      margin-bottom: 0;
+    }
+    .anime-rating {
+      margin-top: 10px;
+      font-size: 1.1em;
+    }
+    .anime-rating .stars {
+      color: #ffc107; /* Gold color for stars */
+      letter-spacing: 2px;
+    }
+    .anime-rating .stars .empty-star {
+      color: #e0e0e0; /* Light grey for empty stars */
+    }
+
+    @media (max-width: 600px) {
+      .anime-item {
+        flex-direction: column; /* Stack image and text on small screens */
+        align-items: center;
+        text-align: center;
+      }
+      .anime-thumbnail {
+        width: 150px; /* Adjust for stacked layout */
+        height: auto; /* Maintain aspect ratio */
+        margin-bottom: 15px;
+      }
+      .anime-rating {
+        font-size: 1em; /* Adjust star size for mobile */
+      }
+    }
+  </style>
+</head>
+<body style="background:#FFF9E3;">
+  <div id="nav-placeholder"></div> 
+  <div class="content">
+    <h1 data-ja="おすすめアニメ" data-ko="추천 애니메이션">おすすめアニメ</h1>
+    <p data-ja="私のおすすめアニメを紹介します。" data-ko="저의 추천 애니메이션을 소개합니다.">私のおすすめアニメを紹介します。</p>
+    
+    <div class="social-links">
+      <a href="https://www.instagram.com/utaenaimiku" class="social-button instagram" target="_blank">
+        <i class="fab fa-instagram"></i>
+        Instagram
+      </a>
+      <div class="language-switcher">
+        <span class="language-label" id="current-lang">日本語</span>
+        <label class="switch">
+          <input aria-label="Language Toggle" type="checkbox" id="language-toggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="anime-list">
+      <!-- Example Anime Item (Remove or replace with actual content) -->
+      
+      <div class="anime-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh2ZzHoqL-HuxI1jw_RyeieHuOyn10tnGlqA&s" alt="Witch Watch Thumbnail" class="anime-thumbnail">
+        <div class="anime-details">
+          <h3 data-ja="ウィッチウォッチ" data-ko="위치워치">ウィッチウォッチ</h3>
+          <p data-ja="鬼の力を持つ少年・乙木守仁(モリヒト)は、旧知の魔女であるニコの使い魔として同居することに。ニコが予言された災いから守るため、モリヒトは大騒動を巻き起こす彼女から目を離せない！奇想天外！マジカルコメディ開幕！" 
+             data-ko="오니의 힘을 가진 소년 오토기 모리히토는 오랜 친구인 마녀 니코의 사역마로서 동거하게 된다. 니코가 예언된 재앙으로부터 지키기 위해, 모리히토는 대소동을 일으키는 그녀에게서 눈을 뗄 수 없다! 기상천외! 매지컬 코미디 개막!">
+            鬼の力を持つ少年・乙木守仁(モリヒト)は、旧知の魔女であるニコの使い魔として同居することに。ニコが予言された災いから守るため、モリヒトは大騒動を巻き起こす彼女から目を離せない！奇想天外！マジカルコメディ開幕！
+          </p>
+          <div class="anime-rating">
+            <span data-ja="おすすめ度：" data-ko="추천도:">おすすめ度：</span>
+            <span class="stars">★★★<span class="empty-star">☆☆</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="anime-item">
+        <img src="https://placehold.co/120x180?text=Made+in+Abyss" alt="Made in Abyss Thumbnail" class="anime-thumbnail">
+        <div class="anime-details">
+          <h3 data-ja="メイドインアビス" data-ko="메이드 인 어비스">メイドインアビス</h3>
+          <p data-ja="隅々まで探索されつくした世界に、唯一残された秘境の大穴『アビス』。どこまで続くとも知れない深く巨大なその縦穴には、奇妙奇怪な生物たちが生息し、今の人類では作りえない貴重な遺物が眠っている。「アビス」の不可思議に満ちた姿は人々を魅了し、冒険へと駆り立てた。" 
+             data-ko="구석구석 탐험이 끝난 세계에 유일하게 남겨진 비경의 대형 구멍 '어비스'. 어디까지 이어질지 모르는 깊고 거대한 그 수직굴에는 기묘하고 기괴한 생물들이 서식하며, 지금의 인류로서는 만들 수 없는 귀중한 유물이 잠들어 있다. '어비스'의 불가사의로 가득 찬 모습은 사람들을 매료시키고 모험으로 이끌었다.">
+            隅々まで探索されつくした世界に、唯一残された秘境の大穴『アビス』。どこまで続くとも知れない深く巨大なその縦穴には、奇妙奇怪な生物たちが生息し、今の人類では作りえない貴重な遺物が眠っている。「アビス」の不可思議に満ちた姿は人々を魅了し、冒険へと駆り立てた。
+          </p>
+          <div class="anime-rating">
+            <span data-ja="おすすめ度：" data-ko="추천도:">おすすめ度：</span>
+            <span class="stars">★★★★★</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="anime-item">
+        <img src="https://placehold.co/120x180?text=Nige+Jouzu" alt="The Elusive Samurai Thumbnail" class="anime-thumbnail">
+        <div class="anime-details">
+          <h3 data-ja="逃げ上手の若君" data-ko="도망을 잘 치는 도련님">逃げ上手の若君</h3>
+          <p data-ja="鎌倉幕府の執権・北条高時の次男・北条時行は、足利高氏の謀反によって鎌倉を追われる。生き延びるために逃げることを得意とする時行は、郎党の諏訪頼重とともに、足利軍から逃げながら再起を図る。" 
+             data-ko="가마쿠라 막부의 싯켄 호조 다카토키의 차남 호조 도키유키는 아시카가 다카우지의 모반으로 가마쿠라에서 쫓겨난다. 살아남기 위해 도망치는 것을 특기로 하는 도키유키는 가신 스와 요리시게와 함께 아시카가 군으로부터 도망치면서 재기를 도모한다.">
+            鎌倉幕府の執権・北条高時の次男・北条時行は、足利高氏の謀反によって鎌倉を追われる。生き延びるために逃げることを得意とする時行は、郎党の諏訪頼重とともに、足利軍から逃げながら再起を図る。
+          </p>
+          <div class="anime-rating">
+            <span data-ja="おすすめ度：" data-ko="추천도:">おすすめ度：</span>
+            <span class="stars">★★★★<span class="empty-star">☆</span></span>
+          </div>
+        </div>
+      </div>
+      <!-- Add more anime items here -->
+    </div>
+  </div>
+</body>
+</html>
