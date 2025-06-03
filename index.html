@@ -32,9 +32,32 @@
   
   <div class="main-layout">
     <div class="content">
-      <h1 id="main-title" data-ja="こんにちは! 🎉" data-ko="안녕하세요! 🎉">こんにちは! 🎉</h1>
-      <p id="intro-text1" data-ja="これは３分のウェブサイトです." data-ko="이것은 3분의 웹사이트입니다.">これは３分のウェブサイトです.</p>
-      <p id="intro-text2" data-ja="音楽ページが更新されました" data-ko="음악페이지가 갱신 되었습니다">音楽ページが更新されました</p>
+      
+      
+      <!-- 큰 동그라미 추가 -->
+      <div style="display: flex; justify-content: center; align-items: center; height: 320px; margin: 40px 0;">
+        <div style="
+          width: 260px;
+          height: 260px;
+          border-radius: 50%;
+          background: #fff;
+          box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 2rem;
+          color: #bbb;
+          overflow: hidden;
+        ">
+          <!-- 
+            아래 img 태그의 src에 사용할 이미지는 
+            /Users/shin/Desktop/study/img/profile.jpg 와 같이 img 폴더를 만들어 저장하세요.
+            예시: <img src="img/profile.jpg" alt="프로필 이미지" style="width:100%;height:100%;object-fit:cover;">
+          -->
+          <img src="img/self-intro-backup.png" alt="프로필 이미지" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+      </div>
+
       <div id="clock"></div>
       <div class="social-links">
         <a rel="noopener" href="https://www.youtube.com/@tcu_vlog2215" class="social-button youtube" target="_blank" data-ja="ユーチューブ" data-ko="유튜브">
