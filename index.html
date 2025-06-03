@@ -7,6 +7,43 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="style.mobile.css" media="only screen and (max-width: 768px)" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    @font-face {
+      font-family: 'GraphikBold';
+      src: url('https://www.shiyunlu.com/fonts/graphik-bold.woff2') format('woff2');
+      font-weight: bold;
+      font-style: normal;
+      font-display: swap;
+    }
+    .shin-title {
+      text-align: center;
+      font-size: 4.5rem;
+      font-family: 'GraphikBold', 'Arial Black', sans-serif;
+      font-weight: bold;
+      letter-spacing: 0.08em;
+      margin-bottom: 32px;
+      color: #222;
+      line-height: 1.1;
+    }
+    @media (max-width: 600px) {
+      .shin-title {
+        font-size: 2.5rem;
+      }
+    }
+
+    /* 커스텀 커서 디자인 */
+    body, html {
+      cursor: url('https://cdn.jsdelivr.net/gh/ionic-team/ionicons@5.5.2/src/svg/hand-left-outline.svg'), auto;
+    }
+    /* 예시: 위 URL을 원하는 커서 이미지로 변경 가능 (SVG/PNG/ICO 등) */
+    /* PNG 예시: cursor: url('https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f44b.png'), auto; */
+    /* 또는 직접 img 폴더에 커서 이미지를 두고 src="img/my-cursor.png"로 사용 가능 */
+
+    /* 버튼 등에서 pointer 커서 유지 */
+    a, button, .social-button, label, .switch {
+      cursor: pointer;
+    }
+  </style>
   <script src="language-switcher.js"></script>
   <script src="load-nav.js" defer></script> <!-- load-nav.js 추가 -->
   <script>
@@ -54,11 +91,14 @@
             /Users/shin/Desktop/study/img/profile.jpg 와 같이 img 폴더를 만들어 저장하세요.
             예시: <img src="img/profile.jpg" alt="프로필 이미지" style="width:100%;height:100%;object-fit:cover;">
           -->
-          <img src="img/self-intro-backup.png" alt="프로필 이미지" style="width:100%;height:100%;object-fit:cover;">
+          <img src="img/profile.JPEG" alt="프로필 이미지" style="width:100%;height:100%;object-fit:cover;">
         </div>
       </div>
 
-      <div id="clock"></div>
+      <!-- SHIN 텍스트 크게, 커스텀 폰트 적용 -->
+      <div class="shin-title">
+        SHIN
+      </div>
       <div class="social-links">
         <a rel="noopener" href="https://www.youtube.com/@tcu_vlog2215" class="social-button youtube" target="_blank" data-ja="ユーチューブ" data-ko="유튜브">
           <i class="fab fa-youtube"></i>
@@ -128,16 +168,29 @@
       mouseY = e.clientY;
     });
 
-    // 하늘색 그라디언트 배경 그리기
+    // 어두운 남색 배경 + 손전등 효과로 변경
     function drawBackground() {
-      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      gradient.addColorStop(0, '#87CEEB');    // 스카이블루
-      gradient.addColorStop(0.3, '#4FC3F7');  // 라이트블루
-      gradient.addColorStop(0.7, '#29B6F6');  // 블루
-      gradient.addColorStop(1, '#0288D1');    // 다크블루
-      
-      ctx.fillStyle = gradient;
+      // 어두운 남색 배경
+      ctx.fillStyle = "#0a1733";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // 손전등(라이트) 효과
+      const flashlightRadius = 500;
+      const gradient = ctx.createRadialGradient(
+        mouseX, mouseY, 0,
+        mouseX, mouseY, flashlightRadius
+      );
+      gradient.addColorStop(0, "rgba(255,255,255,0.18)");
+      gradient.addColorStop(0.5, "rgba(255,255,255,0.08)");
+      gradient.addColorStop(1, "rgba(10,23,51,0.0)");
+      ctx.save();
+      ctx.globalCompositeOperation = "lighter";
+      ctx.beginPath();
+      ctx.arc(mouseX, mouseY, flashlightRadius, 0, Math.PI * 2);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      ctx.restore();
+      ctx.globalCompositeOperation = "source-over";
     }
 
     // 큰 원들 애니메이션
