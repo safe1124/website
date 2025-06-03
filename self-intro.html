@@ -101,8 +101,6 @@
       margin: 0 auto;
       padding: 25px;
       position: relative;
-      overflow-y: auto;
-      max-height: 600px;
     }
 
     .timeline::before {
@@ -110,27 +108,15 @@
       position: absolute;
       width: 2px;
       background: var(--accent);
-      height: 100%;  /* 타임라인이 끝까지 이어지도록 수정 */
       left: calc(120px + 25px);
       top: 0;
+      height: 100%;
     }
 
     .timeline-item {
       display: flex;
       margin-bottom: 40px;
       position: relative;
-      z-index: 1;
-    }
-
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      left: calc(120px + 22px);
-      top: 18px;
       z-index: 1;
     }
 
@@ -398,7 +384,7 @@
       <article class="skill-card">
         <i class="fas fa-mobile-alt" style="font-size: 3rem; color: #4FC3F7; margin-bottom: 1rem;"></i>
         <h3 data-ja="レスポンシブデザイン" data-ko="반응형 디자인">レスポンシブデザイン</h3>
-        <p data-ja="あらゆるデバイスで最適な表示を実現" data-ko="모든 디바이스에서 최적의 표시 구현">あらゆるデバイスで最적な表示を実现</p>
+        <p data-ja="あらゆるデバイスで最適な表示を実現" data-ko="모든 디바이스에서 최적의 표시 구현">あらゆるデバイスで最적な 표시를 구현</p>
       </article>
     </div>
   </section>
