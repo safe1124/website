@@ -205,6 +205,59 @@
       color: var(--accent);
       margin-bottom: 1rem;
     }
+
+    /* Hobbies 스타일 */
+    .intro-hobbies {
+      padding-block: 4rem;
+      background: #FFF9E3; /* Alternating background color */
+    }
+    
+    .intro-hobbies h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 3rem;
+      color: var(--black);
+    }
+    
+    .hobbies-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    
+    .hobby-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-align: center;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    
+    .hobby-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    .hobby-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: calc(var(--radius) - 5px);
+      margin-bottom: 1.5rem;
+    }
+    
+    .hobby-card h3 {
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      font-size: 1.3rem;
+    }
+
+    .hobby-card p {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
     
     /* CTA 스타일 */
     .intro-cta {
@@ -259,6 +312,10 @@
         grid-template-columns: 1fr;
       }
       
+      .hobbies-grid { /* Responsive for hobbies */
+        grid-template-columns: 1fr;
+      }
+
       .timeline li {
         padding-left: 2rem;
       }
@@ -385,6 +442,28 @@
         <i class="fas fa-mobile-alt" style="font-size: 3rem; color: #4FC3F7; margin-bottom: 1rem;"></i>
         <h3 data-ja="レスポンシブデザイン" data-ko="반응형 디자인">レスポンシブデザイン</h3>
         <p data-ja="あらゆるデバイスで最適な表示を実現" data-ko="모든 디바이스에서 최적의 표시 구현">あらゆるデバイスで最적な 표시를 구현</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Hobbies Section -->
+  <section class="intro-section intro-hobbies">
+    <h2 data-ja="趣味" data-ko="취미">趣味</h2>
+    <div class="hobbies-grid">
+      <article class="hobby-card">
+        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=400&q=80" alt="Music Appreciation">
+        <h3 data-ja="音楽鑑賞" data-ko="음악 감상">音楽鑑賞</h3>
+        <p data-ja="様々なジャンルの音楽を聴き、感情やストーリーを感じるのが好きです。" data-ko="다양한 장르의 음악을 들으며 감정이나 스토리를 느끼는 것을 좋아합니다.">様々なジャンルの音楽を聴き、感情やストーリーを感じるのが好きです。</p>
+      </article>
+      <article class="hobby-card">
+        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80" alt="Website Creation">
+        <h3 data-ja="ウェブサイト制作" data-ko="웹사이트 제작">ウェブサイト制作</h3>
+        <p data-ja="新しい技術を学び、アイデアを形にするコーディングのプロセスを楽しんでいます。" data-ko="새로운 기술을 배우고 아이디어를 형태로 만드는 코딩 과정을 즐깁니다.">新しい技術を学び、アイデアを形にするコーディングのプロセスを楽しんでいます。</p>
+      </article>
+      <article class="hobby-card">
+        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fstores.diptyqueparis.com%2Fja_jp%2Fasia%2Fjp&psig=AOvVaw3ALsNqVEY3tepivFfPlHaf&ust=1749007992447000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPiLzdKo1I0DFQAAAAAdAAAAABAE" alt="Visiting Perfume Stores">
+        <h3 data-ja="香水店巡り" data-ko="향수 가게 탐방">香水店巡り</h3>
+        <p data-ja="ユニークな香りを求めて様々なお店を訪れ、新しい発見をするのが好きです。" data-ko="독특한 향수를 찾아 여러 가게를 방문하며 새로운 발견을 하는 것을 좋아합니다.">ユニークな香りを求めて様々なお店を訪れ、新しい発見をするのが好きです。</p>
       </article>
     </div>
   </section>
