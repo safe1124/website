@@ -15,10 +15,16 @@
       font-style: normal;
       font-display: swap;
     }
+    
+    /* 일본어 폰트 통일 */
+    body, html, p, h1, h2, h3, h4, h5, h6, span, div, button, input {
+      font-family: 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'GraphikBold', 'Arial Black', sans-serif;
+    }
+    
     .shin-title {
       text-align: center;
       font-size: 4.5rem;
-      font-family: 'GraphikBold', 'Arial Black', sans-serif;
+      font-family: 'GraphikBold', 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Arial Black', sans-serif;
       font-weight: bold;
       letter-spacing: 0.08em;
       margin-bottom: 32px;
@@ -157,9 +163,14 @@
 
       <!-- SHIN 텍스트 크게, 커스텀 폰트 적용 -->
       <div class="shin-title">
-        SHIN
+        SHIN Store
       </div>
-
+      
+      <!-- Since 날짜 추가 -->
+      <div style="text-align: center; font-size: 1.2rem; color: #666; margin-top: -20px; margin-bottom: 40px; font-family: 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', sans-serif;">
+        since 2001.07.21
+      </div>
+      
       <!-- Sphere Effect -->
       <div id="sphere-area">
         <!-- 20 grey spheres -->
