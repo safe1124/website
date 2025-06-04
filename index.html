@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="style.mobile.css" media="only screen and (max-width: 768px)" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="jquery.hoverdir.js"></script>
   <style>
     @font-face {
       font-family: 'GraphikBold';
@@ -102,29 +104,149 @@
     #profile-container.unblurred .profile-img {
       filter: blur(0px); /* No blur when 'unblurred' class is present */
     }
+
+    /* Concentric Circle Loader - 기존 site-overlay 대체 */
+    #concentric-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #0a1733;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    #concentric-loader.fade-out {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+    }
+
+    .concentric-circle {
+      position: absolute;
+      border-radius: 50%;
+      border: 4px solid transparent;
+      animation: spin 3s linear infinite;
+    }
+
+    .concentric-circle:nth-child(1) {
+      width: 200px;
+      height: 200px;
+      border-top: 4px solid #69EACB;
+      border-right: 4px solid transparent;
+      animation-duration: 2s;
+    }
+
+    .concentric-circle:nth-child(2) {
+      width: 160px;
+      height: 160px;
+      top: 20px;
+      left: 20px;
+      border-bottom: 4px solid #EACCF8;
+      border-left: 4px solid transparent;
+      animation-duration: 1.5s;
+      animation-direction: reverse;
+    }
+
+    .concentric-circle:nth-child(3) {
+      width: 120px;
+      height: 120px;
+      top: 40px;
+      left: 40px;
+      border-top: 4px solid #6654F1;
+      border-right: 4px solid transparent;
+      animation-duration: 1s;
+    }
+
+    .concentric-circle:nth-child(4) {
+      width: 80px;
+      height: 80px;
+      top: 60px;
+      left: 60px;
+      border-bottom: 4px solid #4FC3F7;
+      border-left: 4px solid transparent;
+      animation-duration: 0.8s;
+      animation-direction: reverse;
+    }
+
+    .concentric-circle:nth-child(5) {
+      width: 40px;
+      height: 40px;
+      top: 80px;
+      left: 80px;
+      border: 4px solid #87CEEB;
+      animation-duration: 0.6s;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* 중앙 로고/텍스트 */
+    .loader-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-family: 'GraphikBold', sans-serif;
+      font-size: 1.2rem;
+      font-weight: bold;
+      z-index: 10;
+    }
+
+    /* Remove existing site-overlay styles since we're replacing it */
   </style>
   <script src="language-switcher.js"></script>
   <script src="load-nav.js" defer></script> <!-- load-nav.js 추가 -->
   <script>
-    // 오버레이 애니메이션
+    // 로딩 애니메이션 - 기존 오버레이 대체
     window.addEventListener('DOMContentLoaded', function() {
-      const overlay = document.getElementById('site-overlay');
+      const loader = document.getElementById('concentric-loader');
+      
+      // 1.5초 후 페이드 아웃
       setTimeout(() => {
-        overlay.classList.add('hide');
-      }, 400); // 약간의 딜레이 후 애니메이션 시작
-      overlay.addEventListener('transitionend', () => {
-        overlay.parentNode.removeChild(overlay);
-      });
+        loader.classList.add('fade-out');
+        
+        // 페이드 아웃 완료 후 DOM에서 제거
+        setTimeout(() => {
+          if (loader.parentNode) {
+            loader.parentNode.removeChild(loader);
+          }
+        }, 800);
+      }, 1500);
     });
   </script>
 </head>
 <body>
-  <div id="nav-placeholder"></div> <!-- 기존 nav-menu를 placeholder로 대체 -->
+  <div id="nav-placeholder"></div>
 
   <!-- Background Canvas -->
   <canvas id="bg"></canvas>
-  <!-- 오버레이 효과 -->
-  <div id="site-overlay"></div>
+  
+  <!-- Concentric Circle Loader (기존 site-overlay 대체) -->
+  <div id="concentric-loader">
+    <div class="loader-container">
+      <div class="concentric-circle"></div>
+      <div class="concentric-circle"></div>
+      <div class="concentric-circle"></div>
+      <div class="concentric-circle"></div>
+      <div class="concentric-circle"></div>
+      <div class="loader-text">LOADING</div>
+    </div>
+  </div>
 
   <!-- Password Modal -->
   <div id="password-modal">
@@ -175,44 +297,12 @@
         since 2001.07.21
       </div>
       
-      <!-- Sphere Effect -->
-      <div id="sphere-area">
-        <!-- 20 grey spheres -->
-        <div class="sphere"></div>
-        <div class="sphere"></div>
-        <div class="sphere"></div>
-        <div class="sphere"></div>
-        <div class="sphere"></div>
-        <div class="sphere"></div>
-        <div class="sphere"></div>
-        <div class="sphere"></div>
-        <div class="sphere"></div>
-        <div class="sphere"></div>
-        <div class="sphere"></div>
-        <div class="sphere"></div>
-        <div class="sphere"></div>
-        <div class="sphere"></div>
-        <div class="sphere"></div>
-        <div class="sphere"></div>
-        <div class="sphere"></div>
-        <div class="sphere"></div>
-        <div class="sphere"></div>
-        <div class="sphere"></div>
-      </div>
       <div class="social-links">
-        <a rel="noopener" href="https://www.youtube.com/@tcu_vlog2215" class="social-button youtube" target="_blank" data-ja="ユーチューブ" data-ko="유튜브">
-          <i class="fab fa-youtube"></i>
-          YouTube
-        </a>
-        <a rel="noopener" href="https://www.instagram.com/utaenaimiku" class="social-button instagram" target="_blank" data-ja="インスタグラム" data-ko="인스타그램">
-          <i class="fab fa-instagram"></i>
-          Instagram
-        </a>
-        <a rel="noopener" href="https://twitter.com/sico_sico_sico_" class="social-button twitter" target="_blank" data-ja="𝕏" data-ko="𝕏">
-          <i class="fab fa-x-twitter"></i>
-          𝕏
-        </a>
-
+        <ul class="social-share">
+          <li><a href="https://twitter.com/sico_sico_sico_" class="twitter" target="_blank" rel="noopener"><div></div><span class="screen-reader-text">X</span><svg viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></a></li>
+          <li><a href="https://www.youtube.com/@tcu_vlog2215" class="youtube" target="_blank" rel="noopener"><div></div><span class="screen-reader-text">YouTube</span><svg viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg></a></li>
+          <li><a href="https://www.instagram.com/utaenaimiku" class="instagram" target="_blank" rel="noopener"><div></div><span class="screen-reader-text">Instagram</span><svg viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg></a></li>
+        </ul>
       </div>
 
       <!-- 언어 토글 버튼 (선택한 언어만 표시) -->
@@ -505,3 +595,5 @@
   </script>
 </body>
 </html>
+
+
