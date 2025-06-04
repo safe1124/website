@@ -170,12 +170,14 @@
       .score-display {
         padding: 10px;
         margin: 15px 0;
-        flex-direction: column;
-        gap: 10px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 5px;
       }
       
       .score-item {
         flex: 1;
+        min-width: 90px;
       }
       
       .control-btn {
@@ -301,6 +303,237 @@
       gap: 5px;
       justify-content: center;
     }
+
+    /* Game Result Modal Styles */
+    .game-result-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .game-result-modal.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .result-content {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transform: scale(0.8);
+      transition: transform 0.3s ease;
+    }
+
+    .game-result-modal.show .result-content {
+      transform: scale(1);
+    }
+
+    .result-title {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .result-grade {
+      font-size: 4em;
+      font-weight: bold;
+      margin: 20px 0;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .result-stats {
+      margin: 30px 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+
+    .result-stat {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 10px;
+      border-left: 4px solid #667eea;
+    }
+
+    .result-stat-label {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    .result-stat-value {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .grade-c {
+      color: #6c757d;
+    }
+
+    .grade-b {
+      color: #007bff;
+    }
+
+    .grade-a {
+      color: #28a745;
+    }
+
+    .grade-s {
+      background: linear-gradient(45deg, #ffd700, #ffed4e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .grade-ss {
+      background: linear-gradient(45deg, #ff0000, #ff6b6b, #ff0000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: glow-red 2s ease-in-out infinite alternate;
+    }
+
+    .grade-sss {
+      background: linear-gradient(45deg, #8b00ff, #da70d6, #9370db, #8b00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: glow-purple 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow-red {
+      from {
+        filter: drop-shadow(0 0 5px #ff0000);
+      }
+      to {
+        filter: drop-shadow(0 0 20px #ff0000);
+      }
+    }
+
+    @keyframes glow-purple {
+      from {
+        filter: drop-shadow(0 0 5px #8b00ff);
+      }
+      to {
+        filter: drop-shadow(0 0 20px #8b00ff);
+      }
+    }
+
+    .result-stats {
+      margin: 30px 0;
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .result-stat {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      font-size: 1.2em;
+    }
+
+    .result-stat-label {
+      color: #666;
+    }
+
+    .result-stat-value {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .result-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .result-btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .result-btn-primary {
+      background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .result-btn-secondary {
+      background: #6c757d;
+      color: white;
+    }
+
+    .result-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .result-content {
+        padding: 30px 20px;
+        margin: 20px;
+        max-width: 90%;
+      }
+
+      .result-title {
+        font-size: 2em;
+        margin-bottom: 15px;
+      }
+
+      .result-grade {
+        font-size: 3em;
+        margin: 15px 0;
+      }
+
+      .result-stats {
+        margin: 20px 0;
+        gap: 10px;
+      }
+
+      .result-stat {
+        padding: 12px;
+      }
+
+      .result-stat-label {
+        font-size: 0.8em;
+      }
+
+      .result-stat-value {
+        font-size: 1.3em;
+      }
+
+      .result-buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .result-btn {
+        padding: 15px 20px;
+        font-size: 16px;
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body style="background:#FFF9E3;">
@@ -319,6 +552,10 @@
           <div class="score-item">
             <div class="score-label" data-ja="最高スコア" data-ko="최고 점수">최고 점수</div>
             <div class="score-value" id="high-score">0</div>
+          </div>
+          <div class="score-item">
+            <div class="score-label" data-ja="ゲーム時間" data-ko="게임 시간">게임 시간</div>
+            <div class="score-value" id="game-time">0초</div>
           </div>
         </div>
 
@@ -364,7 +601,37 @@
             <li data-ja="下矢印でしゃがみ" data-ko="아래쪽 화살표로 구부리기">아래쪽 화살표로 구부리기</li>
             <li data-ja="障害物にぶつからないように注意！" data-ko="장애물에 부딪히지 않도록 주의!">장애물에 부딪히지 않도록 주의!</li>
             <li data-ja="時間が経つと速度が上がります" data-ko="시간이 지나면 속도가 빨라집니다">시간이 지나면 속도가 빨라집니다</li>
+            <li data-ja="ラスクを集めて50,000-100,000点をゲット！" data-ko="라스크를 모아서 50,000-100,000점을 획득!">라스크를 모아서 50,000-100,000점을 획득!</li>
+            <li data-ja="時間ボーナス: 10秒まで初당10点, 20秒まで初당100点, 30秒まで初당1,000点..." data-ko="시간 보너스: 10초까지 초당 10점, 20초까지 초당 100점, 30초까지 초당 1,000점...">시간 보너스: 10초까지 초당 10점, 20초까지 초당 100점, 30초까지 초당 1,000점, 40초까지 초당 10,000점, 50초까지 초당 100,000점, 51초 이후 초당 1,000,000점!</li>
           </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Result Modal -->
+    <div id="game-result-modal" class="game-result-modal">
+      <div class="result-content">
+        <h2 class="result-title" data-ja="ゲーム終了！" data-ko="게임 종료!">게임 종료!</h2>
+        <div class="result-grade" id="result-grade">C</div>
+        
+        <div class="result-stats">
+          <div class="result-stat">
+            <div class="result-stat-label" data-ja="最終スコア" data-ko="최종 점수">최종 점수</div>
+            <div class="result-stat-value" id="final-score">0</div>
+          </div>
+          <div class="result-stat">
+            <div class="result-stat-label" data-ja="生存時間" data-ko="생존 시간">생존 시간</div>
+            <div class="result-stat-value" id="survival-time">0초</div>
+          </div>
+          <div class="result-stat">
+            <div class="result-stat-label" data-ja="獲得ラスク" data-ko="획득 라스크">획득 라스크</div>
+            <div class="result-stat-value" id="rusks-collected">0개</div>
+          </div>
+        </div>
+
+        <div class="result-buttons">
+          <button class="result-btn result-btn-primary" id="play-again-btn" data-ja="もう一度プレイ" data-ko="다시 플레이">다시 플레이</button>
+          <button class="result-btn result-btn-secondary" id="close-result-btn" data-ja="閉じる" data-ko="닫기">닫기</button>
         </div>
       </div>
     </div>
@@ -382,6 +649,8 @@
         this.gameSpeed = 6;
         this.gravity = 0.6;
         this.jumpPower = -15;
+        this.gameStartTime = 0;
+        this.lastTimeScoreUpdate = 0;
         
         this.dino = {
           x: 50,
@@ -399,6 +668,7 @@
         this.ground = this.canvas.height - 50;
         this.lastObstacle = 0;
         this.lastBonus = 0;
+        this.rusksCollected = 0; // Track collected rusks
         
         // Load character image
         this.characterImage = new Image();
@@ -490,12 +760,24 @@
             e.preventDefault();
             if (this.gameState === 'running') {
               this.jump();
-            } else if (this.gameState === 'stopped' || this.gameState === 'gameOver') {
+            } else if (this.gameState === 'stopped') {
               this.startGame();
+            } else if (this.gameState === 'gameOver') {
+              // Check if modal is visible
+              const modal = document.getElementById('game-result-modal');
+              if (!modal.classList.contains('show')) {
+                this.startGame();
+              }
             }
           } else if (e.code === 'ArrowDown') {
             if (this.gameState === 'running') {
               this.duck(true);
+            }
+          } else if (e.code === 'Escape') {
+            // Close modal with Escape key
+            const modal = document.getElementById('game-result-modal');
+            if (modal.classList.contains('show')) {
+              this.hideResultModal();
             }
           }
         });
@@ -540,6 +822,23 @@
           this.adjustDinoSize();
           this.dino.y = this.ground - this.dino.height;
         });
+
+        // Result modal event listeners
+        document.getElementById('play-again-btn').addEventListener('click', () => {
+          this.hideResultModal();
+          this.startGame();
+        });
+
+        document.getElementById('close-result-btn').addEventListener('click', () => {
+          this.hideResultModal();
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('game-result-modal').addEventListener('click', (e) => {
+          if (e.target.id === 'game-result-modal') {
+            this.hideResultModal();
+          }
+        });
       }
       
       startGame() {
@@ -550,6 +849,9 @@
         this.bonusItems = [];
         this.lastObstacle = 0;
         this.lastBonus = 0;
+        this.rusksCollected = 0; // Reset rusk counter
+        this.gameStartTime = Date.now();
+        this.lastTimeScoreUpdate = Date.now();
         this.dino.y = this.ground - this.dino.height;
         this.dino.velocityY = 0;
         this.dino.jumping = false;
@@ -573,6 +875,8 @@
         this.bonusItems = [];
         this.lastObstacle = 0;
         this.lastBonus = 0;
+        this.gameStartTime = 0;
+        this.lastTimeScoreUpdate = 0;
         this.dino.y = this.ground - this.dino.height;
         this.dino.velocityY = 0;
         this.dino.jumping = false;
@@ -591,8 +895,41 @@
         this.dino.ducking = ducking;
       }
       
+      updateTimeScore() {
+        if (this.gameState !== 'running') return;
+        
+        const currentTime = Date.now();
+        const gameTimeSeconds = Math.floor((currentTime - this.gameStartTime) / 1000);
+        
+        // Check if a second has passed
+        if (currentTime - this.lastTimeScoreUpdate >= 1000) {
+          let pointsPerSecond = 0;
+          
+          // 시간 구간별 점수 계산
+          if (gameTimeSeconds <= 10) {
+            pointsPerSecond = 10; // 1~10초: 초당 10점
+          } else if (gameTimeSeconds <= 20) {
+            pointsPerSecond = 100; // 11~20초: 초당 100점
+          } else if (gameTimeSeconds <= 30) {
+            pointsPerSecond = 1000; // 21~30초: 초당 1000점
+          } else if (gameTimeSeconds <= 40) {
+            pointsPerSecond = 10000; // 31~40초: 초당 10000점
+          } else if (gameTimeSeconds <= 50) {
+            pointsPerSecond = 100000; // 41~50초: 초당 100000점
+          } else {
+            pointsPerSecond = 1000000; // 51초 이후: 초당 1000000점
+          }
+          
+          this.score += pointsPerSecond;
+          this.lastTimeScoreUpdate = currentTime;
+        }
+      }
+      
       update() {
         if (this.gameState !== 'running') return;
+        
+        // Update time score
+        this.updateTimeScore();
         
         // Update dino physics
         this.dino.velocityY += this.gravity;
@@ -723,6 +1060,7 @@
           if (this.isColliding(dinoRect, bonus)) {
             const bonusScore = Math.floor(Math.random() * 50000) + 50000; // Random score between 50,000 and 100,000
             this.score += bonusScore;
+            this.rusksCollected++; // Increment rusk counter
             this.bonusItems.splice(index, 1); // Remove collected bonus item
             this.updateDisplay();
           }
@@ -743,6 +1081,74 @@
           localStorage.setItem('dinoHighScore', this.highScore);
         }
         this.updateDisplay();
+        
+        // Show result modal after a short delay
+        setTimeout(() => {
+          this.showResultModal();
+        }, 1000);
+      }
+
+      showResultModal() {
+        const modal = document.getElementById('game-result-modal');
+        const gradeElement = document.getElementById('result-grade');
+        const finalScoreElement = document.getElementById('final-score');
+        const survivalTimeElement = document.getElementById('survival-time');
+        const rusksCollectedElement = document.getElementById('rusks-collected');
+
+        // Calculate survival time
+        const survivalTime = this.gameStartTime > 0 ? 
+          Math.floor((Date.now() - this.gameStartTime) / 1000) : 0;
+
+        // Use actual rusks collected
+        const rusksCollected = this.rusksCollected;
+
+        // Determine grade based on score
+        let grade = 'C';
+        let gradeClass = 'grade-c';
+        
+        if (this.score <= 100000) {
+          grade = 'C';
+          gradeClass = 'grade-c';
+        } else if (this.score <= 300000) {
+          grade = 'B';
+          gradeClass = 'grade-b';
+        } else if (this.score <= 500000) {
+          grade = 'A';
+          gradeClass = 'grade-a';
+        } else if (this.score <= 1000000) {
+          grade = 'S';
+          gradeClass = 'grade-s';
+        } else if (this.score <= 3000000) {
+          grade = 'SS';
+          gradeClass = 'grade-ss';
+        } else {
+          grade = 'SSS';
+          gradeClass = 'grade-sss';
+        }
+
+        // Update modal content
+        gradeElement.textContent = grade;
+        gradeElement.className = `result-grade ${gradeClass}`;
+        finalScoreElement.textContent = this.score.toLocaleString();
+        survivalTimeElement.textContent = `${survivalTime}초`;
+        rusksCollectedElement.textContent = `${rusksCollected}개`;
+
+        // Show modal
+        modal.classList.add('show');
+      }
+
+      hideResultModal() {
+        const modal = document.getElementById('game-result-modal');
+        modal.classList.remove('show');
+      }
+
+      getTimeBonus(seconds) {
+        if (seconds <= 10) return 10;
+        if (seconds <= 20) return 100;
+        if (seconds <= 30) return 1000;
+        if (seconds <= 40) return 10000;
+        if (seconds <= 50) return 100000;
+        return 1000000;
       }
       
       draw() {
@@ -899,6 +1305,14 @@
       updateDisplay() {
         document.getElementById('current-score').textContent = this.score;
         document.getElementById('high-score').textContent = this.highScore;
+        
+        // Update game time
+        if (this.gameState === 'running' && this.gameStartTime > 0) {
+          const gameTimeSeconds = Math.floor((Date.now() - this.gameStartTime) / 1000);
+          document.getElementById('game-time').textContent = gameTimeSeconds + '초';
+        } else {
+          document.getElementById('game-time').textContent = '0초';
+        }
       }
       
       gameLoop() {
