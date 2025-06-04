@@ -416,12 +416,97 @@
       animation: glow-purple 2s ease-in-out infinite alternate;
     }
 
+    .grade-sss-plus {
+      background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      background-size: 300% 300%;
+      animation: rainbow-glow 3s ease-in-out infinite, rainbow-flow 4s linear infinite;
+    }
+
+    .grade-z {
+      background: linear-gradient(45deg, #8b0000, #cc4400, #ffaa00, #66cc00, #00aa00, #00cc66, #00aacc, #0066cc, #0000aa, #6600cc, #aa00aa, #cc0066);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      background-size: 400% 400%;
+      animation: dark-rainbow-glow 2s ease-in-out infinite, dark-rainbow-flow 3s linear infinite;
+      text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+    }
+
     @keyframes glow-red {
       from {
         filter: drop-shadow(0 0 5px #ff0000);
       }
       to {
         filter: drop-shadow(0 0 20px #ff0000);
+      }
+    }
+
+    @keyframes rainbow-glow {
+      0%, 100% {
+        filter: drop-shadow(0 0 10px #ff0000) drop-shadow(0 0 20px #ff0000);
+      }
+      16.67% {
+        filter: drop-shadow(0 0 10px #ffff00) drop-shadow(0 0 20px #ffff00);
+      }
+      33.33% {
+        filter: drop-shadow(0 0 10px #00ff00) drop-shadow(0 0 20px #00ff00);
+      }
+      50% {
+        filter: drop-shadow(0 0 10px #00ffff) drop-shadow(0 0 20px #00ffff);
+      }
+      66.67% {
+        filter: drop-shadow(0 0 10px #0000ff) drop-shadow(0 0 20px #0000ff);
+      }
+      83.33% {
+        filter: drop-shadow(0 0 10px #ff00ff) drop-shadow(0 0 20px #ff00ff);
+      }
+    }
+
+    @keyframes rainbow-flow {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes dark-rainbow-glow {
+      0%, 100% {
+        filter: drop-shadow(0 0 15px #8b0000) drop-shadow(0 0 30px #8b0000) drop-shadow(0 0 45px #8b0000);
+      }
+      16.67% {
+        filter: drop-shadow(0 0 15px #ffaa00) drop-shadow(0 0 30px #ffaa00) drop-shadow(0 0 45px #ffaa00);
+      }
+      33.33% {
+        filter: drop-shadow(0 0 15px #00aa00) drop-shadow(0 0 30px #00aa00) drop-shadow(0 0 45px #00aa00);
+      }
+      50% {
+        filter: drop-shadow(0 0 15px #00aacc) drop-shadow(0 0 30px #00aacc) drop-shadow(0 0 45px #00aacc);
+      }
+      66.67% {
+        filter: drop-shadow(0 0 15px #0000aa) drop-shadow(0 0 30px #0000aa) drop-shadow(0 0 45px #0000aa);
+      }
+      83.33% {
+        filter: drop-shadow(0 0 15px #aa00aa) drop-shadow(0 0 30px #aa00aa) drop-shadow(0 0 45px #aa00aa);
+      }
+    }
+
+    @keyframes dark-rainbow-flow {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
       }
     }
 
@@ -542,7 +627,7 @@
       <h1 data-ja="ゲーム" data-ko="게임">게임</h1>
       
       <div class="game-container">
-        <h2 class="game-title" data-ja="ラスクゲーム" data-ko="ラスクゲーム">ラスクゲーム</h2>
+        <h2 class="game-title" data-ja="ラスクゲーム" data-ko="ラス크게임">ラスクゲーム</h2>
         
         <div class="score-display">
           <div class="score-item">
@@ -602,7 +687,19 @@
             <li data-ja="障害物にぶつからないように注意！" data-ko="장애물에 부딪히지 않도록 주의!">장애물에 부딪히지 않도록 주의!</li>
             <li data-ja="時間が経つと速度が上がります" data-ko="시간이 지나면 속도가 빨라집니다">시간이 지나면 속도가 빨라집니다</li>
             <li data-ja="ラスクを集めて50,000-100,000点をゲット！" data-ko="라스크를 모아서 50,000-100,000점을 획득!">라스크를 모아서 50,000-100,000점을 획득!</li>
-            <li data-ja="時間ボーナス: 10秒まで初당10点, 20秒まで初당100点, 30秒まで初당1,000点..." data-ko="시간 보너스: 10초까지 초당 10점, 20초까지 초당 100점, 30초까지 초당 1,000점...">시간 보너스: 10초까지 초당 10점, 20초까지 초당 100점, 30초까지 초당 1,000점, 40초까지 초당 10,000점, 50초까지 초당 100,000점, 51초 이후 초당 1,000,000점!</li>
+            <li data-ja="時間ボーナス: 10秒まで初当10点, 20秒まで初当100点, 30秒まで初当1,000点..." data-ko="시간 보너스: 10초까지 초당 10점, 20초까지 초당 100점, 30초까지 초당 1,000점...">시간 보너스: 10초까지 초당 10점, 20초까지 초당 100점, 30초까지 초당 1,000점, 40초까지 초당 10,000점, 50초까지 초당 100,000점, 51초 이후 초당 1,000,000점!</li>
+          </ul>
+          
+          <h3 data-ja="グレードシステム" data-ko="등급 시스템">등급 시스템</h3>
+          <ul>
+            <li data-ja="C級: 0-100,000点" data-ko="C급: 0-100,000점">C급: 0-100,000점</li>
+            <li data-ja="B級: 100,001-300,000点" data-ko="B급: 100,001-300,000점">B급: 100,001-300,000점</li>
+            <li data-ja="A級: 300,001-500,000点" data-ko="A급: 300,001-500,000점">A급: 300,001-500,000점</li>
+            <li data-ja="S級: 500,001-1,000,000点" data-ko="S급: 500,001-1,000,000점">S급: 500,001-1,000,000점</li>
+            <li data-ja="SS級: 1,000,001-3,000,000点" data-ko="SS급: 1,000,001-3,000,000점">SS급: 1,000,001-3,000,000점</li>
+            <li data-ja="SSS級: 3,000,001-10,000,000点" data-ko="SSS급: 3,000,001-10,000,000점">SSS급: 3,000,001-10,000,000점</li>
+            <li data-ja="SSS+級: 10,000,001-25,000,000点 (レインボーエフェクト)" data-ko="SSS+급: 10,000,001-25,000,000점 (무지개 효과)">SSS+급: 10,000,001-25,000,000점 (무지개 효과)</li>
+            <li data-ja="Z級: 25,000,001点以上 (ダークレインボーエフェクト)" data-ko="Z급: 25,000,001점 이상 (다크 무지개 효과)">Z급: 25,000,001점 이상 (다크 무지개 효과)</li>
           </ul>
         </div>
       </div>
@@ -621,11 +718,11 @@
           </div>
           <div class="result-stat">
             <div class="result-stat-label" data-ja="生存時間" data-ko="생존 시간">생존 시간</div>
-            <div class="result-stat-value" id="survival-time">0초</div>
+            <div class="result-stat-value" id="survival-time">0秒</div>
           </div>
           <div class="result-stat">
             <div class="result-stat-label" data-ja="獲得ラスク" data-ko="획득 라스크">획득 라스크</div>
-            <div class="result-stat-value" id="rusks-collected">0개</div>
+            <div class="result-stat-value" id="rusks-collected">0個</div>
           </div>
         </div>
 
@@ -1121,9 +1218,18 @@
         } else if (this.score <= 3000000) {
           grade = 'SS';
           gradeClass = 'grade-ss';
-        } else {
+        } else if (this.score <= 5000000) {
           grade = 'SSS';
           gradeClass = 'grade-sss';
+        } else if (this.score <= 10000000) {
+          grade = 'SSS';
+          gradeClass = 'grade-sss';
+        } else if (this.score <= 25000000) {
+          grade = 'SSS+';
+          gradeClass = 'grade-sss-plus';
+        } else {
+          grade = 'Z';
+          gradeClass = 'grade-z';
         }
 
         // Update modal content
