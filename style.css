@@ -293,9 +293,9 @@ p {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 24px;
-  height: 24px;
-  margin: -12px;
+  width: 36px;
+  height: 36px;
+  margin: -18px;
   border-radius: 50%;
   background: #ccc;
   transition: transform 0.5s ease;
@@ -303,6 +303,7 @@ p {
 }
 
 #sphere-area:hover .sphere {
+  /* fallback for browsers with JS disabled */
   transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty)));
 }
 
