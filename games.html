@@ -498,14 +498,27 @@
       animation: rainbow-glow 3s ease-in-out infinite, rainbow-flow 4s linear infinite;
     }
 
-    .grade-z {
-      background: linear-gradient(45deg, #8b0000, #cc4400, #ffaa00, #66cc00, #00aa00, #00cc66, #00aacc, #0066cc, #0000aa, #6600cc, #aa00aa, #cc0066);
+    .grade-yoshi {
+      background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700, #b8860b, #daa520);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      background-size: 400% 400%;
-      animation: dark-rainbow-glow 2s ease-in-out infinite, dark-rainbow-flow 3s linear infinite;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+      background-size: 200% 200%;
+      animation: gold-glow 2s ease-in-out infinite alternate, gold-flow 3s linear infinite;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+      /* Remove previous font-weight, will use .gradient-text for font-weight */
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, 
+        #f3c6c2,  /* ピンク */
+        #e2b2ff,  /* ラベンダー */
+        #adbaff,  /* ブルー */
+        #9ffcff  /* シアン */
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: bold;
     }
 
     @keyframes glow-red {
@@ -519,22 +532,22 @@
 
     @keyframes rainbow-glow {
       0%, 100% {
-        filter: drop-shadow(0 0 10px #ff0000) drop-shadow(0 0 20px #ff0000);
+        filter: drop-shadow(0 0 10px #00aeff) drop-shadow(0 0 20px #fefefe);
       }
       16.67% {
-        filter: drop-shadow(0 0 10px #ffff00) drop-shadow(0 0 20px #ffff00);
+        filter: drop-shadow(0 0 10px #ffff00) drop-shadow(0 0 20px #a4c6fd);
       }
       33.33% {
-        filter: drop-shadow(0 0 10px #00ff00) drop-shadow(0 0 20px #00ff00);
+        filter: drop-shadow(0 0 10px #00ff00) drop-shadow(0 0 20px #3ddddd);
       }
       50% {
         filter: drop-shadow(0 0 10px #00ffff) drop-shadow(0 0 20px #00ffff);
       }
       66.67% {
-        filter: drop-shadow(0 0 10px #0000ff) drop-shadow(0 0 20px #0000ff);
+        filter: drop-shadow(0 0 10px #0000ff) drop-shadow(0 0 20px #1753ae);
       }
       83.33% {
-        filter: drop-shadow(0 0 10px #ff00ff) drop-shadow(0 0 20px #ff00ff);
+        filter: drop-shadow(0 0 10px #ff00ff) drop-shadow(0 0 20px #01024f);
       }
     }
 
@@ -777,14 +790,27 @@
       animation: rainbow-glow 3s ease-in-out infinite, rainbow-flow 4s linear infinite;
     }
 
-    .grade-z {
-      background: linear-gradient(45deg, #8b0000, #cc4400, #ffaa00, #66cc00, #00aa00, #00cc66, #00aacc, #0066cc, #0000aa, #6600cc, #aa00aa, #cc0066);
+    .grade-yoshi {
+      background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700, #b8860b, #daa520);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      background-size: 400% 400%;
-      animation: dark-rainbow-glow 2s ease-in-out infinite, dark-rainbow-flow 3s linear infinite;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+      background-size: 200% 200%;
+      animation: gold-glow 2s ease-in-out infinite alternate, gold-flow 3s linear infinite;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+      /* Remove previous font-weight, will use .gradient-text for font-weight */
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, 
+        #f3c6c2,  /* ピンク */
+        #e2b2ff,  /* ラベンダー */
+        #adbaff,  /* ブルー */
+        #9ffcff  /* シアン */
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: bold;
     }
 
     @keyframes glow-red {
@@ -971,6 +997,21 @@
         width: 100%;
       }
     }
+
+    /* Add RUSK CSS */
+    .grade-rusk {
+      background: linear-gradient(90deg, #238dfe, #aacfff, #5fd2ff, #ffd54f, #08bfe8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      background-size: 200% 200%;
+      animation: gold-glow 2s ease-in-out infinite alternate, gold-flow 3s linear infinite;
+      text-shadow: 0 0 24px rgba(18, 24, 81, 0.7);
+      font-weight: bold;
+      animation: rainbow-glow 3s ease-in-out infinite, rainbow-flow 4s linear infinite;
+    }
+
+    /* ...existing styles... */
   </style>
 </head>
 <body style="background:#FFF9E3;">
@@ -989,6 +1030,7 @@
           <div class="score-item">
             <div class="score-label" data-ja="最高スコア" data-ko="최고 점수">최고 점수</div>
             <div class="score-value" id="high-score">0</div>
+            <div id="grade-logo" class="grade-logo grade-preview-demo" style="margin-top:8px;"></div>
           </div>
           <div class="score-item">
             <div class="score-label" data-ja="ゲーム時間" data-ko="게임 시간">게임 시간</div>
@@ -1048,10 +1090,11 @@
             <li data-ja="B級: 100,001-300,000点" data-ko="B급: 100,001-300,000점">B급: 100,001-300,000점</li>
             <li data-ja="A級: 300,001-500,000点" data-ko="A급: 300,001-500,000점">A급: 300,001-500,000점</li>
             <li data-ja="S級: 500,001-1,000,000点" data-ko="S급: 500,001-1,000,000점">S급: 500,001-1,000,000점</li>
-            <li data-ja="SS級: 1,000,001-3,000,000点" data-ko="SS급: 1,000,001-3,000,000점">SS급: 1,000,001-3,000,000점</li>
-            <li data-ja="SSS級: 3,000,001-10,000,000点" data-ko="SSS급: 3,000,001-10,000,000점">SSS급: 3,000,001-10,000,000점</li>
-            <li data-ja="SSS+級: 10,000,001-25,000,000点 (レインボーエフェクト)" data-ko="SSS+급: 10,000,001-25,000,000점 (무지개 효과)">SSS+급: 10,000,001-25,000,000점 (무지개 효과)</li>
-            <li data-ja="Z級: 25,000,001点以上 (ダークレインボーエフェクト)" data-ko="Z급: 25,000,001점 이상 (다크 무지개 효과)">Z급: 25,000,001점 이상 (다크 무지개 효과)</li>
+            <li data-ja="SS級: 1,000,001-10,000,000点" data-ko="SS급: 1,000,001-10,000,000점">SS급: 1,000,001-10,000,000점</li>
+            <li data-ja="SSS級: 10,000,001-50,000,000点" data-ko="SSS급: 10,000,001-50,000,000점">SSS급: 10,000,001-50,000,000점</li>
+            <li data-ja="SSS+級: 50,000,001-100,000,000点 (レインボーエフェクト)" data-ko="SSS+급: 50,000,001-100,000,000점 (무지개 효과)">SSS+급: 50,000,001-100,000,000점 (무지개 효과)</li>
+            <li data-ja="YOSHI級: 100,000,001点以上 (ゴールドエフェクト)" data-ko="YOSHI급: 100,000,001점 이상 (골드 효과)">YOSHI급: 100,000,001점 이상 (골드 효과)</li>
+            <li data-ja="RUSK級: 200,000,001点以上 (ゴールドエフェクト)" data-ko="RUSK급: 200,000,001점 이상 (골드 효과)">RUSK급: 200,000,001점 이상 (골드 효과)</li>
           </ul>
           
           <h3 data-ja="グレードプレビュー" data-ko="등급 미리보기">등급 미리보기</h3>
@@ -1085,13 +1128,17 @@
               <span class="grade-preview-demo grade-sss-plus">SSS+</span>
             </div>
             <div class="grade-preview-item">
-              <span class="grade-preview-label">Z급:</span>
-              <span class="grade-preview-demo grade-z">Z</span>
+              <span class="grade-preview-label">YOSHI급:</span>
+              <span class="grade-preview-demo grade-yoshi gradient-text">YOSHI</span>
             </div>
-          </div>
-          
-          <div class="grade-test-buttons">
-            <button class="control-btn" id="test-grades-btn" data-ja="全グレードテスト" data-ko="모든 등급 테스트">모든 등급 테스트</button>
+            <div class="grade-preview-item">
+              <span class="grade-preview-label">RUSK급:</span>
+              <span class="grade-preview-demo grade-rusk gradient-text">RUSK</span>
+            </div>
+
+            <div class="grade-test-buttons">
+              <button class="control-btn" id="test-grades-btn" data-ja="全グレードテスト" data-ko="모든 등급 테스트">모든 등급 테스트</button>
+            </div>
           </div>
         </div>
       </div>
@@ -1107,6 +1154,7 @@
           <div class="result-stat">
             <div class="result-stat-label" data-ja="最終スコア" data-ko="최종 점수">최종 점수</div>
             <div class="result-stat-value" id="final-score">0</div>
+            <div id="result-grade-logo" class="grade-logo grade-preview-demo" style="margin-top:8px;"></div>
           </div>
           <div class="result-stat">
             <div class="result-stat-label" data-ja="生存時間" data-ko="생존 시간">생존 시간</div>
@@ -1575,6 +1623,19 @@
         }, 1000);
       }
 
+      // 1. Utility function to get grade from score
+      getGradeInfo(score) {
+        if (score <= 100000) return { grade: 'C', class: 'grade-c' };
+        if (score <= 300000) return { grade: 'B', class: 'grade-b' };
+        if (score <= 500000) return { grade: 'A', class: 'grade-a' };
+        if (score <= 1000000) return { grade: 'S', class: 'grade-s' };
+        if (score <= 10000000) return { grade: 'SS', class: 'grade-ss' };
+        if (score <= 50000000) return { grade: 'SSS', class: 'grade-sss' };
+        if (score <= 100000000) return { grade: 'SSS+', class: 'grade-sss-plus' };
+        if (score <= 200000000) return { grade: 'YOSHI', class: 'grade-yoshi gradient-text' };
+        return { grade: 'RUSK', class: 'grade-rusk gradient-text' };
+      }
+
       showResultModal() {
         const modal = document.getElementById('game-result-modal');
         const gradeElement = document.getElementById('result-grade');
@@ -1605,29 +1666,42 @@
         } else if (this.score <= 1000000) {
           grade = 'S';
           gradeClass = 'grade-s';
-        } else if (this.score <= 3000000) {
+        } else if (this.score <= 10000000) {
           grade = 'SS';
           gradeClass = 'grade-ss';
-        } else if (this.score <= 5000000) {
+        } else if (this.score <= 50000000) {
           grade = 'SSS';
           gradeClass = 'grade-sss';
-        } else if (this.score <= 10000000) {
-          grade = 'SSS';
-          gradeClass = 'grade-sss';
-        } else if (this.score <= 25000000) {
+        } else if (this.score <= 100000000) {
           grade = 'SSS+';
           gradeClass = 'grade-sss-plus';
+        } else if (this.score <= 200000000) {
+          grade = 'YOSHI';
+          gradeClass = 'grade-yoshi gradient-text';
         } else {
-          grade = 'Z';
-          gradeClass = 'grade-z';
+          grade = 'RUSK';
+          gradeClass = 'grade-rusk gradient-text';
         }
 
         // Update modal content
         gradeElement.textContent = grade;
         gradeElement.className = `result-grade ${gradeClass}`;
         finalScoreElement.textContent = this.score.toLocaleString();
-        survivalTimeElement.textContent = `${survivalTime}초`;
-        rusksCollectedElement.textContent = `${rusksCollected}개`;
+        // Add this for the logo under final score
+        const resultGradeLogo = document.getElementById('result-grade-logo');
+        if (resultGradeLogo) {
+          resultGradeLogo.textContent = grade;
+          resultGradeLogo.className = `grade-logo grade-preview-demo ${gradeClass}`;
+        }
+
+        // Update grade logo under 최고스코어
+        const gradeLogo = document.getElementById('grade-logo');
+        const savedGrade = localStorage.getItem('dinoHighGrade');
+        if (gradeLogo && savedGrade) {
+          const info = JSON.parse(savedGrade);
+          gradeLogo.textContent = info.grade;
+          gradeLogo.className = `grade-logo grade-preview-demo ${info.class}`;
+        }
 
         // Show modal
         modal.classList.add('show');
@@ -1654,10 +1728,11 @@
           { score: 200000, label: 'B급 (200,000점)' },
           { score: 400000, label: 'A급 (400,000점)' },
           { score: 750000, label: 'S급 (750,000점)' },
-          { score: 2000000, label: 'SS급 (2,000,000점)' },
-          { score: 4000000, label: 'SSS급 (4,000,000점)' },
-          { score: 15000000, label: 'SSS+급 (15,000,000점)' },
-          { score: 30000000, label: 'Z급 (30,000,000점)' }
+          { score: 5000000, label: 'SS급 (5,000,000점)' },
+          { score: 25000000, label: 'SSS급 (25,000,000점)' },
+          { score: 75000000, label: 'SSS+급 (75,000,000점)' },
+          { score: 150000000, label: 'YOSHI급 (150,000,000점)' },
+          { score: 300000000, label: 'RUSK급 (300,000,000점)' }
         ];
 
         let currentIndex = 0;
@@ -1878,6 +1953,14 @@
     // Initialize game when page loads
     document.addEventListener('DOMContentLoaded', () => {
       new DinoGame();
+      // Restore grade logo from localStorage
+      const gradeLogo = document.getElementById('grade-logo');
+      const savedGrade = localStorage.getItem('dinoHighGrade');
+      if (gradeLogo && savedGrade) {
+        const info = JSON.parse(savedGrade);
+        gradeLogo.textContent = info.grade;
+        gradeLogo.className = `grade-logo grade-preview-demo ${info.class}`;
+      }
     });
   </script>
 </body>
