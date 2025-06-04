@@ -127,18 +127,87 @@
     }
 
     @media (max-width: 768px) {
+      .content {
+        padding: 10px;
+        margin: 10px auto;
+      }
+      
+      .game-container {
+        margin-top: 20px;
+      }
+      
+      .game-title {
+        font-size: 2em;
+        margin-bottom: 15px;
+      }
+      
       .game-canvas {
         max-width: 100%;
+        width: 100%;
         height: auto;
+      }
+      
+      #offline-canvas {
+        width: 100% !important;
+        height: 200px !important;
+        max-width: 100%;
+      }
+      
+      #main-frame-error {
+        max-width: 100%;
+        margin: 0;
+      }
+      
+      .score-display {
+        padding: 10px;
+        margin: 15px 0;
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .score-item {
+        flex: 1;
       }
       
       .control-btn {
         padding: 10px 20px;
         font-size: 14px;
+        margin: 5px;
+      }
+      
+      .game-controls {
+        flex-direction: column;
+        gap: 10px;
       }
       
       .score-value {
         font-size: 20px;
+      }
+      
+      .help__outer {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .help {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+      }
+      
+      .help__key_big {
+        padding: 12px 24px;
+        font-size: 16px;
+      }
+      
+      .game-instructions {
+        padding: 15px;
+        margin: 15px 0;
+      }
+      
+      .game-instructions li {
+        font-size: 14px;
+        padding: 6px 10px;
       }
     }
 
@@ -357,11 +426,31 @@
       }
       
       init() {
+        this.adjustCanvasSize();
         this.dino.y = this.ground - this.dino.height;
         this.updateDisplay();
         this.generateClouds();
         this.bindEvents();
         this.gameLoop();
+      }
+      
+      adjustCanvasSize() {
+        const container = this.canvas.parentElement;
+        const containerWidth = container.clientWidth;
+        const isMobile = window.innerWidth <= 768;
+        
+        if (isMobile) {
+          // Mobile: adjust canvas to fit screen
+          this.canvas.width = Math.min(containerWidth - 20, 400);
+          this.canvas.height = 200;
+        } else {
+          // Desktop: use default size
+          this.canvas.width = 600;
+          this.canvas.height = 300;
+        }
+        
+        // Update ground position based on new canvas height
+        this.ground = this.canvas.height - 50;
       }
       
       bindEvents() {
@@ -412,6 +501,12 @@
           } else if (this.gameState === 'stopped' || this.gameState === 'gameOver') {
             this.startGame();
           }
+        });
+        
+        // Window resize event
+        window.addEventListener('resize', () => {
+          this.adjustCanvasSize();
+          this.dino.y = this.ground - this.dino.height;
         });
       }
       
