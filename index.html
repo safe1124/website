@@ -66,6 +66,16 @@
   <canvas id="bg"></canvas>
   <!-- 오버레이 효과 -->
   <div id="site-overlay"></div>
+
+  <!-- Password Modal -->
+  <div id="password-modal">
+    <div class="modal-content">
+      <p>암호를 입력하세요</p>
+      <input type="password" id="password-input" />
+      <button id="password-submit">확인</button>
+      <p id="password-error" style="color:red; display:none;">암호가 틀렸습니다.</p>
+    </div>
+  </div>
   
   <div class="main-layout">
     <div class="content">
@@ -358,11 +368,44 @@
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const profile = document.getElementById('profile-container');
+
+      const modal = document.getElementById('password-modal');
+      const input = document.getElementById('password-input');
+      const submit = document.getElementById('password-submit');
+      const error = document.getElementById('password-error');
+
+      function showModal() {
+        modal.classList.add('active');
+        input.value = '';
+        error.style.display = 'none';
+        input.focus();
+      }
+
+      function checkPassword() {
+        if (input.value === '0721') {
+          modal.classList.remove('active');
+          profile.classList.add('clicked');
+        } else {
+          error.style.display = 'block';
+        }
+      }
+
+      if (profile) {
+        profile.addEventListener('click', showModal);
+      }
+      submit.addEventListener('click', checkPassword);
+      input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          checkPassword();
+        }
+      });
+=======
       if (profile) {
         profile.addEventListener('click', function () {
           profile.classList.toggle('clicked');
         });
       }
+
     });
   </script>
 </body>
