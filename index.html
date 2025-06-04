@@ -315,7 +315,54 @@
   </script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+      const area = document.getElementById('sphere-area');
+      const spheres = area.querySelectorAll('.sphere');
 
+      spheres.forEach(s => {
+        // 위치가 퍼질 목표 지점
+        const ang = Math.random() * Math.PI * 2;
+        const rad = 120 + Math.random() * 60;
+        s.dataset.tx = (Math.cos(ang) * rad).toFixed(1);
+        s.dataset.ty = (Math.sin(ang) * rad).toFixed(1);
+
+        // 초기 위치를 약간 흩어지게 설정
+        const initAng = Math.random() * Math.PI * 2;
+        const initRad = 20 + Math.random() * 30;
+        s.dataset.ix = (Math.cos(initAng) * initRad).toFixed(1);
+        s.dataset.iy = (Math.sin(initAng) * initRad).toFixed(1);
+
+        // 부드러운 흔들림을 위한 파라미터
+        s.dataset.fx = ((Math.random() - 0.5) * 10).toFixed(1);
+        s.dataset.fy = ((Math.random() - 0.5) * 10).toFixed(1);
+        s.dataset.fs = (2 + Math.random() * 3).toFixed(1); // 속도
+      });
+
+      let hover = false;
+      area.addEventListener('mouseenter', () => (hover = true));
+      area.addEventListener('mouseleave', () => (hover = false));
+
+      function animate() {
+        const t = Date.now() / 1000;
+        spheres.forEach(s => {
+          const baseX = hover ? parseFloat(s.dataset.tx) : parseFloat(s.dataset.ix);
+          const baseY = hover ? parseFloat(s.dataset.ty) : parseFloat(s.dataset.iy);
+          const floatX = parseFloat(s.dataset.fx) * Math.sin(t * s.dataset.fs);
+          const floatY = parseFloat(s.dataset.fy) * Math.cos(t * s.dataset.fs);
+          s.style.transform = `translate(calc(-50% + ${baseX + floatX}px), calc(-50% + ${baseY + floatY}px))`;
+        });
+        requestAnimationFrame(animate);
+      }
+      animate();
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const profile = document.getElementById('profile-container');
+      if (profile) {
+        profile.addEventListener('click', function () {
+          profile.classList.toggle('clicked');
+        });
+      }
     });
   </script>
 </body>
