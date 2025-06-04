@@ -293,9 +293,7 @@ p {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 36px;
-  height: 36px;
-  margin: -18px;
+
   border-radius: 50%;
   background: #ccc;
   transition: transform 0.5s ease;
@@ -303,22 +301,7 @@ p {
 }
 
 #sphere-area:hover .sphere {
-  /* fallback for browsers with JS disabled */
-  transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty)));
-}
 
-/* Profile image blur effect */
-#profile-container {
-  cursor: pointer;
-}
-
-#profile-container img {
-  filter: blur(8px);
-  transition: filter 0.3s ease;
-}
-
-#profile-container.clicked img {
-  filter: blur(0);
 }
 
 /* =====================
