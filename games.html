@@ -263,7 +263,7 @@
               <canvas id="offline-canvas" width="600" height="300"></canvas>
             </div>
             <div class="game__help">
-              <div class="game__start" data-ja="ゲーム開始" data-ko="게임 시작">스페이스바를 눌러 시작</div>
+             
             </div> 
           </div>
         </div>
@@ -329,9 +329,29 @@
         };
         
         this.obstacles = [];
+        this.bonusItems = [];
         this.clouds = [];
         this.ground = this.canvas.height - 50;
         this.lastObstacle = 0;
+        this.lastBonus = 0;
+        
+        // Load character image
+        this.characterImage = new Image();
+        this.characterImage.src = 'img/games/character.png';
+        this.imageLoaded = false;
+        
+        // Load rusk bonus item image
+        this.ruskImage = new Image();
+        this.ruskImage.src = 'img/games/rusk.png';
+        this.ruskImageLoaded = false;
+        
+        this.characterImage.onload = () => {
+          this.imageLoaded = true;
+        };
+        
+        this.ruskImage.onload = () => {
+          this.ruskImageLoaded = true;
+        };
         
         this.init();
       }
@@ -400,7 +420,9 @@
         this.score = 0;
         this.gameSpeed = 6;
         this.obstacles = [];
+        this.bonusItems = [];
         this.lastObstacle = 0;
+        this.lastBonus = 0;
         this.dino.y = this.ground - this.dino.height;
         this.dino.velocityY = 0;
         this.dino.jumping = false;
@@ -421,7 +443,9 @@
         this.score = 0;
         this.gameSpeed = 6;
         this.obstacles = [];
+        this.bonusItems = [];
         this.lastObstacle = 0;
+        this.lastBonus = 0;
         this.dino.y = this.ground - this.dino.height;
         this.dino.velocityY = 0;
         this.dino.jumping = false;
@@ -460,12 +484,26 @@
           this.lastObstacle = Date.now();
         }
         
+        // Generate bonus items (twice as frequent now)
+        if (Date.now() - this.lastBonus > 1500 + Math.random() * 1000) {
+          this.generateBonusItem();
+          this.lastBonus = Date.now();
+        }
+        
         // Update obstacles
         this.obstacles.forEach((obstacle, index) => {
           obstacle.x -= this.gameSpeed;
           if (obstacle.x + obstacle.width < 0) {
             this.obstacles.splice(index, 1);
             this.score += 10;
+          }
+        });
+        
+        // Update bonus items
+        this.bonusItems.forEach((bonus, index) => {
+          bonus.x -= this.gameSpeed;
+          if (bonus.x + bonus.width < 0) {
+            this.bonusItems.splice(index, 1);
           }
         });
         
@@ -488,26 +526,31 @@
       }
       
       generateObstacle() {
-        const types = ['cactus', 'bird'];
-        const type = types[Math.floor(Math.random() * types.length)];
+        // Only generate cactus obstacles now
+        this.obstacles.push({
+          x: this.canvas.width,
+          y: this.ground - 30,
+          width: 20,
+          height: 30,
+          type: 'cactus'
+        });
+      }
+      
+      generateBonusItem() {
+        // Generate rusk bonus item randomly on ground or in air
+        const positions = [
+          { y: this.ground - 30, height: 30 }, // Ground level (like cactus)
+          { y: this.ground - 80, height: 30 }  // Air level (like old bird)
+        ];
+        const randomPosition = positions[Math.floor(Math.random() * positions.length)];
         
-        if (type === 'cactus') {
-          this.obstacles.push({
-            x: this.canvas.width,
-            y: this.ground - 30,
-            width: 20,
-            height: 30,
-            type: 'cactus'
-          });
-        } else {
-          this.obstacles.push({
-            x: this.canvas.width,
-            y: this.ground - 80,
-            width: 30,
-            height: 20,
-            type: 'bird'
-          });
-        }
+        this.bonusItems.push({
+          x: this.canvas.width,
+          y: randomPosition.y,
+          width: 30,
+          height: randomPosition.height,
+          type: 'rusk'
+        });
       }
       
       generateClouds() {
@@ -529,9 +572,20 @@
           height: this.dino.ducking ? this.dino.height - 20 : this.dino.height
         };
         
+        // Check obstacle collisions
         this.obstacles.forEach(obstacle => {
           if (this.isColliding(dinoRect, obstacle)) {
             this.gameOver();
+          }
+        });
+        
+        // Check bonus item collisions
+        this.bonusItems.forEach((bonus, index) => {
+          if (this.isColliding(dinoRect, bonus)) {
+            const bonusScore = Math.floor(Math.random() * 50000) + 50000; // Random score between 50,000 and 100,000
+            this.score += bonusScore;
+            this.bonusItems.splice(index, 1); // Remove collected bonus item
+            this.updateDisplay();
           }
         });
       }
@@ -583,6 +637,11 @@
           }
         });
         
+        // Draw bonus items
+        this.bonusItems.forEach(bonus => {
+          this.drawRusk(bonus.x, bonus.y, bonus.width, bonus.height);
+        });
+        
         // Draw game state text
         if (this.gameState === 'stopped') {
           this.drawText('스페이스바를 눌러 시작', this.canvas.width / 2, this.canvas.height / 2, '20px Arial', '#535353');
@@ -595,35 +654,47 @@
       }
       
       drawDino() {
-        this.ctx.fillStyle = '#535353';
-        
-        if (this.dino.ducking) {
-          // Ducking dino (lower height)
-          this.ctx.fillRect(this.dino.x, this.dino.y + 20, this.dino.width, this.dino.height - 20);
-          // Eye
-          this.ctx.fillStyle = 'white';
-          this.ctx.fillRect(this.dino.x + 25, this.dino.y + 25, 6, 6);
-          this.ctx.fillStyle = 'black';
-          this.ctx.fillRect(this.dino.x + 27, this.dino.y + 27, 2, 2);
+        if (this.imageLoaded) {
+          // Use the loaded character image
+          this.ctx.drawImage(
+            this.characterImage, 
+            this.dino.x, 
+            this.dino.y, 
+            this.dino.width, 
+            this.dino.height
+          );
         } else {
-          // Standing/jumping dino
-          // Body
-          this.ctx.fillRect(this.dino.x + 8, this.dino.y + 12, 24, 20);
-          // Head
-          this.ctx.fillRect(this.dino.x + 4, this.dino.y + 4, 20, 16);
-          // Eye
-          this.ctx.fillStyle = 'white';
-          this.ctx.fillRect(this.dino.x + 18, this.dino.y + 8, 6, 6);
-          this.ctx.fillStyle = 'black';
-          this.ctx.fillRect(this.dino.x + 20, this.dino.y + 10, 2, 2);
-          // Legs
+          // Fallback to original drawing if image not loaded
           this.ctx.fillStyle = '#535353';
-          this.ctx.fillRect(this.dino.x + 12, this.dino.y + 32, 4, 8);
-          this.ctx.fillRect(this.dino.x + 20, this.dino.y + 32, 4, 8);
-          // Arms
-          this.ctx.fillRect(this.dino.x + 2, this.dino.y + 16, 8, 4);
-          // Tail
-          this.ctx.fillRect(this.dino.x + 32, this.dino.y + 16, 8, 4);
+          
+          if (this.dino.ducking) {
+            // Ducking dino (lower height)
+            this.ctx.fillRect(this.dino.x, this.dino.y + 20, this.dino.width, this.dino.height - 20);
+            // Eye
+            this.ctx.fillStyle = 'white';
+            this.ctx.fillRect(this.dino.x + 25, this.dino.y + 25, 6, 6);
+            this.ctx.fillStyle = 'black';
+            this.ctx.fillRect(this.dino.x + 27, this.dino.y + 27, 2, 2);
+          } else {
+            // Standing/jumping dino
+            // Body
+            this.ctx.fillRect(this.dino.x + 8, this.dino.y + 12, 24, 20);
+            // Head
+            this.ctx.fillRect(this.dino.x + 4, this.dino.y + 4, 20, 16);
+            // Eye
+            this.ctx.fillStyle = 'white';
+            this.ctx.fillRect(this.dino.x + 18, this.dino.y + 8, 6, 6);
+            this.ctx.fillStyle = 'black';
+            this.ctx.fillRect(this.dino.x + 20, this.dino.y + 10, 2, 2);
+            // Legs
+            this.ctx.fillStyle = '#535353';
+            this.ctx.fillRect(this.dino.x + 12, this.dino.y + 32, 4, 8);
+            this.ctx.fillRect(this.dino.x + 20, this.dino.y + 32, 4, 8);
+            // Arms
+            this.ctx.fillRect(this.dino.x + 2, this.dino.y + 16, 8, 4);
+            // Tail
+            this.ctx.fillRect(this.dino.x + 32, this.dino.y + 16, 8, 4);
+          }
         }
       }
       
@@ -648,6 +719,25 @@
         this.ctx.fillRect(x + 18, y + 4, 8, 4);
         // Head
         this.ctx.fillRect(x + 22, y + 6, 6, 6);
+      }
+      
+      drawRusk(x, y, width, height) {
+        if (this.ruskImageLoaded) {
+          // Use the loaded rusk image
+          this.ctx.drawImage(
+            this.ruskImage, 
+            x, 
+            y, 
+            width, 
+            height
+          );
+        } else {
+          // Fallback to simple drawing if image not loaded
+          this.ctx.fillStyle = '#D2691E';
+          this.ctx.fillRect(x, y, width, height);
+          this.ctx.fillStyle = '#F4A460';
+          this.ctx.fillRect(x + 2, y + 2, width - 4, height - 4);
+        }
       }
       
       drawCloud(x, y, width, height) {
