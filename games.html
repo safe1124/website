@@ -126,6 +126,59 @@
       border-left: 4px solid #667eea;
     }
 
+    /* Grade Preview Styles */
+    .grade-preview-container {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border: 2px solid #667eea;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .grade-preview-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 20px;
+      background: rgba(248, 249, 250, 0.8);
+      border-radius: 10px;
+      border: 1px solid #dee2e6;
+      transition: all 0.3s ease;
+    }
+
+    .grade-preview-item:hover {
+      background: rgba(248, 249, 250, 1);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .grade-preview-label {
+      font-weight: 600;
+      color: #333;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .grade-preview-demo {
+      font-size: 2.2em;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      min-width: 100px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .grade-test-buttons {
+      text-align: center;
+      margin: 20px 0;
+    }
+
     @media (max-width: 768px) {
       .content {
         padding: 10px;
@@ -219,6 +272,26 @@
       .game-instructions li {
         font-size: 14px;
         padding: 6px 10px;
+      }
+
+      .grade-preview-container {
+        padding: 15px;
+        gap: 10px;
+        max-width: 100%;
+        margin: 15px auto;
+      }
+
+      .grade-preview-item {
+        padding: 12px 15px;
+      }
+
+      .grade-preview-demo {
+        font-size: 2em;
+        min-width: 60px;
+      }
+
+      .grade-preview-label {
+        font-size: 14px;
       }
     }
 
@@ -619,6 +692,285 @@
         width: 100%;
       }
     }
+
+    .grade-preview-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .grade-preview-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 20px;
+      background: rgba(248, 249, 250, 0.8);
+      border-radius: 10px;
+      border: 1px solid #dee2e6;
+      transition: all 0.3s ease;
+    }
+
+    .grade-preview-item:hover {
+      background: rgba(248, 249, 250, 1);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .grade-preview-label {
+      font-weight: 600;
+      color: #333;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .grade-preview-demo {
+      font-size: 2.2em;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      min-width: 100px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .grade-c {
+      background: #6c757d;
+    }
+
+    .grade-b {
+      background: #007bff;
+    }
+
+    .grade-a {
+      background: #28a745;
+    }
+
+    .grade-s {
+      background: linear-gradient(45deg, #ffd700, #ffed4e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .grade-ss {
+      background: linear-gradient(45deg, #ff0000, #ff6b6b, #ff0000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: glow-red 2s ease-in-out infinite alternate;
+    }
+
+    .grade-sss {
+      background: linear-gradient(45deg, #8b00ff, #da70d6, #9370db, #8b00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: glow-purple 2s ease-in-out infinite alternate;
+    }
+
+    .grade-sss-plus {
+      background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      background-size: 300% 300%;
+      animation: rainbow-glow 3s ease-in-out infinite, rainbow-flow 4s linear infinite;
+    }
+
+    .grade-z {
+      background: linear-gradient(45deg, #8b0000, #cc4400, #ffaa00, #66cc00, #00aa00, #00cc66, #00aacc, #0066cc, #0000aa, #6600cc, #aa00aa, #cc0066);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      background-size: 400% 400%;
+      animation: dark-rainbow-glow 2s ease-in-out infinite, dark-rainbow-flow 3s linear infinite;
+      text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+    }
+
+    @keyframes glow-red {
+      from {
+        filter: drop-shadow(0 0 5px #ff0000);
+      }
+      to {
+        filter: drop-shadow(0 0 20px #ff0000);
+      }
+    }
+
+    @keyframes rainbow-glow {
+      0%, 100% {
+        filter: drop-shadow(0 0 10px #ff0000) drop-shadow(0 0 20px #ff0000);
+      }
+      16.67% {
+        filter: drop-shadow(0 0 10px #ffff00) drop-shadow(0 0 20px #ffff00);
+      }
+      33.33% {
+        filter: drop-shadow(0 0 10px #00ff00) drop-shadow(0 0 20px #00ff00);
+      }
+      50% {
+        filter: drop-shadow(0 0 10px #00ffff) drop-shadow(0 0 20px #00ffff);
+      }
+      66.67% {
+        filter: drop-shadow(0 0 10px #0000ff) drop-shadow(0 0 20px #0000ff);
+      }
+      83.33% {
+        filter: drop-shadow(0 0 10px #ff00ff) drop-shadow(0 0 20px #ff00ff);
+      }
+    }
+
+    @keyframes rainbow-flow {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes dark-rainbow-glow {
+      0%, 100% {
+        filter: drop-shadow(0 0 15px #8b0000) drop-shadow(0 0 30px #8b0000) drop-shadow(0 0 45px #8b0000);
+      }
+      16.67% {
+        filter: drop-shadow(0 0 15px #ffaa00) drop-shadow(0 0 30px #ffaa00) drop-shadow(0 0 45px #ffaa00);
+      }
+      33.33% {
+        filter: drop-shadow(0 0 15px #00aa00) drop-shadow(0 0 30px #00aa00) drop-shadow(0 0 45px #00aa00);
+      }
+      50% {
+        filter: drop-shadow(0 0 15px #00aacc) drop-shadow(0 0 30px #00aacc) drop-shadow(0 0 45px #00aacc);
+      }
+      66.67% {
+        filter: drop-shadow(0 0 15px #0000aa) drop-shadow(0 0 30px #0000aa) drop-shadow(0 0 45px #0000aa);
+      }
+      83.33% {
+        filter: drop-shadow(0 0 15px #aa00aa) drop-shadow(0 0 30px #aa00aa) drop-shadow(0 0 45px #aa00aa);
+      }
+    }
+
+    @keyframes dark-rainbow-flow {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes glow-purple {
+      from {
+        filter: drop-shadow(0 0 5px #8b00ff);
+      }
+      to {
+        filter: drop-shadow(0 0 20px #8b00ff);
+      }
+    }
+
+    .result-stats {
+      margin: 30px 0;
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .result-stat {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      font-size: 1.2em;
+    }
+
+    .result-stat-label {
+      color: #666;
+    }
+
+    .result-stat-value {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .result-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .result-btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .result-btn-primary {
+      background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .result-btn-secondary {
+      background: #6c757d;
+      color: white;
+    }
+
+    .result-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .result-content {
+        padding: 30px 20px;
+        margin: 20px;
+        max-width: 90%;
+      }
+
+      .result-title {
+        font-size: 2em;
+        margin-bottom: 15px;
+      }
+
+      .result-grade {
+        font-size: 3em;
+        margin: 15px 0;
+      }
+
+      .result-stats {
+        margin: 20px 0;
+        gap: 10px;
+      }
+
+      .result-stat {
+        padding: 12px;
+      }
+
+      .result-stat-label {
+        font-size: 0.8em;
+      }
+
+      .result-stat-value {
+        font-size: 1.3em;
+      }
+
+      .result-buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .result-btn {
+        padding: 15px 20px;
+        font-size: 16px;
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body style="background:#FFF9E3;">
@@ -627,7 +979,7 @@
       <h1 data-ja="ゲーム" data-ko="게임">게임</h1>
       
       <div class="game-container">
-        <h2 class="game-title" data-ja="ラスクゲーム" data-ko="러스크게임">ラスクゲーム</h2>
+        <h2 class="game-title" data-ja="ラスクゲーム" data-ko="러스크게임">ラス크게임</h2>
         
         <div class="score-display">
           <div class="score-item">
@@ -701,6 +1053,46 @@
             <li data-ja="SSS+級: 10,000,001-25,000,000点 (レインボーエフェクト)" data-ko="SSS+급: 10,000,001-25,000,000점 (무지개 효과)">SSS+급: 10,000,001-25,000,000점 (무지개 효과)</li>
             <li data-ja="Z級: 25,000,001点以上 (ダークレインボーエフェクト)" data-ko="Z급: 25,000,001점 이상 (다크 무지개 효과)">Z급: 25,000,001점 이상 (다크 무지개 효과)</li>
           </ul>
+          
+          <h3 data-ja="グレードプレビュー" data-ko="등급 미리보기">등급 미리보기</h3>
+          <div class="grade-preview-container">
+            <div class="grade-preview-item">
+              <span class="grade-preview-label">C급:</span>
+              <span class="grade-preview-demo grade-c">C</span>
+            </div>
+            <div class="grade-preview-item">
+              <span class="grade-preview-label">B급:</span>
+              <span class="grade-preview-demo grade-b">B</span>
+            </div>
+            <div class="grade-preview-item">
+              <span class="grade-preview-label">A급:</span>
+              <span class="grade-preview-demo grade-a">A</span>
+            </div>
+            <div class="grade-preview-item">
+              <span class="grade-preview-label">S급:</span>
+              <span class="grade-preview-demo grade-s">S</span>
+            </div>
+            <div class="grade-preview-item">
+              <span class="grade-preview-label">SS급:</span>
+              <span class="grade-preview-demo grade-ss">SS</span>
+            </div>
+            <div class="grade-preview-item">
+              <span class="grade-preview-label">SSS급:</span>
+              <span class="grade-preview-demo grade-sss">SSS</span>
+            </div>
+            <div class="grade-preview-item">
+              <span class="grade-preview-label">SSS+급:</span>
+              <span class="grade-preview-demo grade-sss-plus">SSS+</span>
+            </div>
+            <div class="grade-preview-item">
+              <span class="grade-preview-label">Z급:</span>
+              <span class="grade-preview-demo grade-z">Z</span>
+            </div>
+          </div>
+          
+          <div class="grade-test-buttons">
+            <button class="control-btn" id="test-grades-btn" data-ja="全グレードテスト" data-ko="모든 등급 테스트">모든 등급 테스트</button>
+          </div>
         </div>
       </div>
     </div>
@@ -920,21 +1312,9 @@
           this.dino.y = this.ground - this.dino.height;
         });
 
-        // Result modal event listeners
-        document.getElementById('play-again-btn').addEventListener('click', () => {
-          this.hideResultModal();
-          this.startGame();
-        });
-
-        document.getElementById('close-result-btn').addEventListener('click', () => {
-          this.hideResultModal();
-        });
-
-        // Close modal when clicking outside
-        document.getElementById('game-result-modal').addEventListener('click', (e) => {
-          if (e.target.id === 'game-result-modal') {
-            this.hideResultModal();
-          }
+        // Grade test button event listener
+        document.getElementById('test-grades-btn').addEventListener('click', () => {
+          this.testAllGrades();
         });
       }
       
@@ -1255,6 +1635,63 @@
         if (seconds <= 40) return 10000;
         if (seconds <= 50) return 100000;
         return 1000000;
+      }
+
+      // Test all grades by showing modal with different scores
+      testAllGrades() {
+        const grades = [
+          { score: 50000, label: 'C급 (50,000점)' },
+          { score: 200000, label: 'B급 (200,000점)' },
+          { score: 400000, label: 'A급 (400,000점)' },
+          { score: 750000, label: 'S급 (750,000점)' },
+          { score: 2000000, label: 'SS급 (2,000,000점)' },
+          { score: 4000000, label: 'SSS급 (4,000,000점)' },
+          { score: 15000000, label: 'SSS+급 (15,000,000점)' },
+          { score: 30000000, label: 'Z급 (30,000,000점)' }
+        ];
+
+        let currentIndex = 0;
+
+        const showNextGrade = () => {
+          if (currentIndex >= grades.length) {
+            // Reset to game state after showing all grades
+            this.resetGame();
+            return;
+          }
+
+          const currentGrade = grades[currentIndex];
+          const originalScore = this.score;
+          const originalStartTime = this.gameStartTime;
+          
+          // Temporarily set score and start time for the test
+          this.score = currentGrade.score;
+          this.gameStartTime = Date.now() - 30000; // Simulate 30 seconds play time
+          this.rusksCollected = Math.floor(currentGrade.score / 75000); // Simulate rusk collection
+          
+          // Show the result modal
+          this.showResultModal();
+          
+          // Update the modal title to indicate this is a test
+          const resultTitle = document.querySelector('.result-title');
+          if (resultTitle) {
+            resultTitle.textContent = `등급 미리보기: ${currentGrade.label}`;
+          }
+
+          // Restore original values
+          this.score = originalScore;
+          this.gameStartTime = originalStartTime;
+          this.rusksCollected = 0;
+
+          currentIndex++;
+
+          // Auto-close modal after 3 seconds and show next grade
+          setTimeout(() => {
+            this.hideResultModal();
+            setTimeout(showNextGrade, 500); // Small delay between grades
+          }, 3000);
+        };
+
+        showNextGrade();
       }
       
       draw() {
