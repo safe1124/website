@@ -149,13 +149,20 @@
       
       #offline-canvas {
         width: 100% !important;
-        height: 200px !important;
+        height: 180px !important;
         max-width: 100%;
+        border-radius: 8px;
       }
       
       #main-frame-error {
         max-width: 100%;
         margin: 0;
+      }
+      
+      .icon.icon-offline {
+        height: 200px !important;
+        padding: 10px;
+        box-sizing: border-box;
       }
       
       .score-display {
@@ -226,6 +233,9 @@
       height: 300px;
       background: #f7f7f7;
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .game__help {
@@ -287,28 +297,12 @@
     .help__keys-line {
       display: flex;
       gap: 5px;
+      justify-content: center;
     }
   </style>
 </head>
-<body>
-  <header class="header">
-    <div class="container">
-      <div class="header-content">
-        <div class="logo">
-          <h1>My Website</h1>
-        </div>
-        <div class="nav-container" id="nav-container"></div>
-        <div class="language-switcher">
-          <button id="lang-toggle" aria-label="언어 변경">
-            <i class="fas fa-globe"></i>
-            <span id="current-lang">KO</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main class="main">
+<body style="background:#FFF9E3;">
+  <div id="nav-placeholder"></div>
     <div class="content">
       <h1 data-ja="ゲーム" data-ko="게임">게임</h1>
       
@@ -427,11 +421,27 @@
       
       init() {
         this.adjustCanvasSize();
+        this.adjustDinoSize();
         this.dino.y = this.ground - this.dino.height;
         this.updateDisplay();
         this.generateClouds();
         this.bindEvents();
         this.gameLoop();
+      }
+      
+      adjustDinoSize() {
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile) {
+          // Adjust dino size for mobile
+          const scale = this.canvas.width / 600; // Scale based on canvas width
+          this.dino.width = Math.max(30, Math.floor(40 * scale));
+          this.dino.height = Math.max(30, Math.floor(40 * scale));
+          this.dino.x = Math.floor(this.canvas.width * 0.083); // 8.3% from left
+        } else {
+          this.dino.width = 40;
+          this.dino.height = 40;
+          this.dino.x = 50;
+        }
       }
       
       adjustCanvasSize() {
@@ -440,9 +450,18 @@
         const isMobile = window.innerWidth <= 768;
         
         if (isMobile) {
-          // Mobile: adjust canvas to fit screen
-          this.canvas.width = Math.min(containerWidth - 20, 400);
-          this.canvas.height = 200;
+          // Mobile: adjust canvas to fit screen with proper aspect ratio
+          const availableWidth = Math.min(containerWidth - 20, window.innerWidth - 40);
+          const aspectRatio = 600 / 300; // Original aspect ratio (2:1)
+          
+          this.canvas.width = availableWidth;
+          this.canvas.height = Math.min(availableWidth / aspectRatio, 180); // Max height 180px for mobile
+          
+          // Ensure canvas fits in viewport
+          if (this.canvas.height > window.innerHeight * 0.3) {
+            this.canvas.height = Math.floor(window.innerHeight * 0.3);
+            this.canvas.width = this.canvas.height * aspectRatio;
+          }
         } else {
           // Desktop: use default size
           this.canvas.width = 600;
@@ -450,7 +469,7 @@
         }
         
         // Update ground position based on new canvas height
-        this.ground = this.canvas.height - 50;
+        this.ground = this.canvas.height - Math.floor(this.canvas.height * 0.167); // Ground at ~83% of canvas height
       }
       
       bindEvents() {
@@ -506,6 +525,7 @@
         // Window resize event
         window.addEventListener('resize', () => {
           this.adjustCanvasSize();
+          this.adjustDinoSize();
           this.dino.y = this.ground - this.dino.height;
         });
       }
@@ -622,27 +642,33 @@
       
       generateObstacle() {
         // Only generate cactus obstacles now
+        const isMobile = window.innerWidth <= 768;
+        const scale = isMobile ? this.canvas.width / 600 : 1;
+        
         this.obstacles.push({
           x: this.canvas.width,
-          y: this.ground - 30,
-          width: 20,
-          height: 30,
+          y: this.ground - Math.floor(30 * scale),
+          width: Math.floor(20 * scale),
+          height: Math.floor(30 * scale),
           type: 'cactus'
         });
       }
       
       generateBonusItem() {
         // Generate rusk bonus item randomly on ground or in air
+        const isMobile = window.innerWidth <= 768;
+        const scale = isMobile ? this.canvas.width / 600 : 1;
+        
         const positions = [
-          { y: this.ground - 30, height: 30 }, // Ground level (like cactus)
-          { y: this.ground - 80, height: 30 }  // Air level (like old bird)
+          { y: this.ground - Math.floor(30 * scale), height: Math.floor(30 * scale) }, // Ground level (like cactus)
+          { y: this.ground - Math.floor(80 * scale), height: Math.floor(30 * scale) }  // Air level (like old bird)
         ];
         const randomPosition = positions[Math.floor(Math.random() * positions.length)];
         
         this.bonusItems.push({
           x: this.canvas.width,
           y: randomPosition.y,
-          width: 30,
+          width: Math.floor(30 * scale),
           height: randomPosition.height,
           type: 'rusk'
         });
@@ -738,13 +764,17 @@
         });
         
         // Draw game state text
+        const isMobile = window.innerWidth <= 768;
+        const fontSize = isMobile ? Math.max(12, Math.floor(this.canvas.width / 30)) : 20;
+        const largeFontSize = isMobile ? Math.max(16, Math.floor(this.canvas.width / 25)) : 24;
+        
         if (this.gameState === 'stopped') {
-          this.drawText('스페이스바를 눌러 시작', this.canvas.width / 2, this.canvas.height / 2, '20px Arial', '#535353');
+          this.drawText('스페이스바를 눌러 시작', this.canvas.width / 2, this.canvas.height / 2, `${fontSize}px Arial`, '#535353');
         } else if (this.gameState === 'paused') {
-          this.drawText('일시정지', this.canvas.width / 2, this.canvas.height / 2, '24px Arial', '#535353');
+          this.drawText('일시정지', this.canvas.width / 2, this.canvas.height / 2, `${largeFontSize}px Arial`, '#535353');
         } else if (this.gameState === 'gameOver') {
-          this.drawText('게임 오버!', this.canvas.width / 2, this.canvas.height / 2 - 20, '24px Arial', '#e74c3c');
-          this.drawText('스페이스바를 눌러 다시 시작', this.canvas.width / 2, this.canvas.height / 2 + 20, '16px Arial', '#535353');
+          this.drawText('게임 오버!', this.canvas.width / 2, this.canvas.height / 2 - 20, `${largeFontSize}px Arial`, '#e74c3c');
+          this.drawText('스페이스바를 눌러 다시 시작', this.canvas.width / 2, this.canvas.height / 2 + 20, `${fontSize}px Arial`, '#535353');
         }
       }
       
