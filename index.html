@@ -73,7 +73,7 @@
       
       <!-- 큰 동그라미 추가 -->
       <div style="display: flex; justify-content: center; align-items: center; height: 320px; margin: 40px 0;">
-        <div style="
+        <div id="profile-container" style="
           width: 260px;
           height: 260px;
           border-radius: 50%;
@@ -91,7 +91,7 @@
             /Users/shin/Desktop/study/img/profile.jpg 와 같이 img 폴더를 만들어 저장하세요.
             예시: <img src="img/profile.jpg" alt="프로필 이미지" style="width:100%;height:100%;object-fit:cover;">
           -->
-          <img src="img/profile.JPEG" alt="프로필 이미지" style="width:100%;height:100%;object-fit:cover;">
+          <img src="img/profile.JPEG" alt="프로필 이미지" class="profile-img" style="width:100%;height:100%;object-fit:cover;">
         </div>
       </div>
 
@@ -353,6 +353,16 @@
         requestAnimationFrame(animate);
       }
       animate();
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const profile = document.getElementById('profile-container');
+      if (profile) {
+        profile.addEventListener('click', function () {
+          profile.classList.toggle('clicked');
+        });
+      }
     });
   </script>
 </body>

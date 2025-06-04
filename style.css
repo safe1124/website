@@ -307,6 +307,20 @@ p {
   transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty)));
 }
 
+/* Profile image blur effect */
+#profile-container {
+  cursor: pointer;
+}
+
+#profile-container img {
+  filter: blur(8px);
+  transition: filter 0.3s ease;
+}
+
+#profile-container.clicked img {
+  filter: blur(0);
+}
+
 /* =====================
  PC(데스크탑) 스타일
  ===================== */
