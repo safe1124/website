@@ -319,6 +319,7 @@ p {
 
 #profile-container.clicked img {
   filter: blur(0);
+
 }
 
 /* Password modal for profile */
@@ -356,6 +357,8 @@ p {
   margin-top: 10px;
   padding: 8px 16px;
   font-size: 1rem;
+=======
+
 }
 
 /* =====================
