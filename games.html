@@ -1933,7 +1933,17 @@
       updateDisplay() {
         document.getElementById('current-score').textContent = this.score;
         document.getElementById('high-score').textContent = this.highScore;
-        
+
+        // Update high score grade logo
+        const gradeLogo = document.getElementById('grade-logo');
+        if (gradeLogo) {
+          const gradeInfo = this.getGradeInfo(this.highScore);
+          gradeLogo.textContent = gradeInfo.grade;
+          gradeLogo.className = `grade-logo grade-preview-demo ${gradeInfo.class}`;
+          // Save to localStorage for persistence
+          localStorage.setItem('dinoHighGrade', JSON.stringify(gradeInfo));
+        }
+
         // Update game time
         if (this.gameState === 'running' && this.gameStartTime > 0) {
           const gameTimeSeconds = Math.floor((Date.now() - this.gameStartTime) / 1000);
@@ -1956,8 +1966,15 @@
       // Restore grade logo from localStorage
       const gradeLogo = document.getElementById('grade-logo');
       const savedGrade = localStorage.getItem('dinoHighGrade');
-      if (gradeLogo && savedGrade) {
-        const info = JSON.parse(savedGrade);
+      const highScore = localStorage.getItem('dinoHighScore') || 0;
+      if (gradeLogo) {
+        let info;
+        if (savedGrade) {
+          info = JSON.parse(savedGrade);
+        } else {
+          // fallback: calculate grade from highScore
+          info = (new DinoGame()).getGradeInfo(highScore);
+        }
         gradeLogo.textContent = info.grade;
         gradeLogo.className = `grade-logo grade-preview-demo ${info.class}`;
       }
