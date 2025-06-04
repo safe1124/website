@@ -1316,6 +1316,16 @@
         document.getElementById('test-grades-btn').addEventListener('click', () => {
           this.testAllGrades();
         });
+
+        // Game result modal button event listeners
+        document.getElementById('play-again-btn').addEventListener('click', () => {
+          this.hideResultModal();
+          this.startGame();
+        });
+
+        document.getElementById('close-result-btn').addEventListener('click', () => {
+          this.hideResultModal();
+        });
       }
       
       startGame() {
