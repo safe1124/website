@@ -149,7 +149,8 @@
       
       #offline-canvas {
         width: 100% !important;
-        height: 180px !important;
+        height: auto !important;
+        min-height: 220px !important;
         max-width: 100%;
         border-radius: 8px;
       }
@@ -160,7 +161,8 @@
       }
       
       .icon.icon-offline {
-        height: 200px !important;
+        height: auto !important;
+        min-height: 240px !important;
         padding: 10px;
         box-sizing: border-box;
       }
@@ -437,10 +439,14 @@
           this.dino.width = Math.max(30, Math.floor(40 * scale));
           this.dino.height = Math.max(30, Math.floor(40 * scale));
           this.dino.x = Math.floor(this.canvas.width * 0.083); // 8.3% from left
+          
+          // Adjust jump power based on canvas height
+          this.jumpPower = -Math.max(12, Math.floor(this.canvas.height * 0.055)); // Proportional to canvas height
         } else {
           this.dino.width = 40;
           this.dino.height = 40;
           this.dino.x = 50;
+          this.jumpPower = -15; // Default jump power for desktop
         }
       }
       
@@ -450,17 +456,23 @@
         const isMobile = window.innerWidth <= 768;
         
         if (isMobile) {
-          // Mobile: adjust canvas to fit screen with proper aspect ratio
+          // Mobile: use wider aspect ratio for better gameplay
           const availableWidth = Math.min(containerWidth - 20, window.innerWidth - 40);
-          const aspectRatio = 600 / 300; // Original aspect ratio (2:1)
+          const mobileAspectRatio = 1.8; // Slightly less wide than desktop (1.8:1 vs 2:1)
           
           this.canvas.width = availableWidth;
-          this.canvas.height = Math.min(availableWidth / aspectRatio, 180); // Max height 180px for mobile
+          this.canvas.height = Math.max(availableWidth / mobileAspectRatio, 220); // Min height 220px for mobile
           
-          // Ensure canvas fits in viewport
-          if (this.canvas.height > window.innerHeight * 0.3) {
-            this.canvas.height = Math.floor(window.innerHeight * 0.3);
-            this.canvas.width = this.canvas.height * aspectRatio;
+          // Ensure canvas fits in viewport but allow more vertical space
+          if (this.canvas.height > window.innerHeight * 0.45) {
+            this.canvas.height = Math.floor(window.innerHeight * 0.45);
+            this.canvas.width = this.canvas.height * mobileAspectRatio;
+          }
+          
+          // Ensure minimum dimensions for playability
+          if (this.canvas.height < 220) {
+            this.canvas.height = 220;
+            this.canvas.width = this.canvas.height * mobileAspectRatio;
           }
         } else {
           // Desktop: use default size
@@ -468,8 +480,8 @@
           this.canvas.height = 300;
         }
         
-        // Update ground position based on new canvas height
-        this.ground = this.canvas.height - Math.floor(this.canvas.height * 0.167); // Ground at ~83% of canvas height
+        // Update ground position based on new canvas height - more space at bottom
+        this.ground = this.canvas.height - Math.floor(this.canvas.height * 0.2); // Ground at ~80% of canvas height
       }
       
       bindEvents() {
@@ -659,9 +671,12 @@
         const isMobile = window.innerWidth <= 768;
         const scale = isMobile ? this.canvas.width / 600 : 1;
         
+        // Air height should be proportional to canvas height
+        const airHeight = Math.floor((this.canvas.height - this.ground) * 1.8); // More reasonable air height
+        
         const positions = [
           { y: this.ground - Math.floor(30 * scale), height: Math.floor(30 * scale) }, // Ground level (like cactus)
-          { y: this.ground - Math.floor(80 * scale), height: Math.floor(30 * scale) }  // Air level (like old bird)
+          { y: this.ground - airHeight, height: Math.floor(30 * scale) }  // Air level
         ];
         const randomPosition = positions[Math.floor(Math.random() * positions.length)];
         
@@ -675,10 +690,13 @@
       }
       
       generateClouds() {
-        for (let i = 0; i < 3; i++) {
+        const cloudCount = window.innerWidth <= 768 ? 2 : 3; // Fewer clouds on mobile
+        const maxY = this.canvas.height * 0.4; // Clouds in upper 40% of screen
+        
+        for (let i = 0; i < cloudCount; i++) {
           this.clouds.push({
             x: Math.random() * this.canvas.width,
-            y: 50 + Math.random() * 50,
+            y: 20 + Math.random() * maxY,
             width: 40,
             height: 20
           });
