@@ -99,6 +99,31 @@
       <div class="shin-title">
         SHIN
       </div>
+
+      <!-- Sphere Effect -->
+      <div id="sphere-area">
+        <!-- 20 grey spheres -->
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+      </div>
       <div class="social-links">
         <a rel="noopener" href="https://www.youtube.com/@tcu_vlog2215" class="social-button youtube" target="_blank" data-ja="ユーチューブ" data-ko="유튜브">
           <i class="fab fa-youtube"></i>
@@ -287,6 +312,19 @@
       requestAnimationFrame(animate);
     }
     animate();
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const spheres = document.querySelectorAll('#sphere-area .sphere');
+      spheres.forEach(s => {
+        const angle = Math.random() * Math.PI * 2;
+        const radius = 120 + Math.random() * 60;
+        const tx = Math.cos(angle) * radius;
+        const ty = Math.sin(angle) * radius;
+        s.style.setProperty('--tx', tx + 'px');
+        s.style.setProperty('--ty', ty + 'px');
+      });
+    });
   </script>
 </body>
 </html>

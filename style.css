@@ -278,7 +278,32 @@ p {
  --button-width: 3em;
  --button-height: 1.8em;
  --toggle-diameter: 1.3em;
- }
+} 
+}
+
+/* Sphere effect styles */
+#sphere-area {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 40px auto;
+}
+
+#sphere-area .sphere {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin: -12px;
+  border-radius: 50%;
+  background: #ccc;
+  transition: transform 0.5s ease;
+  transform: translate(-50%, -50%);
+}
+
+#sphere-area:hover .sphere {
+  transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty)));
 }
 
 /* =====================
