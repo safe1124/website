@@ -397,49 +397,207 @@
     .skill-tag.vercel { background: #000000; }
     .skill-tag.docker { background: #2496ed; }
 
+    /* Hero Section - Night Sky with Stars and Moon */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(to bottom, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .stars-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    .moon {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: #f8f8f8;
+      border-radius: 50%;
+      box-shadow: 0 0 50px rgba(248, 248, 248, 0.3);
+      z-index: 2;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+    }
+
+    .text-line {
+      font-family: 'GraphikBold', 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Arial Black', sans-serif;
+      font-size: 8rem;
+      font-weight: bold;
+      line-height: 0.8;
+      transition: transform 0.3s ease-out;
+    }
+
+    .text-solid {
+      color: #4FC3F7;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .text-outline {
+      color: transparent;
+      -webkit-text-stroke: 3px #4FC3F7;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 2rem;
+      animation: bounce 2s infinite;
+      z-index: 3;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      40% {
+        transform: translateX(-50%) translateY(-10px);
+      }
+      60% {
+        transform: translateX(-50%) translateY(-5px);
+      }
+    }
+
     @media (max-width: 768px) {
-      .about-me-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
+      .text-line {
+        font-size: 4rem;
       }
       
-      .about-me-header h2 {
-        font-size: 2rem;
+      .moon {
+        width: 200px;
+        height: 200px;
       }
-      
-      .about-item {
-        padding: 15px;
-      }
+    }
+    
+    /* Hero Section - Night Sky with Stars */
+    .hero {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(135deg, #0a0a23 0%, #1a1a2e 50%, #16213e 100%);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
-      .skills-section {
-        margin: 40px auto;
-        padding: 30px 15px;
-      }
-      
-      .skills-header h2 {
-        font-size: 2rem;
-      }
-      
-      .skill-category {
-        padding: 20px;
-        flex-direction: column;
-        gap: 15px;
-      }
+    .stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
 
-      .skill-category-icon {
-        font-size: 1.5rem;
-        min-width: auto;
-        justify-content: flex-start;
-      }
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite alternate;
+    }
 
-      .skill-tag {
-        font-size: 0.8rem;
-        padding: 6px 12px;
+    @keyframes twinkle {
+      0% { opacity: 0.3; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.2); }
+    }
+
+    .moon {
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #bbb;
+      overflow: hidden;
+      z-index: 5;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 20;
+      text-align: center;
+      color: white;
+      font-family: 'GraphikBold', 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Arial Black', sans-serif;
+      font-weight: bold;
+    }
+
+    .hero-text .line1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      transition: transform 1.2s ease-out;
+      transform: translateX(-400px);
+    }
+
+    .hero-text .line2 {
+      font-size: 2.5rem;
+      letter-spacing: 0.2em;
+      transition: transform 1.2s ease-out;
+      transform: translateX(400px);
+    }
+
+    .hero-text.scroll-animation .line1 {
+      transform: translateX(-50vw);
+    }
+
+    .hero-text.scroll-animation .line2 {
+      transform: translateX(50vw);
+    }
+
+    @media (max-width: 768px) {
+      .hero-text .line1 {
+        font-size: 2.5rem;
+        transform: translateX(-350px);
+      }
+      .hero-text .line2 {
+        font-size: 1.8rem;
+        transform: translateX(350px);
+      }
+      .moon {
+        width: 200px;
+        height: 200px;
       }
     }
   </style>
-  <script src="language-switcher.js"></script>
-  <script src="load-nav.js" defer></script> <!-- load-nav.js 추가 -->
+
   <script>
     // 로딩 애니메이션 - 기존 오버레이 대체
     window.addEventListener('DOMContentLoaded', function() {
@@ -457,6 +615,39 @@
         }, 800);
       }, 1500);
     });
+
+    // Hero section scroll animation
+    window.addEventListener('scroll', function() {
+      const heroText = document.querySelector('.hero-text');
+      const scrollPosition = window.scrollY;
+      
+      if (scrollPosition > 200) {
+        heroText.classList.add('scroll-animation');
+      } else {
+        heroText.classList.remove('scroll-animation');
+      }
+    });
+
+    // Create twinkling stars
+    function createStars() {
+      const starsContainer = document.querySelector('.stars');
+      const numStars = 100;
+      
+      for (let i = 0; i < numStars; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.width = Math.random() * 3 + 1 + 'px';
+        star.style.height = star.style.width;
+        star.style.animationDelay = Math.random() * 2 + 's';
+        star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        starsContainer.appendChild(star);
+      }
+    }
+
+    // Initialize stars when page loads
+    document.addEventListener('DOMContentLoaded', createStars);
   </script>
 </head>
 <body>
@@ -487,6 +678,18 @@
       <p id="password-error" style="color:red; display:none;" data-ja="パスワードが間違っています。" data-ko="암호가 틀렸습니다.">암호가 틀렸습니다.</p>
     </div>
   </div>
+
+  <!-- Hero Section - Night Sky with Twinkling Stars -->
+  <section class="hero">
+    <div class="stars"></div>
+    <div class="moon">
+      <!-- Moon could contain an image or icon, leaving as placeholder for now -->
+    </div>
+    <div class="hero-text">
+      <div class="line1">SHIN</div>
+      <div class="line2">FRONTEND</div>
+    </div>
+  </section>
   
   <div class="main-layout">
     <div class="content">
@@ -667,16 +870,7 @@
         </div>
       </div>
     </div>
-    <aside class="youtube-sidebar">
-      <h2 id="youtube-title" data-ja="最新のYouTube動画" data-ko="최신 YouTube 동영상">最新のYouTube動画</h2>
-      <div class="youtube-videos">
-        <div class="youtube-section-title" id="latest-videos" data-ja="最新動画（최신영상）" data-ko="최신 동영상（最新動画）">最新動画（최신영상）</div>
-        <iframe width="100%" height="180" src="https://www.youtube.com/embed/w8iq04de_RA" title="YouTube video 1" frameborder="0" allowfullscreen></iframe>
-        <iframe width="100%" height="180" src="https://www.youtube.com/embed/7kz51n1eNtc" title="YouTube video 2" frameborder="0" allowfullscreen></iframe>
-        <iframe width="100%" height="180" src="https://www.youtube.com/embed/09uETkRHY8k" title="YouTube video 3" frameborder="0" allowfullscreen></iframe>
-      </div>
-      <a rel="noopener" href="https://www.youtube.com/@tcu_vlog2215" target="_blank" class="youtube-more" id="more-link" data-ja="もっと見る" data-ko="더 보기">もっと見る</a>
-    </aside>
+    
 
   </div>
 
