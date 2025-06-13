@@ -226,6 +226,53 @@
       transform: translateY(0);
     }
 
+    @media (max-width: 768px) {
+      .about-me-section {
+        margin: 40px auto;
+        padding: 20px 10px;
+        max-width: calc(100vw - 20px);
+        overflow-x: hidden;
+      }
+      
+      .about-me-header h2 {
+        font-size: 2rem;
+        text-align: center;
+      }
+      
+      .about-me-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        max-width: 100%;
+        padding: 0;
+      }
+      
+      .about-item {
+        padding: 15px;
+        margin: 0;
+        width: 100%;
+        box-sizing: border-box;
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+      }
+      
+      .about-content h3 {
+        font-size: 0.9rem;
+        margin-bottom: 3px;
+      }
+      
+      .about-content p {
+        font-size: 0.85rem;
+        margin: 0;
+      }
+
+      .about-item i {
+        font-size: 1.2rem;
+        min-width: 20px;
+        margin-right: 10px;
+      }
+    }
+
     .about-me-header {
       display: flex;
       align-items: center;
@@ -314,6 +361,60 @@
     .skills-section.animate {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .skills-section {
+        margin: 40px auto;
+        padding: 20px 10px;
+        max-width: calc(100vw - 20px);
+        overflow-x: hidden;
+      }
+      
+      .skills-header h2 {
+        font-size: 2rem;
+        text-align: center;
+      }
+      
+      .skill-category {
+        padding: 20px 15px;
+        margin: 0;
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      
+      .skill-category-icon {
+        margin-bottom: 10px;
+        font-size: 1.8rem;
+      }
+      
+      .skill-category-content h3 {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      
+      .skill-tags {
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      
+      .skill-tag {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        white-space: nowrap;
+        margin: 2px;
+      }
+
+      .skills-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0;
+      }
     }
 
     .skills-header {
@@ -612,17 +713,66 @@
     }
 
     @media (max-width: 768px) {
+      .hero {
+        padding: 0 20px;
+        min-height: 100vh;
+        position: relative;
+      }
+      
+      .hero-text {
+        position: relative;
+        z-index: 20;
+        text-align: center;
+        color: white;
+        font-family: 'GraphikBold', 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Arial Black', sans-serif;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      
       .hero-text .line1 {
         font-size: 2.5rem;
-        transform: translateX(-350px);
+        transform: translateX(-40px);
+        margin-bottom: 0.5rem;
+        opacity: 1;
+        visibility: visible;
       }
+      
       .hero-text .line2 {
         font-size: 1.8rem;
-        transform: translateX(350px);
+        transform: translateX(40px);
+        letter-spacing: 0.1em;
+        opacity: 1;
+        visibility: visible;
       }
+      
       .moon {
-        width: 200px;
-        height: 200px;
+        width: 180px;
+        height: 180px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      
+      .hero-text.scroll-animation .line1 {
+        transform: translateX(-100vw);
+      }
+
+      .hero-text.scroll-animation .line2 {
+        transform: translateX(100vw);
+      }
+      
+      .stars {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
       }
     }
   </style>
@@ -792,6 +942,8 @@
           font-size: 2rem;
           color: #bbb;
           overflow: hidden;
+          max-width: calc(100vw - 40px);
+          max-height: calc(100vw - 40px);
         ">
           <!-- 
             아래 img 태그의 src에 사용할 이미지는 
@@ -821,11 +973,11 @@
       </div>
 
       <!-- 언어 토글 버튼 (선택한 언어만 표시) -->
-      <div class="language-switcher">
-        <span class="language-label" id="current-lang">日本語</span>
-        <label class="switch">
-          <input aria-label="Language Toggle" type="checkbox" id="language-toggle">
-          <span class="slider"></span>
+      <div class="language-switcher" style="margin: 30px 0; display: flex; justify-content: center; align-items: center; gap: 15px; padding: 0 20px; box-sizing: border-box;">
+        <span class="language-label" id="current-lang" style="font-size: 1rem; color: #333;">日本語</span>
+        <label class="switch" style="position: relative; display: inline-block; width: 60px; height: 34px;">
+          <input aria-label="Language Toggle" type="checkbox" id="language-toggle" style="opacity: 0; width: 0; height: 0;">
+          <span class="slider" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px;"></span>
         </label>
       </div>
 
