@@ -193,6 +193,11 @@ p {
   justify-content: space-between;
   padding: 0 30px;
   height: 48px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 }
 
 .nav-menu ul {
