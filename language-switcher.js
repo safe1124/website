@@ -6,6 +6,11 @@
 // 현재 언어 상태 가져오기
 function getLang() {
   const lang = localStorage.getItem('siteLang');
+  // 처음 방문하는 경우 일본어를 기본값으로 설정
+  if (!lang) {
+    localStorage.setItem('siteLang', 'ja');
+    return 'ja';
+  }
   return lang === 'ko' ? 'ko' : 'ja';  // 저장된 값이 'ko'가 아니면 무조건 'ja'
 }
 
@@ -30,6 +35,8 @@ function setLang(lang) {
   // 입력값 검증
   if (lang !== 'ko' && lang !== 'ja') lang = 'ja';
   
+  console.log('Setting language to:', lang); // 디버깅용 로그
+  
   // 언어 설정 저장
   localStorage.setItem('siteLang', lang);
   document.documentElement.lang = lang;
@@ -45,6 +52,8 @@ function setLang(lang) {
   document.querySelectorAll('[data-ja][data-ko]').forEach(el => {
     updateElementText(el, lang);
   });
+  
+  console.log('Language setting complete. Updated', document.querySelectorAll('[data-ja][data-ko]').length, 'elements'); // 디버깅용 로그
 }
 
 // 초기화 함수
@@ -68,3 +77,11 @@ function initLanguage() {
 
 // 페이지 로드 시 실행
 document.addEventListener('DOMContentLoaded', initLanguage);
+
+// 네비게이션이 로드된 후 추가 초기화
+window.addEventListener('load', function() {
+  // 모든 리소스가 로드된 후 한 번 더 언어 설정 적용
+  setTimeout(() => {
+    setLang(getLang());
+  }, 100);
+});

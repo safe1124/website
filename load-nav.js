@@ -47,11 +47,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // 네비게이션 메뉴 로드 후 언어 설정 재적용
-        if (typeof setLang === 'function' && typeof getLang === 'function') {
-          setLang(getLang());
-        } else {
-          console.warn('setLang or getLang function not found. Language for nav menu might not be updated.');
-        }
+        setTimeout(() => {
+          if (typeof setLang === 'function' && typeof getLang === 'function') {
+            setLang(getLang());
+            console.log('Language applied to navigation:', getLang());
+          } else {
+            console.warn('setLang or getLang function not found. Language for nav menu might not be updated.');
+          }
+        }, 50);
       })
       .catch(error => {
         console.error('Error fetching navigation menu:', error);
