@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title data-ja="ブログ" data-ko="블로그">블로그 - My Website</title>
+  <title data-ja="shop" data-ko="shop">블로그 - My Website</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="style.mobile.css" media="only screen and (max-width: 768px)" />
@@ -32,5 +32,334 @@
     </div>
   </div>
   <!-- 언어 전환 스크립트는 language-switcher.js에서 자동 로드됩니다 -->
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>shintyque</title>
+  <style>
+    body {
+      background: #ebe7d2;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-title {
+      text-align: center;
+      font-size: 56px;
+      letter-spacing: 2px;
+      margin-top: 36px;
+      margin-bottom: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 32px;
+      letter-spacing: 1px;
+      margin-top: 0;
+      margin-bottom: 32px;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      font-weight: 400;
+    }
+
+    .container {
+      background: #bab6a2;
+      width: 100vw;
+      margin: 48px 0 0 0;
+      padding: 40px;
+      border-radius: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+      align-items: flex-start;
+      justify-content: space-between;
+      box-sizing: border-box;
+    }
+
+    .img-box {
+      background: #fff;
+      border-radius: 32px;
+      padding: 0;
+      width: 450px;
+      height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 32px;
+      display: block;
+    }
+
+    .info-box {
+      flex: 1;
+      min-width: 400px;
+    }
+
+    .perfume-title {
+      font-size: 60px;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      margin: 0 0 16px 0;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    .dropdown-group {
+      background: #fff;
+      margin-top: 12px;
+      margin-bottom: 6px;
+      border-bottom: 2px solid #bab6a2;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+    }
+
+    .dropdown-label {
+      font-size: 32px;
+      padding: 16px 32px 16px 12px;
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dropdown-arrow {
+      border: solid #888;
+      border-width: 0 5px 5px 0;
+      display: inline-block;
+      padding: 8px;
+      margin-left: 12px;
+      transform: rotate(45deg);
+      transition: 0.2s;
+    }
+    .dropdown.open .dropdown-arrow {
+      transform: rotate(-135deg);
+    }
+
+    .dropdown-options {
+      display: none;
+      flex-direction: column;
+      background: #fff;
+      border-top: 1px solid #eee;
+      font-size: 26px;
+      z-index: 10;
+      position: absolute;
+      width: 95%;
+      left: 0;
+      margin-top: 2px;
+    }
+    .dropdown.open .dropdown-options {
+      display: flex;
+    }
+    .dropdown-option {
+      padding: 13px 32px;
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+    .dropdown-option:hover {
+      background: #f4f1e2;
+    }
+
+    .label-section {
+      background: #fff;
+      margin-top: 12px;
+      margin-bottom: 6px;
+      border-bottom: 2px solid #bab6a2;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      padding: 0;
+    }
+
+    .label-title {
+      font-size: 30px;
+      padding: 16px 0 12px 12px;
+      color: #383838;
+      margin: 0;
+    }
+
+    .label-input {
+      width: calc(100% - 24px);
+      font-size: 26px;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      border: none;
+      outline: none;
+      background: transparent;
+      padding: 16px 12px 20px 12px;
+      color: #222;
+    }
+
+    .label-input::placeholder {
+      color: #888;
+      font-style: italic;
+    }
+
+    .char-counter {
+      font-size: 20px;
+      color: #888;
+      text-align: right;
+      padding: 0 12px 12px 0;
+      margin: 0;
+    }
+
+    .price-label {
+      font-size: 38px;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      font-weight: 700;
+      text-align: right;
+      margin-bottom: 32px;
+      margin-right: 18px;
+      margin-top: 0;
+    }
+    .price-placeholder {
+      font-size: 38px;
+      text-align: right;
+      margin-bottom: 32px;
+      margin-right: 18px;
+      color: #222;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      font-weight: 700;
+    }
+    @media (max-width: 1000px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        gap: 24px;
+        width: 100vw;
+      }
+      .img-box {
+        width: 95vw;
+        max-width: 400px;
+        height: auto;
+        margin-bottom: 24px;
+      }
+      .info-box {
+        width: 95vw;
+        max-width: 500px;
+        min-width: unset;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-title">shintyque</div>
+  <div class="subtitle">tokyo</div>
+  <div class="container">
+    <div class="img-box">
+      <img src="https://i.postimg.cc/BnHm4WJb/temp-Imaget7-PV4t.avif" alt="shintyque perfume bottle">
+    </div>
+    <div class="info-box">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="perfume-title">shintyque 23</span>
+        <span id="price-placeholder" class="price-placeholder">price</span>
+      </div>
+      <div style="margin-top:20px;">
+        <!-- 용량 드롭다운 -->
+        <div class="dropdown-group" style="position:relative;">
+          <div class="dropdown dropdown-capacity">
+            <div class="dropdown-label" onclick="toggleDropdown('capacity')">
+              <span id="capacity-label">容量</span>
+              <span class="dropdown-arrow"></span>
+            </div>
+            <div class="dropdown-options" id="capacity-options">
+              <div class="dropdown-option" onclick="selectCapacity(0)">50mL</div>
+              <div class="dropdown-option" onclick="selectCapacity(1)">100mL</div>
+              <div class="dropdown-option" onclick="selectCapacity(2)">500mL</div>
+            </div>
+          </div>
+        </div>
+        <!-- 수량 드롭다운 -->
+        <div class="dropdown-group" style="position:relative;">
+          <div class="dropdown dropdown-quantity">
+            <div class="dropdown-label" onclick="toggleDropdown('quantity')">
+              <span id="quantity-label">数量</span>
+              <span class="dropdown-arrow"></span>
+            </div>
+            <div class="dropdown-options" id="quantity-options">
+              <!-- 1~9개 선택지 -->
+              <script>
+                for(let i=1; i<=9; i++) {
+                  document.write(`<div class="dropdown-option" onclick="selectQuantity(${i})">${i}個</div>`);
+                }
+              </script>
+            </div>
+          </div>
+        </div>
+        <!-- 라벨 -->
+        <div class="label-section">
+          <div class="label-title">ラベル</div>
+          <input type="text" class="label-input" placeholder="ラベルを入力してください (最大 20文字)" maxlength="20" id="label-input" oninput="updateCharCounter()">
+          <div class="char-counter" id="char-counter">0/20</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // 가격 정보
+    const priceTable = [300000, 500000, 1500000];
+    let selectedCapacity = null; // 0:50, 1:100, 2:500
+    let selectedQuantity = null; // 1~9
+
+    // 드롭다운 토글
+    function toggleDropdown(type) {
+      closeAllDropdowns();
+      document.querySelector('.dropdown-' + type).classList.toggle('open');
+    }
+    // 외부 클릭시 닫기
+    document.addEventListener('click', function(event) {
+      if (!event.target.closest('.dropdown')) {
+        closeAllDropdowns();
+      }
+    });
+    function closeAllDropdowns() {
+      document.querySelectorAll('.dropdown').forEach(el => el.classList.remove('open'));
+    }
+
+    // 용량 선택
+    function selectCapacity(idx) {
+      selectedCapacity = idx;
+      document.getElementById('capacity-label').textContent = ['50mL', '100mL', '500mL'][idx];
+      closeAllDropdowns();
+      updatePrice();
+    }
+
+    // 수량 선택
+    function selectQuantity(qty) {
+      selectedQuantity = qty;
+      document.getElementById('quantity-label').textContent = qty + '個';
+      closeAllDropdowns();
+      updatePrice();
+    }
+
+    // 가격 표시 업데이트
+    function updatePrice() {
+      const priceEl = document.getElementById('price-placeholder');
+      if(selectedCapacity !== null && selectedQuantity !== null) {
+        let price = priceTable[selectedCapacity] * selectedQuantity;
+        priceEl.textContent = price.toLocaleString() + '円';
+      } else {
+        priceEl.textContent = 'price';
+      }
+    }
+
+    // 글자 수 카운터 업데이트
+    function updateCharCounter() {
+      const input = document.getElementById('label-input');
+      const counter = document.getElementById('char-counter');
+      const currentLength = input.value.length;
+      counter.textContent = currentLength + '/20';
+    }
+  </script>
 </body>
 </html>
