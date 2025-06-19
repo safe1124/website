@@ -1574,6 +1574,23 @@
       // This is now correctly handled by showPasswordModal and checkPassword.
     });
   </script>
+  <script>
+    // YouTube 썸네일 클릭 시 iframe으로 변경하는 함수
+    function loadVideo(element, videoId) {
+      const iframe = document.createElement('iframe');
+      iframe.width = '100%';
+      iframe.height = element.offsetHeight + 'px';
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+      iframe.title = 'YouTube video player';
+      iframe.frameBorder = '0';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      iframe.style.borderRadius = '8px';
+      iframe.style.border = 'none';
+      
+      element.parentNode.replaceChild(iframe, element);
+    }
+  </script>
 </body>
 </html>
 
