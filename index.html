@@ -819,7 +819,7 @@
     .youtube-videos-section {
       margin-top: 40px;
       padding: 30px;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.08);
       border-radius: 16px;
       backdrop-filter: blur(10px);
     }
@@ -827,7 +827,7 @@
     .youtube-videos-section h3 {
       font-size: 1.8rem;
       margin-bottom: 24px;
-      color: #fff;
+      color: #000000;
       text-align: center;
       font-weight: 600;
     }
@@ -858,6 +858,53 @@
       border: none;
     }
     
+    .video-thumbnail {
+      position: relative;
+      width: 100%;
+      height: 250px;
+      cursor: pointer;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    
+    .video-thumbnail:hover {
+      transform: scale(1.02);
+    }
+    
+    .video-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70px;
+      height: 70px;
+      background: rgba(255, 0, 0, 0.8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    
+    .play-button:hover {
+      background: rgba(255, 0, 0, 1);
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+    
+    .play-button i {
+      color: white;
+      font-size: 24px;
+      margin-left: 3px; /* 플레이 아이콘 중앙 정렬을 위한 미세 조정 */
+    }
+    
     .video-description {
       margin-top: 12px;
       color: #ccc;
@@ -874,6 +921,19 @@
       
       .youtube-video-item iframe {
         height: 200px;
+      }
+      
+      .video-thumbnail {
+        height: 200px;
+      }
+      
+      .play-button {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .play-button i {
+        font-size: 20px;
       }
       
       .youtube-videos-section {
@@ -1222,27 +1282,21 @@
             <h3 data-ja="学習動画" data-ko="학습 영상">学習動画</h3>
             <div class="youtube-videos-container">
               <div class="youtube-video-item">
-                <iframe 
-                  width="560" 
-                  height="315" 
-                  src="https://www.youtube.com/watch?v=lG8R1J9lfGA" 
-                  title="YouTube video player" 
-                  frameborder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                  allowfullscreen>
-                </iframe>
+                <div class="video-thumbnail" onclick="loadVideo(this, 'Gdvd_-oth2Y')">
+                  <img src="https://img.youtube.com/vi/Gdvd_-oth2Y/maxresdefault.jpg" alt="YouTube Thumbnail">
+                  <div class="play-button">
+                    <i class="fas fa-play"></i>
+                  </div>
+                </div>
                 <p class="video-description" data-ja="学習動画1の説明" data-ko="학습 영상1 설명">학습 영상1 설명</p>
               </div>
               <div class="youtube-video-item">
-                <iframe 
-                  width="560" 
-                  height="315" 
-                  src="https://www.youtube.com/watch?v=lG8R1J9lfGA" 
-                  title="YouTube video player" 
-                  frameborder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                  allowfullscreen>
-                </iframe>
+                <div class="video-thumbnail" onclick="loadVideo(this, 'lG8R1J9lfGA')">
+                  <img src="https://img.youtube.com/vi/lG8R1J9lfGA/maxresdefault.jpg" alt="YouTube Thumbnail">
+                  <div class="play-button">
+                    <i class="fas fa-play"></i>
+                  </div>
+                </div>
                 <p class="video-description" data-ja="学習動画2の説明" data-ko="학습 영상2 설명">학습 영상2 설명</p>
               </div>
             </div>
