@@ -798,6 +798,89 @@
         z-index: 1;
       }
     }
+
+    /* Password Modal Styles */
+    #password-modal {
+      /* ... (existing modal styles if any, or add new ones) ... */
+      /* Ensure it's hidden by default if not already */
+      display: none; 
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    /* YouTube Videos Section Styles */
+    .youtube-videos-section {
+      margin-top: 40px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+    }
+    
+    .youtube-videos-section h3 {
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+      color: #fff;
+      text-align: center;
+      font-weight: 600;
+    }
+    
+    .youtube-videos-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 30px;
+      margin-top: 20px;
+    }
+    
+    .youtube-video-item {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .youtube-video-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+    
+    .youtube-video-item iframe {
+      width: 100%;
+      height: 250px;
+      border-radius: 8px;
+      border: none;
+    }
+    
+    .video-description {
+      margin-top: 12px;
+      color: #ccc;
+      font-size: 0.95rem;
+      text-align: center;
+      line-height: 1.4;
+    }
+    
+    @media (max-width: 768px) {
+      .youtube-videos-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .youtube-video-item iframe {
+        height: 200px;
+      }
+      
+      .youtube-videos-section {
+        margin-top: 30px;
+        padding: 20px;
+      }
+    }
   </style>
 
   <script>
@@ -1130,6 +1213,37 @@
                
                 <span class="skill-tag vercel">Vercel</span>
               
+              </div>
+            </div>
+          </div>
+          
+          <!-- YouTube Videos Section -->
+          <div class="youtube-videos-section">
+            <h3 data-ja="学習動画" data-ko="학습 영상">学習動画</h3>
+            <div class="youtube-videos-container">
+              <div class="youtube-video-item">
+                <iframe 
+                  width="560" 
+                  height="315" 
+                  src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1" 
+                  title="YouTube video player" 
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  allowfullscreen>
+                </iframe>
+                <p class="video-description" data-ja="学習動画1の説明" data-ko="학습 영상1 설명">학습 영상1 설명</p>
+              </div>
+              <div class="youtube-video-item">
+                <iframe 
+                  width="560" 
+                  height="315" 
+                  src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2" 
+                  title="YouTube video player" 
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  allowfullscreen>
+                </iframe>
+                <p class="video-description" data-ja="学習動画2の説明" data-ko="학습 영상2 설명">학습 영상2 설명</p>
               </div>
             </div>
           </div>
