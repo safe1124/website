@@ -7,7 +7,7 @@
 
 body {
 	overscroll-behavior: none;
-	background: #d2410c;
+	background: #000000;
 }
 
 .container {
@@ -59,7 +59,7 @@ body, html {
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
   color: #333;
-  background-color: #f2f2f2;
+  background-color: #000000;
   margin: 0;
   padding: 0;
 }
@@ -161,6 +161,7 @@ p {
   transition: transform 0.2s, box-shadow 0.2s;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
+  border: 1px solid #fff; /* Add white border */
 }
 
 .social-button i {
@@ -722,24 +723,24 @@ p {
     height: 30px;
     width: 50px;
     z-index: 5;
-    fill: #333;
+    fill: #fff;
     transition: fill 0.3s ease, transform 0.3s ease;
 }
 
-social-share a:hover svg {
-    fill: #666;
+.social-share a:hover svg {
+    fill: #ccc;
     transform: scale(1.1);
 }
 
-social-share a.twitter > div {
+.social-share a.twitter > div {
     background: transparent;
 }
 
-social-share a.youtube > div {
+.social-share a.youtube > div {
     background: transparent;
 }
 
-social-share a.instagram > div {
+.social-share a.instagram > div {
     background: transparent;
 }
 
@@ -769,4 +770,133 @@ social-share a.instagram > div {
 	height: 1px;
 	width: 1px;
     clip: rect(1px, 1px, 1px, 1px);
+}
+
+/* Glassmorphism for .skills-section (勉強中) */
+.skills-section {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.skills-section:hover {
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
+  transform: translateY(-4px) scale(1.01);
+}
+
+.skills-header h2 {
+  color: #fff;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.12);
+}
+
+.skill-category {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-category:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.45);
+}
+
+.skill-category h3 {
+  color: #fff;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Animated Gradient Skill Tags */
+.skill-tag {
+  display: inline-block;
+  padding: 0.5em 1em;
+  border-radius: 15px;
+  color: #fff;
+  font-weight: 500;
+  margin: 0.25em;
+  transition: transform 0.2s ease;
+  border: none;
+  background-size: 200% 200%;
+  animation: gradient-animation 4s ease infinite;
+}
+
+.skill-tag:hover {
+  transform: scale(1.1);
+}
+
+@keyframes gradient-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Specific Gradients for each skill */
+.skill-tag.ts {
+  background-image: linear-gradient(45deg, #3178c6, #4a90e2, #63a4ff);
+}
+
+.skill-tag.html {
+  background-image: linear-gradient(45deg, #e34f26, #f16529, #f77737);
+}
+
+.skill-tag.css {
+  background-image: linear-gradient(45deg, #1572b6, #268fc9, #3aa9e0);
+}
+
+.skill-tag.js {
+  background-image: linear-gradient(45deg, #f7df1e, #f0db4f, #ebd234);
+  color: #000; /* Black text for better contrast on yellow */
+}
+
+.skill-tag.react {
+  background-image: linear-gradient(45deg, #61dafb, #78e3fc, #8efaff);
+  color: #000; /* Black text for better contrast */
+}
+
+.skill-tag.python {
+  background-image: linear-gradient(45deg, #3776ab, #3c89c7, #429de4);
+}
+
+.skill-tag.swift {
+    background-image: linear-gradient(45deg, #ffac45, #f89d2d, #f08a00);
+}
+
+.skill-tag.kotlin {
+    background-image: linear-gradient(45deg, #7f52ff, #a87ee8, #c9a9ff);
+}
+
+.skill-tag.java {
+    background-image: linear-gradient(45deg, #007396, #5382a1, #b0711c);
+}
+
+.skill-tag.notion {
+    background-image: linear-gradient(45deg, #000000, #333333, #555555);
+}
+
+.skill-tag.git {
+    background-image: linear-gradient(45deg, #f05033, #f16a54, #f38d7d);
+}
+
+.skill-tag.docker {
+    background-image: linear-gradient(45deg, #2496ed, #38a9f0, #52c0f4);
+}
+
+.skill-tag.aws {
+    background-image: linear-gradient(45deg, #ff9900, #ffad33, #ffc266);
+}
+
+.skill-tag.gcp {
+    background-image: linear-gradient(45deg, #4285f4, #34a853, #fbbc05, #ea4335);
+}
+
+.skill-tag.figma {
+    background-image: linear-gradient(45deg, #f24e1e, #a259ff, #1abcfe, #0acf83, #ff7262);
 }
