@@ -1012,7 +1012,45 @@
       animation: rainbow-glow 3s ease-in-out infinite, rainbow-flow 4s linear infinite;
     }
 
-    /* ...existing styles... */
+    /* Collapsible Section Styles */
+    .collapsible-title {
+      cursor: pointer;
+      user-select: none;
+      padding: 15px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #ddd;
+      transition: color 0.3s ease;
+    }
+
+    .collapsible-title:hover {
+      color: #667eea;
+    }
+
+    .toggle-icon {
+      font-size: 0.8em;
+      transition: transform 0.3s ease;
+    }
+
+    .toggle-icon.rotated {
+      transform: rotate(180deg);
+    }
+
+    .collapsible-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .collapsible-content.active {
+      max-height: 1000px;
+    }
+
+    .collapsible-content ul,
+    .collapsible-content .grade-preview-container {
+      margin-top: 15px;
+    }
   </style>
 </head>
 <body style="background:#FFF9E3;">
@@ -1143,39 +1181,60 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Game Result Modal -->
-    <div id="game-result-modal" class="game-result-modal">
-      <div class="result-content">
-        <h2 class="result-title" data-ja="ゲーム終了！" data-ko="게임 종료!">게임 종료!</h2>
-        <div class="result-grade" id="result-grade">C</div>
+      <!-- NumberMelon Game Section -->
+      <div class="game-container">
+        <h2 class="game-title" data-ja="ヌメロン" data-ko="NumberMelon">NumberMelon</h2>
         
-        <div class="result-stats">
-          <div class="result-stat">
-            <div class="result-stat-label" data-ja="最終スコア" data-ko="최종 점수">최종 점수</div>
-            <div class="result-stat-value" id="final-score">0</div>
-            <div id="result-grade-logo" class="grade-logo grade-preview-demo" style="margin-top:8px;"></div>
-          </div>
-          <div class="result-stat">
-            <div class="result-stat-label" data-ja="生存時間" data-ko="생존 시간">생존 시간</div>
-            <div class="result-stat-value" id="survival-time">0秒</div>
-          </div>
-          <div class="result-stat">
-            <div class="result-stat-label" data-ja="獲得ラスク" data-ko="획득 라스크">획득 라스크</div>
-            <div class="result-stat-value" id="rusks-collected">0個</div>
-          </div>
-        </div>
-
-        <div class="result-buttons">
-          <button class="result-btn result-btn-primary" id="play-again-btn" data-ja="もう一度プレイ" data-ko="다시 플레이">다시 플레이</button>
-          <button class="result-btn result-btn-secondary" id="close-result-btn" data-ja="閉じる" data-ko="닫기">닫기</button>
+        <div class="numbermelon-preview">
+          <a href="https://numeron-cyan.vercel.app" target="_blank" rel="noopener noreferrer">
+            <img src="img/games/numbermelon-preview.png" alt="NumberMelon Game Preview" class="game-preview-image">
+            <div class="game-overlay">
+              <div class="play-icon">
+                <i class="fas fa-play"></i>
+              </div>
+              <div class="game-description">
+                <h3 data-ja="NumberMelonをプレイ" data-ko="NumberMelon 플레이하기">NumberMelon 플레이하기</h3>
+                <p data-ja="数字パズルゲーム" data-ko="숫자 퍼즐 게임">숫자 퍼즐 게임</p>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
-    </div>
+
   </main>
 
-  <script>
+  <!-- Game Result Modal -->
+  <div id="game-result-modal" class="game-result-modal">
+    <div class="result-content">
+      <h2 class="result-title" data-ja="ゲーム終了！" data-ko="게임 종료!">게임 종료!</h2>
+      <div class="result-grade" id="result-grade">C</div>
+      
+      <div class="result-stats">
+        <div class="result-stat">
+          <div class="result-stat-label" data-ja="最終スコア" data-ko="최종 점수">최종 점수</div>
+          <div class="result-stat-value" id="final-score">0</div>
+          <div id="result-grade-logo" class="grade-logo grade-preview-demo" style="margin-top:8px;"></div>
+        </div>
+        <div class="result-stat">
+          <div class="result-stat-label" data-ja="生存時間" data-ko="생존 시간">생존 시간</div>
+          <div class="result-stat-value" id="survival-time">0秒</div>
+        </div>
+        <div class="result-stat">
+          <div class="result-stat-label" data-ja="獲得ラスク" data-ko="획득 라스크">획득 라스크</div>
+          <div class="result-stat-value" id="rusks-collected">0個</div>
+        </div>
+      </div>
+
+      <div class="result-buttons">
+        <button class="result-btn result-btn-primary" id="play-again-btn" data-ja="もう一度プレイ" data-ko="다시 플레이">다시 플레이</button>
+        <button class="result-btn result-btn-secondary" id="close-result-btn" data-ja="閉じる" data-ko="닫기">닫기</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
     // Chrome Dino Game Implementation
     class DinoGame {
       constructor() {
@@ -1400,45 +1459,7 @@
       }
       
       resumeGame() {
-        this.gameState = 'running';
-      }
-      
-      resetGame() {
-        this.gameState = 'stopped';
-        this.score = 0;
-        this.gameSpeed = 6;
-        this.obstacles = [];
-        this.bonusItems = [];
-        this.lastObstacle = 0;
-        this.lastBonus = 0;
-        this.gameStartTime = 0;
-        this.lastTimeScoreUpdate = 0;
-        this.dino.y = this.ground - this.dino.height;
-        this.dino.velocityY = 0;
-        this.dino.jumping = false;
-        this.dino.ducking = false;
-        this.updateDisplay();
-      }
-      
-      jump() {
-        if (!this.dino.jumping) {
-          this.dino.velocityY = this.jumpPower;
-          this.dino.jumping = true;
-        }
-      }
-      
-      duck(ducking) {
-        this.dino.ducking = ducking;
-      }
-      
-      updateTimeScore() {
-        if (this.gameState !== 'running') return;
-        
-        const currentTime = Date.now();
-        const gameTimeSeconds = Math.floor((currentTime - this.gameStartTime) / 1000);
-        
-        // Check if a second has passed
-        if (currentTime - this.lastTimeScoreUpdate >= 1000) {
+        this.game
           let pointsPerSecond = 0;
           
           // 시간 구간별 점수 계산
